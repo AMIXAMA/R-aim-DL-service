@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMIXAMA</title>
+    <style>
+        body { margin:0; padding:0; font-family: Tahoma, sans-serif; background:#000000; color:#e0e0e0; scroll-behavior:smooth; }
+        nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.95); padding:20px; text-align:center; z-index:100; backdrop-filter:blur(15px); border-bottom:2px solid #333; }
+        nav a { color:#ffffff; margin:0 30px; font-size:19px; text-decoration:none; font-weight:bold; transition:0.3s; position:relative; }
+        nav a:hover { color:#00bfff; text-shadow:0 0 10px #00bfff; }
+        .dropdown { position:relative; display:inline-block; }
+        .dropdown-content { display:none; position:absolute; background:#111; min-width:200px; box-shadow:0 8px 16px rgba(0,0,0,0.8); z-index:1; right:0; border-radius:8px; overflow:hidden; top:100%; }
+        .dropdown-content a { color:#cccccc; padding:12px 20px; display:block; font-size:17px; }
+        .dropdown-content a:hover { background:#00bfff; color:white; }
+        .dropdown:hover .dropdown-content { display:block; }
+        section { padding:160px 20px 120px; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; }
+        #home { background:linear-gradient(135deg, #00051a, #001133); overflow:hidden; }
+        .hero-bg { position:absolute; inset:0; opacity:0.6; pointer-events:none; }
+        .hero-bg::before { content:''; position:absolute; width:1200px; height:1200px; background:#00bfff; border-radius:50%; filter:blur(150px); top:-500px; left:-500px; animation:pulse1 12s infinite; }
+        .hero-bg::after { content:''; position:absolute; width:1400px; height:1400px; background:#0088cc; border-radius:50%; filter:blur(180px); bottom:-600px; right:-600px; animation:pulse2 15s infinite; }
+        @keyframes pulse1 { 0%,100% { opacity:0.5; transform:scale(1); } 50% { opacity:0.9; transform:scale(1.5); } }
+        @keyframes pulse2 { 0%,100% { opacity:0.4; transform:scale(1); } 50% { opacity:0.8; transform:scale(1.6); } }
+        .hero-content { position:relative; z-index:2; }
+        .logo { font-size:140px; font-weight:bold; letter-spacing:35px; color:white; text-shadow:0 0 80px #00bfff, 0 0 160px #0088cc; margin-bottom:80px; animation:glow 3s infinite; }
+        @keyframes glow { 0%,100% { text-shadow:0 0 80px #00bfff; } 50% { text-shadow:0 0 160px #00bfff, 0 0 240px #0088cc; } }
+        .tagline { font-size:42px; color:#00bfff; margin:90px 0 110px; line-height:1.8; max-width:1300px; }
+        .hero-btn { display:inline-block; padding:35px 100px; background:linear-gradient(135deg, #00bfff, #0088cc); color:white; font-size:40px; border-radius:70px; text-decoration:none; box-shadow:0 30px 80px rgba(0,191,255,0.8); transition:0.5s; }
+        .hero-btn:hover { transform:scale(1.25); box-shadow:0 60px 140px rgba(0,191,255,1); }
+        .scroll-down { position:absolute; bottom:70px; animation:bounce 2s infinite; }
+        @keyframes bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-50px); } }
+        h2 { font-size:45px; margin-bottom:70px; color:#00bfff; position:relative; }
+        h2::after { content:''; width:140px; height:4px; background:linear-gradient(to right, #00bfff, #0088cc); position:absolute; bottom:-20px; left:50%; transform:translateX(-50%); border-radius:2px; }
+        .services-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:60px; max-width:1400px; }
+        .service-card { background:#0f0f1a; padding:60px 50px; border-radius:20px; width:380px; box-shadow:0 15px 50px rgba(0,0,0,0.8); transition:0.4s; border:1px solid #222; }
+        .service-card:hover { transform:translateY(-25px); box-shadow:0 35px 80px rgba(0,191,255,0.3); border-color:#00bfff; }
+        .service-card h3 { font-size:30px; color:#00bfff; margin-bottom:30px; }
+        .service-card p { font-size:19px; line-height:2; color:#cccccc; text-align:justify; }
+        .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:50px; max-width:1400px; padding:20px; }
+        .portfolio-item { position:relative; height:320px; background:#0f0f1a; border-radius:20px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.6); transition:0.4s; }
+        .portfolio-item:hover { transform:scale(1.05); box-shadow:0 20px 50px rgba(0,191,255,0.4); }
+        .portfolio-overlay { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size:26px; color:#00bfff; background:rgba(0,0,0,0.7); padding:25px 50px; border-radius:15px; }
+        .about-text { font-size:23px; max-width:1100px; line-height:2.2; padding:60px; background:#0f0f1a; border-radius:20px; box-shadow:0 15px 40px rgba(0,0,0,0.6); text-align:justify; }
+        .contact-info { margin:70px 0; }
+        .contact-btn { display:inline-block; padding:22px 70px; background:linear-gradient(135deg, #00bfff, #0088cc); color:white; font-size:30px; border-radius:60px; text-decoration:none; box-shadow:0 12px 40px rgba(0,191,255,0.5); transition:0.4s; }
+        .contact-btn:hover { transform:scale(1.12); box-shadow:0 25px 60px rgba(0,191,255,0.7); }
+        footer { padding:60px; text-align:center; background:#000; color:#777; font-size:16px; border-top:1px solid #333; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">AMIXAMA</a>
+        <a href="#services">خدمات</a>
+        <div class="dropdown">
+            <a href="#portfolio">نمونه کارها ▼</a>
+            <div class="dropdown-content">
+                <a href="#portfolio">وب‌سایت‌ها</a>
+                <a href="#portfolio">لندینگ پیج</a>
+                <a href="#portfolio">برندسازی</a>
+            </div>
+        </div>
+        <a href="#about">درباره</a>
+        <a href="#contact">تماس</a>
+    </nav>
+
+    <section id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="logo">AMIXAMA</div>
+            <div class="tagline">
+                طراحی وب حرفه‌ای با عملکرد بالا<br>
+                لندینگ پیج‌های تبدیل‌محور و نتیجه‌گرا<br>
+                برندسازی دیجیتال استراتژیک و ماندگار
+            </div>
+            <a href="#contact" class="hero-btn">شروع همکاری</a>
+        </div>
+        <div class="scroll-down">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#00bfff" stroke-width="4">
+                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>خدمات</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>طراحی و توسعه وب‌سایت</h3>
+                <p>ساخت وب‌سایت‌های کاملاً سفارشی و مدرن که نه تنها زیبا هستند، بلکه سریع، امن و بهینه برای موتورهای جستجو ساخته می‌شوند. از سایت‌های شرکتی، شخصی و پورتفولیو تا فروشگاه‌های آنلاین و پلتفرم‌های پیچیده‌تر – همه با کد تمیز، ساختار استاندارد، سازگاری کامل با موبایل و دسکتاپ، سرعت بارگذاری بالا و تمرکز ویژه روی تجربه کاربری. هر پروژه با تحقیق درباره نیازهای کسب‌وکار شما شروع می‌شود تا نتیجه نهایی دقیقاً همان چیزی باشد که برای رشدتان لازم دارید.</p>
+            </div>
+            <div class="service-card">
+                <h3>لندینگ پیج حرفه‌ای</h3>
+                <p>طراحی و ساخت صفحات فرود هدفمند که برای یک هدف خاص ساخته می‌شوند: افزایش فروش، جمع‌آوری سرنخ، ثبت‌نام یا هر اقدام دیگری که شما بخواهید. هر عنصر صفحه (عنوان، متن، تصویر، فرم، دکمه) بر اساس اصول روانشناسی کاربر، تست‌های A/B و داده‌های واقعی بهینه می‌شود. نتیجه یک صفحه سریع، جذاب و بسیار تبدیل‌محور است که بازدیدکننده را در چند ثانیه به مشتری یا سرنخ تبدیل می‌کند – نه فقط یک صفحه زیبا، بلکه ابزاری واقعی برای کسب درآمد.</p>
+            </div>
+            <div class="service-card">
+                <h3>برندسازی دیجیتال</h3>
+                <p>ساخت هویت بصری کامل و حرفه‌ای برای برند شما از صفر تا صد: طراحی لوگوهای منحصربه‌فرد و قابل تشخیص، انتخاب پالت رنگی مناسب با روانشناسی رنگ، تایپوگرافی هماهنگ، طراحی آیکون‌ها و المان‌های گرافیکی، تدوین راهنمای برند (Brand Guideline) و استراتژی حضور دیجیتال در وب و شبکه‌های اجتماعی. هدف این است که برند شما نه تنها زیبا و مدرن به نظر برسد، بلکه در ذهن مخاطب بماند، اعتماد ایجاد کند و از رقبا متمایز شود.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2>نمونه کارها</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item"><div class="portfolio-overlay">وب‌سایت شرکتی</div></div>
+            <div class="portfolio-item"><div class="portfolio-overlay">لندینگ پیج فروش</div></div>
+            <div class="portfolio-item"><div class="portfolio-overlay">برندسازی کامل</div></div>
+            <div class="portfolio-item"><div class="portfolio-overlay">وب‌سایت شخصی</div></div>
+            <div class="portfolio-item"><div class="portfolio-overlay">لندینگ پیج سرنخ</div></div>
+            <div class="portfolio-item"><div class="portfolio-overlay">هویت بصری جدید</div></div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>درباره AMIXAMA</h2>
+        <div class="about-text">
+            هر پروژه در AMIXAMA با تحقیق دقیق درباره کسب‌وکار، مخاطبان هدف و رقبا شروع می‌شود. طراحی و توسعه بر اساس استانداردهای روز وب (مانند Web Vitals گوگل، دسترسی‌پذیری WCAG و امنیت بالا) انجام می‌شود.<br><br>
+            تمرکز اصلی روی نتیجه واقعی است: سایت یا لندینگ پیجی که نه تنها زیبا باشد، بلکه فروش بیاورد، سرنخ جمع کند یا برند را تقویت کند. کد همیشه تمیز، بهینه و قابل نگهداری نوشته می‌شود تا در آینده به راحتی قابل گسترش یا تغییر باشد.<br><br>
+            تحویل پروژه همیشه به‌موقع و با پشتیبانی اولیه برای راه‌اندازی انجام می‌شود. هدف نهایی: ارائه محصولی که ارزش واقعی برای کسب‌وکار شما ایجاد کند و در بلندمدت کار کند.
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>شروع همکاری</h2>
+        <div class="contact-info">
+            <a href="https://t.me/AMIXAMA" class="contact-btn">تلگرام: @AMIXAMA</a>
+        </div>
+    </section>
+
+    <footer>
+        © 2025 AMIXAMA – همه حقوق محفوظ
+    </footer>
+
+</body>
+</html>
