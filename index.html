@@ -1,75 +1,78 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AMIXAMA Digital Service – ارائه خدمات جامع تحول دیجیتال، طراحی و توسعه وب‌سایت حرفه‌ای، اپلیکیشن و برندسازی دیجیتال برای رشد کسب‌وکار شما.">
-    <title>AMIXAMA Digital Service</title>
-    <style>
-        :root {
-            --bg: #0d0d0d;
-            --text: #e0e0e0;
-            --accent: #4a9eff;
-            --card: #1a1a1a;
-            --border: #333;
-        }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family: Tahoma, sans-serif; background:var(--bg); color:var(--text); line-height:1.8; }
-        a { text-decoration:none; color:var(--text); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AMIXAMA Digital Service – خدمات طراحی وب، توسعه اپلیکیشن، برندسازی دیجیتال و مشاوره حرفه‌ای برای رشد کسب‌وکار شما">
+<title>AMIXAMA Digital Service</title>
+<style>
+:root {
+    --bg: #f8f8f8;
+    --text: #1a1a1a;
+    --accent: #ff6f61;
+    --card: #ffffff;
+    --border: #e0e0e0;
+    --shadow: rgba(0,0,0,0.05);
+}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+body { background:var(--bg); color:var(--text); line-height:1.8; }
+a { text-decoration:none; color:inherit; }
+header { position:fixed; top:0; width:100%; background:var(--bg); box-shadow:0 2px 10px var(--shadow); z-index:1000; }
+nav { display:flex; justify-content:center; padding:20px 0; gap:25px; }
+nav a { font-weight:600; font-size:18px; position:relative; transition:0.3s; }
+nav a::after { content:''; position:absolute; width:0; height:2px; background:var(--accent); bottom:-6px; left:50%; transition:0.3s; }
+nav a:hover::after { width:100%; left:0; }
 
-        nav { position:fixed; top:0; width:100%; background:var(--bg); padding:25px 0; text-align:center; z-index:1000; border-bottom:1px solid var(--border); }
-        nav a { margin:0 30px; font-size:18px; font-weight:bold; transition:0.3s; position:relative; }
-        nav a::after { content:''; position:absolute; width:0; height:2px; background:var(--accent); bottom:-8px; left:50%; transition:0.3s; }
-        nav a:hover { color:var(--accent); }
-        nav a:hover::after { width:100%; left:0; }
+section { padding:120px 30px; max-width:1200px; margin:0 auto; }
+h2 { font-size:42px; margin-bottom:50px; color:var(--accent); text-align:center; position:relative; }
+h2::after { content:''; width:80px; height:3px; background:var(--accent); position:absolute; bottom:-15px; left:50%; transform:translateX(-50%); }
 
-        section { padding:140px 40px; max-width:1400px; margin:0 auto; }
-        h2 { font-size:48px; margin-bottom:60px; color:var(--accent); text-align:center; position:relative; }
-        h2::after { content:''; width:100px; height:3px; background:var(--accent); position:absolute; bottom:-20px; left:50%; transform:translateX(-50%); }
+#home { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:linear-gradient(to bottom, #ffffff, #f8f8f8); }
+.logo { font-size:80px; font-weight:700; color:var(--accent); margin-bottom:30px; letter-spacing:6px; }
+.intro-text { font-size:20px; max-width:800px; margin-bottom:60px; color:var(--text); opacity:0.9; }
+.cta-buttons { display:flex; gap:25px; flex-wrap:wrap; justify-content:center; }
+.btn { padding:15px 45px; background:var(--accent); color:#fff; font-size:18px; border-radius:8px; transition:0.4s; font-weight:600; }
+.btn:hover { background:#ff5045; transform:translateY(-3px); box-shadow:0 10px 20px rgba(255,111,97,0.2); }
+.btn-secondary { background:transparent; border:2px solid var(--accent); }
+.btn-secondary:hover { background:var(--accent); color:#fff; }
 
-        /* Home */
-        #home { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; background:linear-gradient(to bottom, #0a0a0a, var(--bg)); }
-        .logo { font-size:100px; font-weight:bold; color:#fff; margin-bottom:40px; letter-spacing:10px; }
-        .intro-text { font-size:24px; max-width:1000px; margin-bottom:80px; opacity:0.9; }
-        .cta-buttons { display:flex; gap:40px; flex-wrap:wrap; justify-content:center; }
-        .btn { padding:20px 60px; background:var(--accent); color:#fff; font-size:22px; border-radius:8px; transition:0.4s; }
-        .btn:hover { background:#3a8eff; transform:translateY(-5px); box-shadow:0 10px 30px rgba(74,158,255,0.3); }
-        .btn-secondary { background:transparent; border:2px solid var(--accent); }
-        .btn-secondary:hover { background:var(--accent); }
+.services-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:35px; }
+.service-card { background:var(--card); padding:40px; border-radius:12px; border:1px solid var(--border); transition:0.4s; box-shadow:0 4px 15px var(--shadow); }
+.service-card:hover { transform:translateY(-10px); box-shadow:0 15px 40px var(--shadow); }
+.service-card h3 { font-size:24px; color:var(--accent); margin-bottom:20px; }
 
-        /* خدمات */
-        .services-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(400px,1fr)); gap:50px; }
-        .service-card { background:var(--card); padding:50px; border-radius:15px; border:1px solid var(--border); transition:0.4s; }
-        .service-card:hover { border-color:var(--accent); transform:translateY(-15px); box-shadow:0 20px 50px rgba(74,158,255,0.1); }
-        .service-card h3 { font-size:28px; color:var(--accent); margin-bottom:30px; }
+.portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:30px; }
+.portfolio-item { position:relative; border-radius:12px; overflow:hidden; transition:0.4s; }
+.portfolio-item img { width:100%; height:100%; object-fit:cover; transition:0.4s; border-radius:12px; }
+.portfolio-item:hover img { transform:scale(1.05); }
+.portfolio-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.6); display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0; transition:0.4s; border-radius:12px; }
+.portfolio-item:hover .portfolio-overlay { opacity:1; }
+.portfolio-overlay h4 { font-size:22px; color:#fff; margin-bottom:10px; }
 
-        /* نمونه کارها */
-        .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(350px,1fr)); gap:40px; }
-        .portfolio-item { position:relative; border-radius:15px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.5); transition:0.4s; }
-        .portfolio-item img { width:100%; height:100%; object-fit:cover; transition:0.4s; }
-        .portfolio-item:hover img { transform:scale(1.1); }
-        .portfolio-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.7); display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0; transition:0.4s; }
-        .portfolio-item:hover .portfolio-overlay { opacity:1; }
-        .portfolio-overlay h4 { font-size:26px; color:#fff; margin-bottom:15px; }
+.about-text { font-size:18px; max-width:1000px; margin:0 auto; background:var(--card); padding:50px; border-radius:12px; border:1px solid var(--border); box-shadow:0 4px 15px var(--shadow); }
 
-        /* درباره */
-        .about-text { font-size:20px; max-width:1100px; margin:0 auto; background:var(--card); padding:60px; border-radius:15px; border:1px solid var(--border); }
+.contact-form { max-width:700px; margin:60px auto; background:var(--card); padding:50px; border-radius:12px; border:1px solid var(--border); box-shadow:0 4px 15px var(--shadow); }
+.contact-form input, .contact-form textarea { width:100%; padding:18px; margin:15px 0; background:#fff; border:1px solid var(--border); color:var(--text); border-radius:8px; font-size:16px; }
+.contact-form button { padding:15px 45px; background:var(--accent); color:#fff; font-size:18px; border:none; border-radius:8px; cursor:pointer; transition:0.4s; font-weight:600; }
+.contact-form button:hover { background:#ff5045; transform:translateY(-3px); }
 
-        /* تماس */
-        .contact-form { max-width:800px; margin:80px auto; background:var(--card); padding:60px; border-radius:15px; border:1px solid var(--border); }
-        .contact-form input, .contact-form textarea { width:100%; padding:20px; margin:20px 0; background:#111; border:1px solid var(--border); color:#fff; border-radius:8px; font-size:18px; }
-        .contact-form button { padding:20px 60px; background:var(--accent); color:#fff; font-size:22px; border:none; border-radius:8px; cursor:pointer; transition:0.4s; }
-        .contact-form button:hover { background:#3a8eff; transform:translateY(-5px); }
+.contact-links { margin-top:40px; text-align:center; }
+.contact-links a { display:inline-block; padding:15px 40px; margin:0 15px; background:var(--accent); color:#fff; border-radius:8px; font-size:16px; transition:0.4s; }
+.contact-links a:hover { background:#ff5045; transform:translateY(-3px); }
 
-        .contact-links { margin-top:60px; text-align:center; }
-        .contact-links a { display:inline-block; padding:18px 50px; margin:0 20px; background:var(--accent); color:#fff; border-radius:8px; font-size:20px; transition:0.4s; }
-        .contact-links a:hover { background:#3a8eff; transform:translateY(-5px); }
+footer { padding:60px; text-align:center; border-top:1px solid var(--border); font-size:14px; color:#555; }
 
-        footer { padding:80px; text-align:center; border-top:1px solid var(--border); font-size:16px; color:#888; }
-    </style>
+@media(max-width:768px){
+    nav { flex-direction:column; gap:15px; }
+    h2 { font-size:36px; }
+    .logo { font-size:60px; }
+    .intro-text { font-size:18px; }
+}
+</style>
 </head>
 <body>
 
+<header>
     <nav>
         <a href="#home">AMIXAMA</a>
         <a href="#services">خدمات</a>
@@ -77,85 +80,98 @@
         <a href="#about">درباره ما</a>
         <a href="#contact">تماس</a>
     </nav>
+</header>
 
-    <section id="home">
-        <div class="logo">AMIXAMA</div>
-        <div class="intro-text">
-            <p>ما در AMIXAMA Digital Service با اعتقاد به قدرت تحول دیجیتال، مجموعه‌ای جامع از خدمات فناوری ارائه می‌دهیم. از طراحی وب‌سایت‌های حرفه‌ای تا توسعه اپلیکیشن و برندسازی دیجیتال، هدفمان رشد واقعی کسب‌وکار شماست.</p>
-        </div>
-        <div class="cta-buttons">
-            <a href="#services" class="btn">مشاهده خدمات</a>
-            <a href="#contact" class="btn btn-secondary">تماس با ما</a>
-        </div>
-    </section>
+<main>
+<section id="home">
+    <div class="logo">AMIXAMA</div>
+    <div class="intro-text">
+        <p>ما در AMIXAMA Digital Service با اعتقاد به قدرت تحول دیجیتال، مجموعه‌ای جامع از خدمات فناوری ارائه می‌دهیم. از طراحی وب‌سایت‌های حرفه‌ای تا توسعه اپلیکیشن و برندسازی دیجیتال، هدفمان رشد واقعی کسب‌وکار شماست.</p>
+    </div>
+    <div class="cta-buttons">
+        <a href="#services" class="btn">مشاهده خدمات</a>
+        <a href="#contact" class="btn btn-secondary">تماس با ما</a>
+    </div>
+</section>
 
-    <section id="services">
-        <h2>خدمات ما</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>طراحی و توسعه وب‌سایت</h3>
-                <p>وب‌سایت‌های واکنش‌گرا، مدرن و بهینه‌شده برای موتورهای جستجو با تمرکز روی تجربه کاربری عالی و سرعت بالا.</p>
+<section id="services">
+    <h2>خدمات ما</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <h3>طراحی و توسعه وب‌سایت</h3>
+            <p>وب‌سایت‌های واکنش‌گرا، مدرن و بهینه‌شده برای موتورهای جستجو با تمرکز روی تجربه کاربری عالی و سرعت بالا.</p>
+        </div>
+        <div class="service-card">
+            <h3>توسعه اپلیکیشن موبایل</h3>
+            <p>اپلیکیشن‌های native و hybrid برای iOS و Android با طراحی زیبا و عملکرد روان.</p>
+        </div>
+        <div class="service-card">
+            <h3>برندسازی دیجیتال</h3>
+            <p>ساخت هویت بصری کامل شامل لوگو، پالت رنگی، راهنمای برند و استراتژی حضور آنلاین.</p>
+        </div>
+        <div class="service-card">
+            <h3>مشاوره و پشتیبانی ۲۴/۷</h3>
+            <p>مشاوره تخصصی برای بهینه‌سازی، تحلیل داده و پشتیبانی فنی مداوم.</p>
+        </div>
+    </div>
+</section>
+
+<section id="portfolio">
+    <h2>نمونه کارهای اخیر</h2>
+    <div class="portfolio-grid">
+        <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="وب‌سایت شرکتی">
+            <div class="portfolio-overlay">
+                <h4>وب‌سایت شرکتی</h4>
+                <p>طراحی مینیمال و حرفه‌ای</p>
             </div>
-            <div class="service-card">
-                <h3>توسعه اپلیکیشن موبایل</h3>
-                <p>اپلیکیشن‌های native و hybrid برای iOS و Android با طراحی زیبا و عملکرد روان.</p>
-            </div>
-            <div class="service-card">
-                <h3>برندسازی دیجیتال</h3>
-                <p>ساخت هویت بصری کامل شامل لوگو، پالت رنگی، راهنمای برند و استراتژی حضور آنلاین.</p>
-            </div>
-            <div class="service-card">
-                <h3>مشاوره و پشتیبانی ۲۴/۷</h3>
-                <p>مشاوره تخصصی برای بهینه‌سازی، تحلیل داده و پشتیبانی فنی مداوم.</p>
+        </div>
+        <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?w=800" alt="اپلیکیشن موبایل">
+            <div class="portfolio-overlay">
+                <h4>اپلیکیشن موبایل</h4>
+                <p>طراحی روان و کاربرپسند</p>
             </div>
         </div>
-    </section>
-
-    <section id="portfolio">
-        <h2>نمونه کارهای اخیر</h2>
-        <div class="portfolio-grid">
-            <!-- 12 نمونه با تصاویر واقعی -->
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="وب‌سایت شرکتی">
-                <div class="portfolio-overlay">
-                    <h4>وب‌سایت شرکتی</h4>
-                    <p>طراحی مینیمال و حرفه‌ای</p>
-                </div>
+        <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" alt="لوگو و برندینگ">
+            <div class="portfolio-overlay">
+                <h4>لوگو و برندینگ</h4>
+                <p>هویت بصری مدرن</p>
             </div>
-            <!-- تکرار برای 11 مورد دیگر با لینک‌های unsplash یا dribbble -->
-            <!-- ... -->
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="about">
-        <h2>درباره AMIXAMA Digital Service</h2>
-        <div class="about-text">
-            <p>AMIXAMA Digital Service – در AMIXAMA Digital Service ما با اعتقاد به قدرت تحول دیجیتال، به ارائه مجموعه‌ای جامع از خدمات فناوری و دیجیتال اختصاص یافته‌ایم. از طراحی و توسعه وب‌سایت‌های حرفه‌ای، واکنش‌گرا و مدرن گرفته تا ساخت اپلیکیشن‌ها و ابزارهای سفارشی برای کسب‌وکارهای کوچک، متوسط و بزرگ، هدف ما فراهم کردن راهکارهای کاربردی و نوآورانه برای رشد و پیشرفت آنلاین مشتریانمان است. هر پروژه برای ما فرصتی است تا خلاقیت و تخصص خود را در طراحی رابط کاربری (UI) و تجربه کاربری (UX) به نمایش بگذاریم، به گونه‌ای که نتیجه نه تنها زیبا بلکه کاربردی، پایدار و قابل توسعه باشد.</p>
-            <p>ما خدمات خود را به صورت جامع ارائه می‌کنیم؛ شامل پشتیبانی فنی ۲۴/۷، مشاوره تخصصی برای بهینه‌سازی عملکرد وب‌سایت‌ها، تحلیل داده‌ها و ارائه راهکارهای استراتژیک برای حضور دیجیتال و بازاریابی آنلاین. AMIXAMA Digital Service به شما کمک می‌کند که حضور آنلاین خود را تقویت کنید، کسب‌وکارتان را در دنیای دیجیتال بهبود بخشید و به مشتریان خود تجربه‌ای حرفه‌ای و یکپارچه ارائه دهید.</p>
-            <p>هدف نهایی ما ایجاد راهکارهایی است که باعث رشد واقعی، افزایش بهره‌وری، و رضایت حداکثری مشتریان شما شود. در AMIXAMA Digital Service، ما نه تنها خدمات دیجیتال ارائه می‌دهیم، بلکه شریک استراتژیک شما در مسیر موفقیت آنلاین هستیم.</p>
-        </div>
-    </section>
+<section id="about">
+    <h2>درباره AMIXAMA Digital Service</h2>
+    <div class="about-text">
+        <p>AMIXAMA Digital Service – ما با اعتقاد به قدرت تحول دیجیتال، خدمات طراحی و توسعه وب، اپلیکیشن و برندسازی دیجیتال ارائه می‌دهیم. هدف ما ارائه راهکارهای کاربردی و نوآورانه برای رشد کسب‌وکارهای آنلاین است.</p>
+        <p>خدمات ما شامل پشتیبانی ۲۴/۷، مشاوره فنی و بهینه‌سازی عملکرد وب‌سایت‌ها است. AMIXAMA Digital Service به شما کمک می‌کند حضور آنلاین خود را تقویت کنید و تجربه‌ای حرفه‌ای و یکپارچه به مشتریان خود ارائه دهید.</p>
+    </div>
+</section>
 
-    <section id="contact">
-        <h2>تماس با ما</h2>
-        <div class="contact-form">
-            <form>
-                <input type="text" placeholder="نام کامل" required>
-                <input type="email" placeholder="ایمیل" required>
-                <input type="tel" placeholder="شماره تماس">
-                <textarea rows="8" placeholder="پیام یا توضیحات پروژه"></textarea>
-                <button type="submit">ارسال پیام</button>
-            </form>
-        </div>
-        <div class="contact-links">
-            <a href="https://t.me/AMIXAMA" target="_blank">تلگرام @AMIXAMA</a>
-            <a href="https://wa.me/989123456789" target="_blank">واتس‌اپ</a> <!-- شماره واقعی بذار -->
-        </div>
-    </section>
+<section id="contact">
+    <h2>تماس با ما</h2>
+    <div class="contact-form">
+        <form>
+            <input type="text" placeholder="نام کامل" required>
+            <input type="email" placeholder="ایمیل" required>
+            <input type="tel" placeholder="شماره تماس">
+            <textarea rows="6" placeholder="پیام یا توضیحات پروژه"></textarea>
+            <button type="submit">ارسال پیام</button>
+        </form>
+    </div>
+    <div class="contact-links">
+        <a href="https://t.me/AMIXAMA" target="_blank">تلگرام @AMIXAMA</a>
+        <a href="https://wa.me/989123456789" target="_blank">واتس‌اپ</a>
+    </div>
+</section>
+</main>
 
-    <footer>
-        © 2025 AMIXAMA Digital Service – همه حقوق محفوظ
-    </footer>
+<footer>
+    © 2025 AMIXAMA Digital Service – همه حقوق محفوظ
+</footer>
 
 </body>
 </html>
