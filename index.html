@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<!DOCTYPE html><html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="description" content="AMIXAMA Digital Service — طراحی و توسعه وب، اپلیکیشن، برندسازی دیجیتال، سئو و پشتیبانی. راهکارهای فناورانه برای رشد کسب‌وکارها.">
 <title>AMIXAMA Digital Service — Cyberpunk System</title>
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">
-
-<style>
+<link rel="icon" href="data:;base64,iVBORw0KGgo="><style>
 /* ======================
    متغیرها و ریست اولیه
    ====================== */
@@ -169,6 +166,11 @@ body{
 .card-portfolio .meta{ padding:12px; color:var(--muted) }
 .card-portfolio .meta h4{ color:var(--neon); margin-bottom:6px }
 
+/* placeholder برای عکس‌های خراب یا نبود عکس */
+.img-placeholder{
+  width:100%; height:220px; display:flex; align-items:center; justify-content:center; text-align:center; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00)); color:var(--muted); font-size:14px; padding:10px;
+}
+
 /* ======================
    درباره (طومار)
    ====================== */
@@ -228,82 +230,62 @@ body{
   section{ padding:60px 16px }
   .hero-card{ padding:20px }
 }
-</style>
-</head>
-<body>
-
-<div class="bg-grid" aria-hidden="true"></div>
-
-<!-- BOOT SCREEN -->
-<div id="boot" role="status" aria-live="polite" aria-atomic="true"></div>
-
-<!-- APP -->
-<div id="app" aria-hidden="true">
-
-  <!-- HEADER -->
-  <header class="header" role="banner">
+</style></head>
+<body><div class="bg-grid" aria-hidden="true"></div><!-- BOOT SCREEN --><div id="boot" role="status" aria-live="polite" aria-atomic="true"></div><!-- APP --><div id="app" aria-hidden="true">  <!-- HEADER -->  <header class="header" role="banner">
     <div class="wrap">
       <div class="brand">
         <div class="logo">AMIXAMA</div>
         <div class="sub">Digital Service</div>
-      </div>
+      </div><nav class="nav" role="navigation" aria-label="ناوبری">
+    <a href="#home">خانه</a>
+    <a href="#services">خدمات</a>
+    <a href="#portfolio">نمونه‌کارها</a>
+    <a href="#about">درباره</a>
+    <a href="#contact">تماس</a>
+  </nav>
 
-      <nav class="nav" role="navigation" aria-label="ناوبری">
-        <a href="#home">خانه</a>
-        <a href="#services">خدمات</a>
-        <a href="#portfolio">نمونه‌کارها</a>
-        <a href="#about">درباره</a>
-        <a href="#contact">تماس</a>
-      </nav>
+  <div class="cta">
+    <a class="btn btn-ghost" href="https://t.me/AMIXAMA" target="_blank" rel="noopener">تلگرام</a>
+    <a class="btn btn-primary" href="https://wa.me/989123456789" target="_blank" rel="noopener">واتس‌اپ</a>
+  </div>
+</div>
 
-      <div class="cta">
-        <a class="btn btn-ghost" href="https://t.me/AMIXAMA" target="_blank" rel="noopener">تلگرام</a>
-        <a class="btn btn-primary" href="https://wa.me/989123456789" target="_blank" rel="noopener">واتس‌اپ</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section id="home" class="hero" role="region" aria-label="صفحه اصلی">
+  </header>  <!-- HERO -->  <section id="home" class="hero" role="region" aria-label="صفحه اصلی">
     <div class="hero-inner">
       <div class="hero-card">
         <div class="h-title">راهکارهای دیجیتال با حس سامانه</div>
-        <div class="h-sub">AMIXAMA سرویس‌هایی فنی و مقیاس‌پذیر ارائه می‌دهد: طراحی سایت، توسعه اپ، فروشگاه آنلاین، برندسازی دیجیتال، سئو و پشتیبانی. اینجا سیستم روشن است، نه ویترین.</div>
-
-        <div class="h-ctas">
-          <a class="btn btn-primary" href="#contact">درخواست مشاوره</a>
-          <a class="btn btn-ghost" href="#services">مشاهده خدمات</a>
-          <span class="badge">پشتیبانی ۲۴/۷</span>
-          <span class="badge">تحویل سریع MVP</span>
-        </div>
-
-        <div style="margin-top:18px">
-          <small class="badge">Stack: HTML, CSS, JS, Node/Backend (اختیاری)</small>
-        </div>
-      </div>
-
-      <div class="viz" aria-hidden="true">
-        <!-- SVG visualization: شبکه و نِئون -->
-        <svg viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" width="100%" height="100%">
-          <defs>
-            <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#00f0ff" stop-opacity="0.12"/><stop offset="1" stop-color="#ff2bdc" stop-opacity="0.10"/></linearGradient>
-          </defs>
-          <rect x="12" y="12" width="576" height="336" rx="12" fill="url(#g)"/>
-          <g transform="translate(40,40)">
-            <rect x="0" y="0" width="220" height="120" rx="8" fill="#02121a" stroke="rgba(255,255,255,0.02)"/>
-            <rect x="240" y="10" width="300" height="90" rx="8" fill="#02121a" stroke="rgba(255,255,255,0.02)"/>
-            <!-- simulated nodes -->
-            <circle cx="40" cy="160" r="8" fill="#00f0ff"/>
-            <circle cx="120" cy="200" r="6" fill="#ff2bdc"/>
-            <circle cx="220" cy="180" r="5" fill="#00f0ff"/>
-          </g>
-        </svg>
-      </div>
+        <div class="h-sub">AMIXAMA سرویس‌هایی فنی و مقیاس‌پذیر ارائه می‌دهد: طراحی سایت، توسعه اپ، فروشگاه آنلاین، برندسازی دیجیتال، سئو و پشتیبانی. اینجا سیستم روشن است، نه ویترین.</div><div class="h-ctas">
+      <a class="btn btn-primary" href="#contact">درخواست مشاوره</a>
+      <a class="btn btn-ghost" href="#services">مشاهده خدمات</a>
+      <span class="badge">پشتیبانی ۲۴/۷</span>
+      <span class="badge">تحویل سریع MVP</span>
     </div>
-  </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="section" aria-labelledby="servicesTitle">
+    <div style="margin-top:18px">
+      <small class="badge">Stack: HTML, CSS, JS, Node/Backend (اختیاری)</small>
+    </div>
+  </div>
+
+  <div class="viz" aria-hidden="true">
+    <!-- SVG visualization: شبکه و نِئون -->
+    <svg viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" width="100%" height="100%">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#00f0ff" stop-opacity="0.12"/><stop offset="1" stop-color="#ff2bdc" stop-opacity="0.10"/></linearGradient>
+      </defs>
+      <rect x="12" y="12" width="576" height="336" rx="12" fill="url(#g)"/>
+      <g transform="translate(40,40)">
+        <rect x="0" y="0" width="220" height="120" rx="8" fill="#02121a" stroke="rgba(255,255,255,0.02)"/>
+        <rect x="240" y="10" width="300" height="90" rx="8" fill="#02121a" stroke="rgba(255,255,255,0.02)"/>
+        <!-- simulated nodes -->
+        <circle cx="40" cy="160" r="8" fill="#00f0ff"/>
+        <circle cx="120" cy="200" r="6" fill="#ff2bdc"/>
+        <circle cx="220" cy="180" r="5" fill="#00f0ff"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+  </section>  <!-- SERVICES -->  <section id="services" class="section" aria-labelledby="servicesTitle">
     <div class="h2" id="servicesTitle">خدمات ما</div>
     <div class="services-grid" role="list">
       <div class="service" role="listitem">
@@ -331,120 +313,95 @@ body{
         <p>طراحی معماری مقیاس‌پذیر، انتخاب پشته فناوری و نقشه راه فنی.</p>
       </div>
     </div>
-  </section>
+  </section>  <!-- PORTFOLIO -->  <section id="portfolio" class="section" aria-labelledby="portfolioTitle">
+    <div class="h2" id="portfolioTitle">نمونه‌کارهای منتخب</div><div class="portfolio" id="portfolioGrid">
+  <!-- کارت‌ها: اپلیکیشن موبایل حذف شد طبق درخواست -->
+  <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" data-title="وب‌سایت شرکتی" data-desc="طراحی مینیمال برای شرکتی تجاری">
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=60" alt="وب‌سایت شرکتی">
+    <div class="meta"><h4>وب‌سایت شرکتی</h4><p>طراحی مینیمال و بهینه</p></div>
+  </article>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio" class="section" aria-labelledby="portfolioTitle">
-    <div class="h2" id="portfolioTitle">نمونه‌کارهای منتخب</div>
+  <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&q=80" data-title="هویت بصری" data-desc="لوگو و راهنمای برند کامل">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&q=60" alt="لوگو و برندینگ">
+    <div class="meta"><h4>هویت بصری</h4><p>لوگو، پالت رنگ و راهنما</p></div>
+  </article>
 
-    <div class="portfolio" id="portfolioGrid">
-      <!-- 6 نمونه واقعی با تصاویر unsplash -->
-      <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" data-title="وب‌سایت شرکتی" data-desc="طراحی مینیمال برای شرکتی تجاری">
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=60" alt="وب‌سایت شرکتی">
-        <div class="meta"><h4>وب‌سایت شرکتی</h4><p>طراحی مینیمال و بهینه</p></div>
-      </article>
+  <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1400&q=80" data-title="فروشگاه آنلاین" data-desc="پلتفرم تجارت الکترونیک مقیاس‌پذیر">
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=60" alt="فروشگاه آنلاین">
+    <div class="meta"><h4>فروشگاه آنلاین</h4><p>درگاه، مدیریت کالا و سفارش</p></div>
+  </article>
 
-      <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?w=1400&q=80" data-title="اپلیکیشن موبایل" data-desc="UI/UX و توسعه اپ iOS و Android">
-        <img src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?w=900&q=60" alt="اپلیکیشن موبایل">
-        <div class="meta"><h4>اپلیکیشن موبایل</h4><p>UI روان و تجربه کاربری استاندارد</p></div>
-      </article>
+  <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1400&q=80" data-title="داشبورد مدیریتی" data-desc="سیستم مدیریت و گزارش‌گیری">
+    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=60" alt="داشبورد">
+    <div class="meta"><h4>داشبورد مدیریتی</h4><p>گزارشات و کنترل پنل مدیریتی</p></div>
+  </article>
 
-      <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&q=80" data-title="هویت بصری" data-desc="لوگو و راهنمای برند کامل">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&q=60" alt="لوگو و برندینگ">
-        <div class="meta"><h4>هویت بصری</h4><p>لوگو، پالت رنگ و راهنما</p></div>
-      </article>
+  <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?w=1400&q=80" data-title="پروژه سفارشی" data-desc="راهکار نرم‌افزاری سفارشی برای نیاز خاص">
+    <img src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?w=900&q=60" alt="پروژه سفارشی">
+    <div class="meta"><h4>پروژه سفارشی</h4><p>توسعه اختصاصی و یکپارچه‌سازی</p></div>
+  </article>
+</div>
 
-      <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1400&q=80" data-title="فروشگاه آنلاین" data-desc="پلتفرم تجارت الکترونیک مقیاس‌پذیر">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=60" alt="فروشگاه آنلاین">
-        <div class="meta"><h4>فروشگاه آنلاین</h4><p>درگاه، مدیریت کالا و سفارش</p></div>
-      </article>
+<div style="text-align:center;margin-top:18px">
+  <button class="btn btn-ghost" id="loadMore">بارگذاری بیشتر</button>
+</div>
 
-      <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1400&q=80" data-title="داشبورد مدیریتی" data-desc="سیستم مدیریت و گزارش‌گیری">
-        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=60" alt="داشبورد">
-        <div class="meta"><h4>داشبورد مدیریتی</h4><p>گزارشات و کنترل پنل مدیریتی</p></div>
-      </article>
+  </section>  <!-- ABOUT (طومار) -->  <section id="about" class="section" aria-labelledby="aboutTitle">
+    <div class="h2" id="aboutTitle">درباره AMIXAMA Digital Service</div><div class="about-card">
+  <p>
+    AMIXAMA Digital Service به‌عنوان یک مجموعهٔ تخصصی در حوزهٔ فناوری و خدمات دیجیتال، مأموریت دارد تا تحول قابل اندازه‌گیری و پایدار را برای کسب‌وکارها مهیا کند. ما با ترکیب طراحی کاربرمحور، مهندسی نرم‌افزار دقیق و استراتژی دیجیتال مبتنی بر داده، راهکارهایی می‌سازیم که نه تنها زیبا به‌نظر می‌رسند، بلکه قابل توسعه، امن و بهینه برای عملکرد بلندمدت هستند.
+  </p>
 
-      <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?w=1400&q=80" data-title="پروژه سفارشی" data-desc="راهکار نرم‌افزاری سفارشی برای نیاز خاص">
-        <img src="https://images.unsplash.com/photo-1537498425277-c283d32ef9db?w=900&q=60" alt="پروژه سفارشی">
-        <div class="meta"><h4>پروژه سفارشی</h4><p>توسعه اختصاصی و یکپارچه‌سازی</p></div>
-      </article>
+  <p style="margin-top:10px">
+    دامنهٔ خدمات ما شامل طراحی و توسعه وب‌سایت‌های واکنش‌گرا، ایجاد فروشگاه‌های آنلاین مقیاس‌پذیر، توسعهٔ اپلیکیشن‌های موبایل و PWA، طراحی هویت بصری و برندسازی دیجیتال، بهینه‌سازی موتورهای جستجو (SEO)، آنالیز داده و مشاورهٔ فنی برای معماری سامانه‌هاست. هر پروژه برای ما یک محصول مهندسی‌شده است: برنامه‌ریزی، طراحی، توسعه، تست و پشتیبانی؛ همه با مستندسازی دقیق و استاندارد.
+  </p>
+
+  <p style="margin-top:10px">
+    تیم AMIXAMA به کیفیت فنی، پاسخگویی و نتیجه‌محوری متعهد است. ما فرایندهای کاری خود را به‌گونه‌ای طراحی می‌کنیم که مشتری در تمام مراحل کنترل داشته باشد و خروجی نهایی قابل اندازه‌گیری با معیارهای کسب‌وکار باشد. هدف ما کمک به کسب‌وکارها برای افزایش بهره‌وری، بهبود تجربهٔ کاربری و رسیدن به رشد واقعی در فضای آنلاین است.
+  </p>
+
+  <p style="margin-top:10px">
+    در AMIXAMA تمرکز ما ایجاد راهکارهای عملی، امن و قابل توسعه است. اگر دنبال یک تیم برای تزئین صفحه نیستید و می‌خواهید سامانه‌ای بسازید که واقعاً کار کند، درست آمده‌اید. برای شروع کار یا دریافت مشاورهٔ فنی عمیق، از طریق فرم تماس یا لینک‌های واتس‌اپ و تلگرام با ما در ارتباط باشید.
+  </p>
+</div>
+
+  </section>  <!-- CONTACT -->  <section id="contact" class="section" aria-labelledby="contactTitle">
+    <div class="h2" id="contactTitle">تماس و درخواست پروژه</div><div class="contact-wrap">
+  <form id="contactForm" class="form" onsubmit="return false" aria-label="فرم تماس">
+    <input class="input" id="name" name="name" type="text" placeholder="نام کامل *" required>
+    <input class="input" id="email" name="email" type="email" placeholder="ایمیل *" required>
+    <input class="input" id="phone" name="phone" type="tel" placeholder="شماره تلفن">
+    <textarea class="input textarea" id="message" name="message" placeholder="توضیح مختصر پروژه *" required></textarea>
+
+    <div style="display:flex; gap:10px; justify-content:flex-start; margin-top:8px">
+      <button id="submit" class="btn btn-primary" type="submit">ارسال درخواست</button>
+      <button id="reset" class="btn btn-ghost" type="button">پاک کردن</button>
     </div>
 
-    <div style="text-align:center;margin-top:18px">
-      <button class="btn btn-ghost" id="loadMore">بارگذاری بیشتر</button>
+    <div id="status" style="margin-top:12px; color:var(--muted); display:none"></div>
+  </form>
+
+  <aside class="contact-card" aria-label="اطلاعات تماس">
+    <h3 style="color:var(--neon)">راه‌های ارتباطی</h3>
+    <p class="muted">واتس‌اپ، تلگرام یا ایمیل برای سرعت پاسخ‌دهی بهتر است.</p>
+    <div style="margin-top:12px; display:flex; gap:8px; flex-direction:column">
+      <a href="https://wa.me/989123456789" target="_blank" rel="noopener">واتس‌اپ: +98 912 345 6789</a>
+      <a href="https://t.me/AMIXAMA" target="_blank" rel="noopener">تلگرام: @AMIXAMA</a>
+      <a href="mailto:info@amixama.example">ایمیل: info@amixama.example</a>
     </div>
-  </section>
 
-  <!-- ABOUT (طومار) -->
-  <section id="about" class="section" aria-labelledby="aboutTitle">
-    <div class="h2" id="aboutTitle">درباره AMIXAMA Digital Service</div>
+    <hr style="margin:14px 0; border:none; border-top:1px solid rgba(255,255,255,0.03)">
 
-    <div class="about-card">
-      <p>
-        AMIXAMA Digital Service به‌عنوان یک مجموعهٔ تخصصی در حوزهٔ فناوری و خدمات دیجیتال، مأموریت دارد تا تحول قابل اندازه‌گیری و پایدار را برای کسب‌وکارها مهیا کند. ما با ترکیب طراحی کاربرمحور، مهندسی نرم‌افزار دقیق و استراتژی دیجیتال مبتنی بر داده، راهکارهایی می‌سازیم که نه تنها زیبا به‌نظر می‌رسند، بلکه قابل توسعه، امن و بهینه برای عملکرد بلندمدت هستند.
-      </p>
-
-      <p style="margin-top:10px">
-        دامنهٔ خدمات ما شامل طراحی و توسعه وب‌سایت‌های واکنش‌گرا، ایجاد فروشگاه‌های آنلاین مقیاس‌پذیر، توسعهٔ اپلیکیشن‌های موبایل و PWA، طراحی هویت بصری و برندسازی دیجیتال، بهینه‌سازی موتورهای جستجو (SEO)، آنالیز داده و مشاورهٔ فنی برای معماری سامانه‌هاست. هر پروژه برای ما یک محصول مهندسی‌شده است: برنامه‌ریزی، طراحی، توسعه، تست و پشتیبانی؛ همه با مستندسازی دقیق و استاندارد.
-      </p>
-
-      <p style="margin-top:10px">
-        تیم AMIXAMA به کیفیت فنی، پاسخگویی و نتیجه‌محوری متعهد است. ما فرایندهای کاری خود را به‌گونه‌ای طراحی می‌کنیم که مشتری در تمام مراحل کنترل داشته باشد و خروجی نهایی قابل اندازه‌گیری با معیارهای کسب‌وکار باشد. هدف ما کمک به کسب‌وکارها برای افزایش بهره‌وری، بهبود تجربهٔ کاربری و رسیدن به رشد واقعی در فضای آنلاین است.
-      </p>
-
-      <p style="margin-top:10px">
-        در AMIXAMA تمرکز ما ایجاد راهکارهای عملی، امن و قابل توسعه است. اگر دنبال یک تیم برای تزئین صفحه نیستید و می‌خواهید سامانه‌ای بسازید که واقعاً کار کند، درست آمده‌اید. برای شروع کار یا دریافت مشاورهٔ فنی عمیق، از طریق فرم تماس یا لینک‌های واتس‌اپ و تلگرام با ما در ارتباط باشید.
-      </p>
+    <div style="color:var(--muted); font-size:14px">
+      <strong>آدرس (نمونه)</strong>
+      <p style="margin-top:8px">تهران، ایران — آدرس کامل پس از تماس ارسال می‌شود.</p>
     </div>
-  </section>
+  </aside>
+</div>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section" aria-labelledby="contactTitle">
-    <div class="h2" id="contactTitle">تماس و درخواست پروژه</div>
-
-    <div class="contact-wrap">
-      <form id="contactForm" class="form" onsubmit="return false" aria-label="فرم تماس">
-        <input class="input" id="name" name="name" type="text" placeholder="نام کامل *" required>
-        <input class="input" id="email" name="email" type="email" placeholder="ایمیل *" required>
-        <input class="input" id="phone" name="phone" type="tel" placeholder="شماره تلفن">
-        <textarea class="input textarea" id="message" name="message" placeholder="توضیح مختصر پروژه *" required></textarea>
-
-        <div style="display:flex; gap:10px; justify-content:flex-start; margin-top:8px">
-          <button id="submit" class="btn btn-primary" type="submit">ارسال درخواست</button>
-          <button id="reset" class="btn btn-ghost" type="button">پاک کردن</button>
-        </div>
-
-        <div id="status" style="margin-top:12px; color:var(--muted); display:none"></div>
-      </form>
-
-      <aside class="contact-card" aria-label="اطلاعات تماس">
-        <h3 style="color:var(--neon)">راه‌های ارتباطی</h3>
-        <p class="muted">واتس‌اپ، تلگرام یا ایمیل برای سرعت پاسخ‌دهی بهتر است.</p>
-        <div style="margin-top:12px; display:flex; gap:8px; flex-direction:column">
-          <a href="https://wa.me/989123456789" target="_blank" rel="noopener">واتس‌اپ: +98 912 345 6789</a>
-          <a href="https://t.me/AMIXAMA" target="_blank" rel="noopener">تلگرام: @AMIXAMA</a>
-          <a href="mailto:info@amixama.example">ایمیل: info@amixama.example</a>
-        </div>
-
-        <hr style="margin:14px 0; border:none; border-top:1px solid rgba(255,255,255,0.03)">
-
-        <div style="color:var(--muted); font-size:14px">
-          <strong>آدرس (نمونه)</strong>
-          <p style="margin-top:8px">تهران، ایران — آدرس کامل پس از تماس ارسال می‌شود.</p>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
+  </section>  <!-- FOOTER -->  <footer class="footer">
     <div>© <span id="year"></span> AMIXAMA Digital Service — همه حقوق محفوظ</div>
-  </footer>
-
-</div> <!-- /app -->
-
-<!-- MODAL -->
-<div id="modal" class="modal" role="dialog" aria-hidden="true">
+  </footer></div> <!-- /app --><!-- MODAL --><div id="modal" class="modal" role="dialog" aria-hidden="true">
   <div class="modal-card" role="document">
     <div class="modal-media" id="modalMedia"></div>
     <div class="modal-body">
@@ -456,9 +413,7 @@ body{
       </div>
     </div>
   </div>
-</div>
-
-<script>
+</div><script>
 /* -------------------------
    Boot typing sequence
    ------------------------- */
@@ -510,6 +465,7 @@ function initApp(){
   setTimeout(()=> {
     document.querySelectorAll('.viz svg').forEach(s=> s.style.transform='translateY(-6px)');
   }, 400);
+  ensurePortfolioImages();
 }
 
 /* -------------------------
@@ -520,16 +476,6 @@ const modalMedia = document.getElementById('modalMedia');
 const modalTitle = document.getElementById('modalTitle');
 const modalDesc = document.getElementById('modalDesc');
 const modalClose = document.getElementById('modalClose');
-
-document.querySelectorAll('.card-portfolio').forEach(card=>{
-  card.addEventListener('click', ()=>{
-    const src = card.dataset.src || card.querySelector('img')?.src;
-    const title = card.dataset.title || card.querySelector('h4')?.innerText;
-    const desc = card.dataset.desc || card.querySelector('p')?.innerText;
-    openModal(src, title, desc);
-  });
-  card.addEventListener('keydown', (e)=> { if(e.key === 'Enter') card.click(); });
-});
 
 function openModal(src, title, desc){
   modalMedia.innerHTML = '<img src="'+src+'" alt="'+title+'">';
@@ -547,11 +493,64 @@ modalClose.addEventListener('click', closeModal);
 modal.addEventListener('click', (e)=> { if(e.target === modal) closeModal(); });
 document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeModal(); });
 
+/* attach click handlers for existing cards */
+function bindPortfolioCards(root=document){
+  document.querySelectorAll('.card-portfolio', root).forEach(card=>{
+    if(card._bound) return; // avoid double binding
+    card.addEventListener('click', ()=>{
+      const src = card.dataset.src || card.querySelector('img')?.src || '';
+      const title = card.dataset.title || card.querySelector('h4')?.innerText || '';
+      const desc = card.dataset.desc || card.querySelector('p')?.innerText || '';
+      openModal(src, title, desc);
+    });
+    card.addEventListener('keydown', (e)=> { if(e.key === 'Enter') card.click(); });
+    card._bound = true;
+  });
+}
+
+/* -------------------------
+   Image fallback: جلوگیری از نمایش کارت خالی
+   - اگر عکس بارگذاری نشد، placeholder نمایش داده می‌شود
+   ------------------------- */
+function createPlaceholder(card){
+  const existingImg = card.querySelector('img');
+  if(existingImg) existingImg.remove();
+  if(card.querySelector('.img-placeholder')) return;
+  const ph = document.createElement('div');
+  ph.className = 'img-placeholder';
+  const title = card.dataset.title || card.querySelector('.meta h4')?.innerText || 'نمونه‌کار';
+  ph.innerHTML = '<div style="max-width:80%">' + title + '<br><small style="color:var(--muted);font-size:12px">تصویر در دسترس نیست</small></div>';
+  const meta = card.querySelector('.meta');
+  if(meta) card.insertBefore(ph, meta);
+  else card.appendChild(ph);
+}
+
+function ensurePortfolioImages(){
+  const cards = document.querySelectorAll('.card-portfolio');
+  cards.forEach(card=>{
+    const img = card.querySelector('img');
+    if(!img){
+      // اگر عکس وجود ندارد، placeholder بساز
+      createPlaceholder(card);
+      return;
+    }
+    // اگر عکس خطا داد یا بعد از بارگذاری خالی بود
+    img.addEventListener('error', ()=> createPlaceholder(card));
+    if(img.complete){
+      if(typeof img.naturalWidth !== 'undefined' && img.naturalWidth === 0){
+        createPlaceholder(card);
+      }
+    }
+  });
+  bindPortfolioCards();
+}
+
 /* -------------------------
    Load more (fake)
    ------------------------- */
 document.getElementById('loadMore').addEventListener('click', ()=>{
   const grid = document.getElementById('portfolioGrid');
+  const created = [];
   for(let i=0;i<3;i++){
     const art = document.createElement('article');
     art.className = 'card-portfolio';
@@ -561,8 +560,11 @@ document.getElementById('loadMore').addEventListener('click', ()=>{
     art.dataset.src = 'https://images.unsplash.com/photo-1474631245212-32dc3c8310c6?w=1400&q=80';
     art.innerHTML = '<img src="https://images.unsplash.com/photo-1474631245212-32dc3c8310c6?w=900&q=60" alt="نمونه"><div class="meta"><h4>نمونه اضافه‌شده</h4><p>اضافه‌شده پویا</p></div>';
     grid.appendChild(art);
-    art.addEventListener('click', ()=> openModal(art.dataset.src, art.dataset.title, art.dataset.desc));
+    created.push(art);
   }
+  // bind handlers and check images for newly created cards
+  bindPortfolioCards();
+  ensurePortfolioImages();
   const btn = document.getElementById('loadMore');
   btn.textContent = 'تمام شد';
   btn.disabled = true;
@@ -624,7 +626,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
   });
   document.body.addEventListener('focusout', (e)=> { e.target.classList.remove('focus-outline'); });
 });
-</script>
-
-</body>
+</script></body>
 </html>
