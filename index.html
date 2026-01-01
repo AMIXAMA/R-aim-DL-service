@@ -1,1001 +1,388 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>AMIXAMA — سیستم سه‌بعدی ضد طراحی</title>
-    <meta name="description" content="AMIXAMA — ارتقا از هر زاویه. فضای سه‌بعدی متحرک مات بنفش.">
-    <meta name="theme-color" content="#2d0b5a">
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMIXAMA — سیستم‌های دیجیتال قابل اتکا</title>
+    <meta name="description" content="طراحی و توسعه سیستم‌های وب، تجارت الکترونیک، هویت سازمانی. راه‌حل‌های عملی و کم‌حاشیه.">
     <style>
-        /* ریست سه‌بعدی */
+        /* سیستم طراحی مبتنی بر utility - عملکرد محور */
+        :root {
+            --primary: #1a365d;
+            --secondary: #2d3748;
+            --accent: #4299e1;
+            --text: #2d3748;
+            --text-light: #718096;
+            --background: #ffffff;
+            --surface: #f7fafc;
+            --border: #e2e8f0;
+            --radius: 0.5rem;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transform-style: preserve-3d;
-            backface-visibility: visible;
         }
 
-        :root {
-            --purple-dark: #1a0638;
-            --purple-mid: #2d0b5a;
-            --purple-light: #4a1e8c;
-            --purple-glow: #7b3fe4;
-            --purple-neon: #9d70ff;
-            --matte-white: rgba(255, 255, 255, 0.92);
-            --matte-black: rgba(10, 5, 25, 0.95);
-            --glass: rgba(255, 255, 255, 0.1);
-            --depth-1: 100px;
-            --depth-2: 200px;
-            --depth-3: 300px;
-            --depth-4: 500px;
-            --perspective: 2000px;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: var(--matte-black);
-            color: var(--matte-white);
-            perspective: var(--perspective);
-            transform-style: preserve-3d;
-        }
-
-        /* سیستم اسکرول سه‌بعدی */
-        .world {
-            width: 100%;
-            height: 500vh;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 1.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        /* بخش‌های سه‌بعدی */
-        .section-3d {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            transform-style: preserve-3d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* بخش اصلی با لوگوی بزرگ سه‌بعدی */
-        #home {
-            transform: translate3d(0, 0, 0);
-            z-index: 10;
-        }
-
-        /* لوگوی سه‌بعدی متحرک */
-        .logo-3d-container {
-            position: relative;
-            width: 80vmin;
-            height: 80vmin;
-            transform-style: preserve-3d;
-            animation: float3d 20s infinite linear;
-        }
-
-        @keyframes float3d {
-            0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-            25% { transform: rotateX(15deg) rotateY(90deg) rotateZ(5deg); }
-            50% { transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg); }
-            75% { transform: rotateX(-15deg) rotateY(270deg) rotateZ(-5deg); }
-            100% { transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg); }
-        }
-
-        .logo-letter {
-            position: absolute;
-            font-size: 18vmin;
-            font-weight: 900;
-            color: var(--purple-neon);
-            text-shadow: 
-                0 0 30px var(--purple-glow),
-                0 0 60px var(--purple-light);
-            opacity: 0.9;
-            transform-style: preserve-3d;
-            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-        }
-
-        /* موقعیت‌های سه‌بعدی برای حروف AMIXAMA */
-        .logo-letter:nth-child(1) { transform: translate3d(-40vmin, -20vmin, 100px); } /* A */
-        .logo-letter:nth-child(2) { transform: translate3d(-20vmin, -40vmin, 200px); } /* M */
-        .logo-letter:nth-child(3) { transform: translate3d(0, -60vmin, 300px); } /* I */
-        .logo-letter:nth-child(4) { transform: translate3d(20vmin, -40vmin, 400px); } /* X */
-        .logo-letter:nth-child(5) { transform: translate3d(40vmin, -20vmin, 500px); } /* A */
-        .logo-letter:nth-child(6) { transform: translate3d(20vmin, 0, 600px); } /* M */
-        .logo-letter:nth-child(7) { transform: translate3d(-20vmin, 0, 700px); } /* A */
-
-        /* پس‌زمینه سه‌بعدی مات */
-        .bg-layers {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            transform-style: preserve-3d;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .bg-layer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(
-                circle at center,
-                var(--purple-mid) 0%,
-                transparent 70%
-            );
-            opacity: 0.3;
-            filter: blur(40px);
-        }
-
-        .bg-layer:nth-child(1) { transform: translateZ(-1000px); opacity: 0.4; }
-        .bg-layer:nth-child(2) { transform: translateZ(-2000px); opacity: 0.2; }
-        .bg-layer:nth-child(3) { transform: translateZ(-3000px); opacity: 0.1; }
-
-        /* ناوبری سه‌بعدی شناور */
-        .nav-3d {
-            position: fixed;
-            top: 50%;
-            right: 5vw;
-            transform: translateY(-50%) rotateY(20deg);
-            transform-style: preserve-3d;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .nav-item {
-            position: relative;
-            transform-style: preserve-3d;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .nav-link {
-            display: block;
-            padding: 15px 25px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--purple-light);
-            color: var(--matte-white);
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 2px;
-            transform: translateZ(0);
-            transition: all 0.4s;
-            border-radius: 4px;
-        }
-
-        .nav-link:hover {
-            transform: translateZ(50px);
-            background: rgba(123, 63, 228, 0.3);
-            border-color: var(--purple-neon);
-            box-shadow: 
-                0 0 40px rgba(123, 63, 228, 0.4),
-                inset 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-item:nth-child(1) { transform: translateZ(0px); }
-        .nav-item:nth-child(2) { transform: translateZ(20px); }
-        .nav-item:nth-child(3) { transform: translateZ(40px); }
-        .nav-item:nth-child(4) { transform: translateZ(60px); }
-
-        /* کارت‌های سه‌بعدی شناور */
-        .services-3d {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            transform: translate3d(0, 100vh, -500px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 50px;
-            flex-wrap: wrap;
-            padding: 100px;
-            transform-style: preserve-3d;
-        }
-
-        .service-card-3d {
-            width: 300px;
-            height: 400px;
-            background: var(--glass);
-            backdrop-filter: blur(30px);
-            border: 1px solid var(--purple-light);
-            border-radius: 20px;
-            padding: 40px;
-            transform-style: preserve-3d;
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card-3d::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                135deg,
-                transparent 30%,
-                rgba(157, 112, 255, 0.1) 50%,
-                transparent 70%
-            );
-            transform: translateZ(-1px);
-            opacity: 0;
-            transition: opacity 0.6s;
-        }
-
-        .service-card-3d:hover {
-            transform: translateZ(100px) rotateX(5deg) rotateY(-5deg);
-            border-color: var(--purple-neon);
-            box-shadow: 
-                0 50px 100px rgba(0, 0, 0, 0.5),
-                0 0 100px rgba(123, 63, 228, 0.3);
-        }
-
-        .service-card-3d:hover::before {
-            opacity: 1;
-        }
-
-        /* المان‌های شناور سه‌بعدی */
-        .floating-elements {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            transform-style: preserve-3d;
-            z-index: -1;
-        }
-
-        .floating-element {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background: rgba(123, 63, 228, 0.1);
-            border: 1px solid rgba(157, 112, 255, 0.3);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            transform-style: preserve-3d;
-            animation: float3dRandom 25s infinite linear;
-        }
-
-        @keyframes float3dRandom {
-            0% { transform: translate3d(0, 0, 0) rotateX(0) rotateY(0); }
-            25% { transform: translate3d(100px, 50px, 200px) rotateX(90deg) rotateY(90deg); }
-            50% { transform: translate3d(50px, 100px, -100px) rotateX(180deg) rotateY(180deg); }
-            75% { transform: translate3d(-50px, 50px, 300px) rotateX(270deg) rotateY(270deg); }
-            100% { transform: translate3d(0, 0, 0) rotateX(360deg) rotateY(360deg); }
-        }
-
-        /* سیستم کنترل سه‌بعدی */
-        .controls-3d {
-            position: fixed;
-            bottom: 5vh;
-            left: 5vw;
-            display: flex;
-            gap: 20px;
-            z-index: 1000;
-        }
-
-        .control-btn {
-            padding: 12px 24px;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--purple-light);
-            color: var(--matte-white);
-            cursor: pointer;
-            font-size: 14px;
-            border-radius: 4px;
-            transition: all 0.4s;
-            transform: translateZ(0);
-        }
-
-        .control-btn:hover {
-            transform: translateZ(30px);
-            background: rgba(123, 63, 228, 0.3);
-            border-color: var(--purple-neon);
-        }
-
-        /* بخش اطلاعات سه‌بعدی */
-        .info-panel-3d {
-            position: fixed;
-            top: 5vh;
-            left: 5vw;
-            width: 400px;
-            padding: 30px;
-            background: var(--glass);
-            backdrop-filter: blur(30px);
-            border: 1px solid var(--purple-light);
-            border-radius: 20px;
-            transform: rotateY(-20deg) translateZ(0);
-            transform-style: preserve-3d;
-            transition: all 0.8s;
-        }
-
-        .info-panel-3d:hover {
-            transform: rotateY(0deg) translateZ(50px);
-            border-color: var(--purple-neon);
-        }
-
-        /* فرم سه‌بعدی */
-        .contact-form-3d {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            transform: translate3d(0, 200vh, -1000px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transform-style: preserve-3d;
-        }
-
-        .form-container-3d {
-            width: 600px;
-            padding: 50px;
-            background: var(--glass);
-            backdrop-filter: blur(40px);
-            border: 1px solid var(--purple-light);
-            border-radius: 30px;
-            transform: rotateX(10deg) rotateY(-10deg);
-            transform-style: preserve-3d;
-            transition: all 0.8s;
-        }
-
-        .form-container-3d:hover {
-            transform: rotateX(0deg) rotateY(0deg) translateZ(100px);
-            border-color: var(--purple-neon);
-        }
-
-        .form-input-3d {
-            width: 100%;
-            padding: 20px;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--purple-light);
-            color: var(--matte-white);
+        html {
             font-size: 16px;
-            transform: translateZ(0);
-            transition: all 0.4s;
-            border-radius: 10px;
+            scroll-behavior: smooth;
         }
 
-        .form-input-3d:focus {
-            transform: translateZ(30px);
-            border-color: var(--purple-neon);
-            background: rgba(255, 255, 255, 0.1);
-            outline: none;
-            box-shadow: 0 0 30px rgba(123, 63, 228, 0.3);
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Vazirmatn', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--background);
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
-        /* سیستم گرید سه‌بعدی */
-        .grid-3d {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            transform: translate3d(-25%, -25%, -1000px) rotateX(60deg);
-            pointer-events: none;
-            opacity: 0.1;
-        }
-
-        .grid-line {
-            position: absolute;
-            background: linear-gradient(
-                to right,
-                transparent,
-                var(--purple-neon),
-                transparent
-            );
-        }
-
-        .grid-line-horizontal {
+        .container {
             width: 100%;
-            height: 1px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Typography System */
+        h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.2; }
+        h2 { font-size: 2rem; font-weight: 700; line-height: 1.3; }
+        h3 { font-size: 1.5rem; font-weight: 600; line-height: 1.4; }
+        .lead { font-size: 1.25rem; color: var(--text-light); }
+
+        /* Navigation - Functional */
+        .navbar {
+            position: fixed;
             top: 0;
-            animation: gridMove 20s linear infinite;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
         }
 
-        .grid-line-vertical {
-            height: 100%;
-            width: 1px;
-            left: 0;
-            animation: gridMove 15s linear infinite reverse;
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        @keyframes gridMove {
-            0% { transform: translateZ(0); }
-            100% { transform: translateZ(100px); }
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
         }
 
-        /* انیمیشن اسکرول سه‌بعدی */
-        @keyframes scroll3d {
-            0% { transform: translate3d(0, 0, 0); }
-            25% { transform: translate3d(0, -100vh, -100px); }
-            50% { transform: translate3d(0, -200vh, -200px); }
-            75% { transform: translate3d(0, -300vh, -300px); }
-            100% { transform: translate3d(0, -400vh, -400px); }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
 
-        /* واکنش‌گرایی برای موبایل */
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero - Content First */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: var(--surface);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .lead {
+            margin-bottom: 2rem;
+        }
+
+        /* Services Grid - Practical */
+        .services {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Contact Form - Functional */
+        .contact {
+            padding: 4rem 0;
+            background: var(--surface);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background: #3182ce;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 0;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            :root {
-                --perspective: 1000px;
+            .nav-links {
+                display: none;
             }
-
-            .nav-3d {
-                right: 2vw;
-                transform: translateY(-50%) rotateY(0deg) scale(0.8);
+            
+            .mobile-menu-btn {
+                display: block;
             }
-
-            .logo-3d-container {
-                width: 90vmin;
-                height: 90vmin;
-            }
-
-            .logo-letter {
-                font-size: 12vmin;
-            }
-
-            .service-card-3d {
-                width: 250px;
-                height: 350px;
-                padding: 20px;
-            }
-
-            .controls-3d {
-                bottom: 2vh;
-                left: 2vw;
-                flex-direction: column;
-            }
-
-            .info-panel-3d {
-                width: 90vw;
-                left: 5vw;
-                transform: rotateY(0deg);
+            
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* حالت VR/AR آماده */
-        @media (orientation: portrait) {
-            .world {
-                perspective: 1500px;
-            }
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
-        @media (orientation: landscape) {
-            .world {
-                perspective: 2500px;
-            }
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
 
-        /* انیمیشن‌های ورود */
-        @keyframes fadeIn3d {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 0, -1000px);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
+        /* Performance Optimizations */
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
-        .animate-in {
-            animation: fadeIn3d 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        /* Print Styles */
+        @media print {
+            .navbar,
+            .btn,
+            .footer {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- شبکه سه‌بعدی پس‌زمینه -->
-    <div class="grid-3d">
-        <div class="grid-line grid-line-horizontal" style="top: 0%"></div>
-        <div class="grid-line grid-line-horizontal" style="top: 25%"></div>
-        <div class="grid-line grid-line-horizontal" style="top: 50%"></div>
-        <div class="grid-line grid-line-horizontal" style="top: 75%"></div>
-        <div class="grid-line grid-line-horizontal" style="top: 100%"></div>
-        <div class="grid-line grid-line-vertical" style="left: 0%"></div>
-        <div class="grid-line grid-line-vertical" style="left: 25%"></div>
-        <div class="grid-line grid-line-vertical" style="left: 50%"></div>
-        <div class="grid-line grid-line-vertical" style="left: 75%"></div>
-        <div class="grid-line grid-line-vertical" style="left: 100%"></div>
-    </div>
-
-    <!-- لایه‌های پس‌زمینه مات -->
-    <div class="bg-layers">
-        <div class="bg-layer"></div>
-        <div class="bg-layer"></div>
-        <div class="bg-layer"></div>
-    </div>
-
-    <!-- المان‌های شناور سه‌بعدی -->
-    <div class="floating-elements">
-        <div class="floating-element" style="top: 20%; left: 10%;"></div>
-        <div class="floating-element" style="top: 60%; left: 80%;"></div>
-        <div class="floating-element" style="top: 40%; left: 20%;"></div>
-        <div class="floating-element" style="top: 80%; left: 40%;"></div>
-        <div class="floating-element" style="top: 30%; left: 70%;"></div>
-    </div>
-
-    <!-- کنترل‌های سه‌بعدی -->
-    <div class="controls-3d">
-        <button class="control-btn" id="rotateX">چرخش X</button>
-        <button class="control-btn" id="rotateY">چرخش Y</button>
-        <button class="control-btn" id="rotateZ">چرخش Z</button>
-        <button class="control-btn" id="resetView">بازنشانی</button>
-    </div>
-
-    <!-- پنل اطلاعات سه‌بعدی -->
-    <div class="info-panel-3d animate-in">
-        <h2 style="color: var(--purple-neon); margin-bottom: 20px; transform: translateZ(20px);">سیستم سه‌بعدی AMIXAMA</h2>
-        <p style="line-height: 1.8; margin-bottom: 20px; transform: translateZ(10px);">
-            هر المان در فضای سه‌بعدی مستقل حرکت می‌کند. عمق، ارتفاع و زاویه‌ی دید کاملاً پویا هستند.
-        </p>
-        <div style="transform: translateZ(30px);">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                <span>عمق فعلی:</span>
-                <span id="currentDepth">0px</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                <span>زاویه X:</span>
-                <span id="currentRotateX">0°</span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span>زاویه Y:</span>
-                <span id="currentRotateY">0°</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- ناوبری سه‌بعدی -->
-    <nav class="nav-3d animate-in">
-        <div class="nav-item">
-            <a href="#home" class="nav-link" data-section="home">خانه</a>
-        </div>
-        <div class="nav-item">
-            <a href="#services" class="nav-link" data-section="services">سیستم‌ها</a>
-        </div>
-        <div class="nav-item">
-            <a href="#about" class="nav-link" data-section="about">ارتفاع</a>
-        </div>
-        <div class="nav-item">
-            <a href="#contact" class="nav-link" data-section="contact">تماس سه‌بعدی</a>
+    <!-- Navigation -->
+    <nav class="navbar" aria-label="ناوبری اصلی">
+        <div class="container nav-container">
+            <a href="#" class="logo">AMIXAMA</a>
+            <ul class="nav-links">
+                <li><a href="#services">خدمات</a></li>
+                <li><a href="#portfolio">نمونه کارها</a></li>
+                <li><a href="#about">درباره</a></li>
+                <li><a href="#contact">تماس</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- دنیای سه‌بعدی -->
-    <div class="world" id="world">
-        <!-- بخش اصلی با لوگو -->
-        <section class="section-3d" id="home">
-            <div class="logo-3d-container">
-                <div class="logo-letter">A</div>
-                <div class="logo-letter">M</div>
-                <div class="logo-letter">I</div>
-                <div class="logo-letter">X</div>
-                <div class="logo-letter">A</div>
-                <div class="logo-letter">M</div>
-                <div class="logo-letter">A</div>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>سیستم‌های دیجیتال قابل اتکا</h1>
+            <p class="lead">راه‌حل‌های عملی برای کسب‌وکارهای حرفه‌ای. تمرکز بر عملکرد، امنیت و قابلیت نگهداری.</p>
+            <a href="#contact" class="btn">شروع پروژه</a>
+        </div>
+    </section>
 
-        <!-- بخش خدمات سه‌بعدی -->
-        <section class="section-3d" id="services-section">
-            <div class="services-3d">
-                <div class="service-card-3d" style="transform: translateZ(0px);">
-                    <h3 style="color: var(--purple-neon); margin-bottom: 20px; font-size: 24px;">طراحی سه‌بعدی</h3>
-                    <p style="line-height: 1.8; margin-bottom: 20px;">هر المان در فضای سه‌بعدی دارای مختصات X, Y, Z مستقل است.</p>
-                    <div style="position: absolute; bottom: 30px; left: 30px; font-size: 12px; opacity: 0.7;">
-                        عمق: 0px
-                    </div>
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">خدمات تخصصی</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">۱</div>
+                    <h3>طراحی سیستم</h3>
+                    <p>معماری مقیاس‌پذیر و تست‌پذیر برای رشد بلندمدت</p>
                 </div>
-                
-                <div class="service-card-3d" style="transform: translateZ(50px);">
-                    <h3 style="color: var(--purple-neon); margin-bottom: 20px; font-size: 24px;">انیمیشن ماتریسی</h3>
-                    <p style="line-height: 1.8; margin-bottom: 20px;">حرکت‌های پیوسته در فضای سه‌بعدی با ماتریس تبدیل.</p>
-                    <div style="position: absolute; bottom: 30px; left: 30px; font-size: 12px; opacity: 0.7;">
-                        عمق: 50px
-                    </div>
+                <div class="service-card">
+                    <div class="service-icon">۲</div>
+                    <h3>توسعه وب</h3>
+                    <p>سایت‌های واکنش‌گرا با عملکرد بهینه</p>
                 </div>
-                
-                <div class="service-card-3d" style="transform: translateZ(100px);">
-                    <h3 style="color: var(--purple-neon); margin-bottom: 20px; font-size: 24px;">رندرینگ بلوری</h3>
-                    <p style="line-height: 1.8; margin-bottom: 20px;">افکت‌های مات و بلوری با حفظ عمق سه‌بعدی.</p>
-                    <div style="position: absolute; bottom: 30px; left: 30px; font-size: 12px; opacity: 0.7;">
-                        عمق: 100px
-                    </div>
+                <div class="service-card">
+                    <div class="service-icon">۳</div>
+                    <h3>پشتیبانی</h3>
+                    <p>نگهداری، امنیت و بهینه‌سازی مستمر</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- بخش درباره سه‌بعدی -->
-        <section class="section-3d" id="about-section">
-            <div style="width: 80%; max-width: 800px; text-align: center; transform: translateZ(200px);">
-                <h2 style="color: var(--purple-neon); font-size: 48px; margin-bottom: 40px; transform: translateZ(50px);">
-                    ارتفاع از هر زاویه
-                </h2>
-                <p style="font-size: 20px; line-height: 1.8; transform: translateZ(30px);">
-                    هر عنصر در این سیستم از سه محور مستقل ارتفاع می‌گیرد. عمق، پهنا و ارتفاع در فضای سه‌بعدی کاملاً پویا و قابل کنترل هستند.
-                </p>
-                <div style="margin-top: 60px; display: flex; justify-content: center; gap: 40px; transform-style: preserve-3d;">
-                    <div style="transform: translateZ(100px); padding: 30px; background: var(--glass); border-radius: 15px; border: 1px solid var(--purple-light);">
-                        <div style="font-size: 36px; color: var(--purple-neon);">360°</div>
-                        <div>چرخش محور X</div>
-                    </div>
-                    <div style="transform: translateZ(150px); padding: 30px; background: var(--glass); border-radius: 15px; border: 1px solid var(--purple-light);">
-                        <div style="font-size: 36px; color: var(--purple-neon);">∞</div>
-                        <div>عمق بی‌نهایت</div>
-                    </div>
-                    <div style="transform: translateZ(200px); padding: 30px; background: var(--glass); border-radius: 15px; border: 1px solid var(--purple-light);">
-                        <div style="font-size: 36px; color: var(--purple-neon);">3D</div>
-                        <div>فضای کامل</div>
-                    </div>
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">در تماس باشید</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">نام کامل</label>
+                    <input type="text" id="name" class="form-control" required>
                 </div>
-            </div>
-        </section>
+                <div class="form-group">
+                    <label for="email" class="form-label">ایمیل</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" class="form-label">توضیح پروژه</label>
+                    <textarea id="message" class="form-control" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">ارسال درخواست</button>
+            </form>
+        </div>
+    </section>
 
-        <!-- فرم تماس سه‌بعدی -->
-        <section class="contact-form-3d" id="contact-section">
-            <div class="form-container-3d">
-                <h2 style="color: var(--purple-neon); margin-bottom: 40px; text-align: center; font-size: 32px; transform: translateZ(30px);">
-                    تماس سه‌بعدی
-                </h2>
-                <form id="contact3dForm">
-                    <div style="margin-bottom: 30px; transform: translateZ(20px);">
-                        <input type="text" class="form-input-3d" placeholder="نام در بعد Z" required>
-                    </div>
-                    <div style="margin-bottom: 30px; transform: translateZ(40px);">
-                        <input type="email" class="form-input-3d" placeholder="ایمیل در محور Y" required>
-                    </div>
-                    <div style="margin-bottom: 30px; transform: translateZ(60px);">
-                        <textarea class="form-input-3d" rows="5" placeholder="پیام در فضای سه‌بعدی..." required></textarea>
-                    </div>
-                    <div style="text-align: center; transform: translateZ(80px);">
-                        <button type="button" class="control-btn" style="padding: 20px 50px; font-size: 18px; transform: translateZ(0);">
-                            ارسال سه‌بعدی
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </section>
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© ۲۰۲۴ AMIXAMA — سیستم‌های دیجیتال</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">تمامی حقوق محفوظ است</p>
+        </div>
+    </footer>
 
     <script>
-        // سیستم مدیریت سه‌بعدی
-        class ThreeDSystem {
-            constructor() {
-                this.world = document.getElementById('world');
-                this.currentPosition = { x: 0, y: 0, z: 0 };
-                this.currentRotation = { x: 0, y: 0, z: 0 };
-                this.isAnimating = false;
-                this.mouse = { x: 0, y: 0 };
-                this.scrollProgress = 0;
-                
-                this.init();
-            }
-
-            init() {
-                this.setupEventListeners();
-                this.setupControls();
-                this.setupScroll();
-                this.updateInfoPanel();
-                this.animate();
-            }
-
-            setupEventListeners() {
-                // کنترل چرخش با ماوس
-                document.addEventListener('mousemove', (e) => {
-                    this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-                    this.mouse.y = (e.clientY / window.innerHeight) * 2 - 1;
-                    
-                    if (!this.isAnimating) {
-                        this.world.style.transform = `
-                            rotateX(${this.mouse.y * 5}deg)
-                            rotateY(${this.mouse.x * 5}deg)
-                            translate3d(0, ${-this.scrollProgress}vh, 0)
-                        `;
-                    }
-                });
-
-                // کنترل لمسی برای موبایل
-                let touchStart = null;
-                document.addEventListener('touchstart', (e) => {
-                    touchStart = {
-                        x: e.touches[0].clientX,
-                        y: e.touches[0].clientY
-                    };
-                });
-
-                document.addEventListener('touchmove', (e) => {
-                    if (!touchStart) return;
-                    
-                    const touch = e.touches[0];
-                    const deltaX = touch.clientX - touchStart.x;
-                    const deltaY = touch.clientY - touchStart.y;
-                    
-                    this.world.style.transform = `
-                        rotateX(${deltaY * 0.5}deg)
-                        rotateY(${deltaX * 0.5}deg)
-                        translate3d(0, ${-this.scrollProgress}vh, 0)
-                    `;
-                    
-                    e.preventDefault();
-                });
-
-                // کنترل اسکرول
-                let scrollTimeout;
-                window.addEventListener('wheel', (e) => {
-                    clearTimeout(scrollTimeout);
-                    
-                    const delta = e.deltaY > 0 ? 100 : -100;
-                    this.scrollProgress = Math.max(0, Math.min(400, this.scrollProgress + delta));
-                    
-                    this.world.style.transform = `
-                        rotateX(${this.currentRotation.x}deg)
-                        rotateY(${this.currentRotation.y}deg)
-                        rotateZ(${this.currentRotation.z}deg)
-                        translate3d(0, ${-this.scrollProgress}vh, 0)
-                    `;
-                    
-                    scrollTimeout = setTimeout(() => {
-                        this.updateInfoPanel();
-                    }, 100);
-                });
-            }
-
-            setupControls() {
-                document.getElementById('rotateX').addEventListener('click', () => {
-                    this.rotateWorld('x', 45);
-                });
-
-                document.getElementById('rotateY').addEventListener('click', () => {
-                    this.rotateWorld('y', 45);
-                });
-
-                document.getElementById('rotateZ').addEventListener('click', () => {
-                    this.rotateWorld('z', 45);
-                });
-
-                document.getElementById('resetView').addEventListener('click', () => {
-                    this.resetView();
-                });
-
-                // کنترل‌های کیبورد
-                document.addEventListener('keydown', (e) => {
-                    switch(e.key) {
-                        case 'ArrowUp':
-                            this.rotateWorld('x', 15);
-                            break;
-                        case 'ArrowDown':
-                            this.rotateWorld('x', -15);
-                            break;
-                        case 'ArrowLeft':
-                            this.rotateWorld('y', -15);
-                            break;
-                        case 'ArrowRight':
-                            this.rotateWorld('y', 15);
-                            break;
-                        case ' ':
-                            this.resetView();
-                            break;
-                    }
-                });
-            }
-
-            setupScroll() {
-                // اسکرول نرم با اسکرول‌بازهای ناوبری
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const section = e.target.getAttribute('data-section');
-                        this.scrollToSection(section);
-                    });
-                });
-            }
-
-            rotateWorld(axis, degrees) {
-                this.isAnimating = true;
-                this.currentRotation[axis] += degrees;
-                
-                this.world.style.transition = 'transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
-                this.world.style.transform = `
-                    rotateX(${this.currentRotation.x}deg)
-                    rotateY(${this.currentRotation.y}deg)
-                    rotateZ(${this.currentRotation.z}deg)
-                    translate3d(0, ${-this.scrollProgress}vh, 0)
-                `;
-                
-                setTimeout(() => {
-                    this.isAnimating = false;
-                    this.updateInfoPanel();
-                }, 800);
-            }
-
-            resetView() {
-                this.isAnimating = true;
-                this.currentRotation = { x: 0, y: 0, z: 0 };
-                this.scrollProgress = 0;
-                
-                this.world.style.transition = 'transform 1.2s cubic-bezier(0.23, 1, 0.32, 1)';
-                this.world.style.transform = 'translate3d(0, 0, 0)';
-                
-                setTimeout(() => {
-                    this.isAnimating = false;
-                    this.updateInfoPanel();
-                }, 1200);
-            }
-
-            scrollToSection(section) {
-                let targetY = 0;
-                
-                switch(section) {
-                    case 'home':
-                        targetY = 0;
-                        break;
-                    case 'services':
-                        targetY = 100;
-                        break;
-                    case 'about':
-                        targetY = 200;
-                        break;
-                    case 'contact':
-                        targetY = 300;
-                        break;
-                }
-                
-                this.scrollProgress = targetY;
-                this.isAnimating = true;
-                
-                this.world.style.transition = 'transform 1s cubic-bezier(0.23, 1, 0.32, 1)';
-                this.world.style.transform = `
-                    rotateX(${this.currentRotation.x}deg)
-                    rotateY(${this.currentRotation.y}deg)
-                    rotateZ(${this.currentRotation.z}deg)
-                    translate3d(0, ${-targetY}vh, 0)
-                `;
-                
-                setTimeout(() => {
-                    this.isAnimating = false;
-                    this.updateInfoPanel();
-                }, 1000);
-            }
-
-            updateInfoPanel() {
-                document.getElementById('currentDepth').textContent = `${Math.abs(this.scrollProgress)}vh`;
-                document.getElementById('currentRotateX').textContent = `${this.currentRotation.x}°`;
-                document.getElementById('currentRotateY').textContent = `${this.currentRotation.y}°`;
-            }
-
-            animate() {
-                requestAnimationFrame(() => {
-                    // انیمیشن مستقل حروف لوگو
-                    const letters = document.querySelectorAll('.logo-letter');
-                    letters.forEach((letter, index) => {
-                        const time = Date.now() * 0.001;
-                        const offset = index * 0.5;
-                        const z = Math.sin(time + offset) * 100;
-                        const x = Math.cos(time + offset) * 50;
-                        
-                        letter.style.transform = `
-                            translate3d(
-                                ${x}px,
-                                ${Math.sin(time + offset * 2) * 30}px,
-                                ${z}px
-                            )
-                            rotateX(${Math.sin(time + offset) * 10}deg)
-                            rotateY(${Math.cos(time + offset) * 10}deg)
-                        `;
-                    });
-
-                    // انیمیشن المان‌های شناور
-                    const elements = document.querySelectorAll('.floating-element');
-                    elements.forEach((el, index) => {
-                        const time = Date.now() * 0.0005;
-                        const offset = index * 0.3;
-                        
-                        el.style.transform = `
-                            translate3d(
-                                ${Math.sin(time + offset) * 100}px,
-                                ${Math.cos(time + offset * 1.5) * 50}px,
-                                ${Math.sin(time + offset * 2) * 200}px
-                            )
-                            rotateX(${time * 20 + offset * 50}deg)
-                            rotateY(${time * 30 + offset * 70}deg)
-                        `;
-                    });
-
-                    // انیمیشن کارت‌های خدمات
-                    const cards = document.querySelectorAll('.service-card-3d');
-                    cards.forEach((card, index) => {
-                        const time = Date.now() * 0.001;
-                        const offset = index * 0.2;
-                        
-                        if (!card.isHovered) {
-                            card.style.transform = `
-                                translateZ(${Math.sin(time + offset) * 50}px)
-                                rotateX(${Math.sin(time + offset) * 3}deg)
-                                rotateY(${Math.cos(time + offset) * 3}deg)
-                            `;
-                        }
-                    });
-
-                    // ردیابی hover روی کارت‌ها
-                    cards.forEach(card => {
-                        card.addEventListener('mouseenter', () => {
-                            card.isHovered = true;
-                        });
-                        
-                        card.addEventListener('mouseleave', () => {
-                            card.isHovered = false;
-                        });
-                    });
-
-                    this.animate();
-                });
-            }
-        }
-
-        // راه‌اندازی سیستم هنگام لود صفحه
-        document.addEventListener('DOMContentLoaded', () => {
-            const threeDSystem = new ThreeDSystem();
+        // Functional JavaScript - No fancy animations
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'در حال ارسال...';
+            submitBtn.disabled = true;
             
-            // افزودن افکت ورود
             setTimeout(() => {
-                document.body.style.opacity = '1';
-                document.body.style.transition = 'opacity 1s ease';
-            }, 100);
+                alert('درخواست شما دریافت شد. طی ۲۴ ساعت کاری با شما تماس خواهیم گرفت.');
+                this.reset();
+                submitBtn.textContent = 'ارسال درخواست';
+                submitBtn.disabled = false;
+            }, 1500);
+        });
 
-            // کنترل فرم تماس
-            document.querySelector('#contact3dForm button').addEventListener('click', () => {
-                const form = document.getElementById('contact3dForm');
-                const inputs = form.querySelectorAll('input, textarea');
-                let allValid = true;
-                
-                inputs.forEach(input => {
-                    if (!input.value.trim()) {
-                        allValid = false;
-                        input.style.borderColor = '#ff3860';
-                        input.style.transform = 'translateZ(30px)';
-                        
-                        setTimeout(() => {
-                            input.style.borderColor = 'var(--purple-light)';
-                            input.style.transform = 'translateZ(0)';
-                        }, 1000);
-                    }
-                });
-                
-                if (allValid) {
-                    form.style.transform = 'translateZ(200px) rotateY(180deg)';
-                    form.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        alert('پیام سه‌بعدی شما ارسال شد!');
-                        form.reset();
-                        form.style.transform = 'translateZ(0) rotateY(0deg)';
-                        form.style.opacity = '1';
-                    }, 800);
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
 
-        // پشتیبانی از حرکات ژیروسکوپ در موبایل
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientation', (e) => {
-                const rotateX = e.beta ? e.beta * 0.5 : 0;
-                const rotateY = e.gamma ? e.gamma * 0.5 : 0;
-                
-                document.getElementById('world').style.transform = `
-                    rotateX(${rotateX}deg)
-                    rotateY(${rotateY}deg)
-                    translate3d(0, ${-threeDSystem.scrollProgress}vh, 0)
-                `;
-            });
-        }
+        // Simple mobile menu (would be expanded in real project)
+        console.log('AMIXAMA Systems - Functional Design');
     </script>
 </body>
 </html>
