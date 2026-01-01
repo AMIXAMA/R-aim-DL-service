@@ -1,8 +1,758 @@
-.cyberpunk-classic {
-    background: #0a0a12;
-    color: #00f3ff;
-    border: 2px solid;
-    border-image: linear-gradient(45deg, #ff0080, #00f3ff) 1;
-    text-shadow: 0 0 10px #00f3ff;
-    font-family: 'Orbitron', monospace;
-}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amixama | مرجع طراحی وبسایت‌های هوشمند و تکاملی</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-dark: #0d1b2a;
+            --secondary-dark: #1b263b;
+            --accent-blue: #415a77;
+            --accent-purple: #3d348b;
+            --cyber-teal: #00d4aa;
+            --light-gray: #e0e1dd;
+            --pure-white: #ffffff;
+            --grid-color: rgba(224, 225, 221, 0.1);
+            --warning-gold: #ffd700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--light-gray);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* شبکه زمینه */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            opacity: 0.3;
+        }
+
+        /* هدر و نویگیشن */
+        header {
+            background-color: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--accent-purple);
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--cyber-teal));
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--cyber-teal), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--cyber-teal);
+            background: rgba(0, 212, 170, 0.1);
+        }
+
+        .nav-menu a.active {
+            color: var(--cyber-teal);
+            border-bottom: 2px solid var(--cyber-teal);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--cyber-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(61, 52, 139, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid var(--accent-purple);
+            transition: all 0.3s ease;
+        }
+
+        .user-icon:hover {
+            background: rgba(61, 52, 139, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* بخش اصلی */
+        main {
+            margin-top: 80px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: rgba(27, 38, 59, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(65, 90, 119, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--cyber-teal), var(--accent-purple));
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--cyber-teal), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--cyber-teal);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light-gray);
+        }
+
+        .mission-statement {
+            background: rgba(61, 52, 139, 0.2);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--cyber-teal);
+            margin: 2rem 0;
+        }
+
+        .mission-statement p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--light-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: rgba(27, 38, 59, 0.7);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(65, 90, 119, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyber-teal);
+            box-shadow: 0 10px 20px rgba(0, 212, 170, 0.2);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 212, 170, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--cyber-teal);
+            font-size: 1.5rem;
+        }
+
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .roadmap-container::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--cyber-teal), var(--accent-purple));
+        }
+
+        .roadmap-step {
+            background: rgba(27, 38, 59, 0.7);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--cyber-teal);
+            position: relative;
+        }
+
+        .roadmap-step::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 24px;
+            width: 12px;
+            height: 12px;
+            background: var(--cyber-teal);
+            border-radius: 50%;
+            border: 3px solid var(--primary-dark);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--accent-purple);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* بخش پرداخت و اعتماد */
+        .payment-notice {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--warning-gold);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .payment-icon {
+            color: var(--warning-gold);
+            font-size: 2rem;
+        }
+
+        .trust-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid var(--cyber-teal);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .badge i {
+            color: var(--cyber-teal);
+            font-size: 1.5rem;
+        }
+
+        /* دکمه واتساپ */
+        .whatsapp-contact {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        /* فوتر */
+        footer {
+            background-color: var(--secondary-dark);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--accent-purple);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(224, 225, 221, 0.2);
+            color: rgba(224, 225, 221, 0.7);
+        }
+
+        /* انیمیشن‌ها */
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .slide-in {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شبکه زمینه -->
+    <div class="grid-background"></div>
+
+    <!-- هدر و نویگیشن -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">A</div>
+                <div class="logo-text">AMIXAMA</div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#about" class="active">درباره ما</a></li>
+                <li><a href="#services">خدمات</a></li>
+                <li><a href="#roadmap">نقشه راه</a></li>
+                <li><a href="#contact">تماس با ما</a></li>
+            </ul>
+            
+            <div class="user-menu">
+                <div class="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span>پنل کاربری</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- محتوای اصلی -->
+    <main>
+        <!-- بخش درباره AMIXAMA -->
+        <section id="about" class="slide-in">
+            <h1>درباره AMIXAMA</h1>
+            <div class="mission-statement">
+                <p>
+                    <strong>AMIXAMA</strong> یک مرجع تخصصی برای ساخت هرگونه وبسایت فروش‌محور یا صنعت‌محور 
+                    در قالب و ساختار ارتقا یافته با سبک‌های غیرتکراری است که از مبنا با هوش مصنوعی 
+                    به تکامل می‌رسند.
+                </p>
+                <p style="margin-top: 1rem;">
+                    ما فقط وبسایت نمی‌سازیم، بلکه <strong>اکوسیستم‌های دیجیتال هوشمند</strong> خلق می‌کنیم 
+                    که با گذشت زمان و بر اساس رفتار کاربران، به صورت خودکار بهبود می‌یابند و تبدیل‌های بیشتری ایجاد می‌کنند.
+                </p>
+            </div>
+            
+            <div class="payment-notice pulse">
+                <div class="payment-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div>
+                    <h3 style="color: var(--warning-gold); margin-bottom: 0.5rem;">نکته مهم قبل از شروع پروژه</h3>
+                    <p>برای شروع هر پروژه، لازم است <strong>یک‌سوم (۱/۳) مبلغ کل پروژه</strong> به عنوان پیش‌پرداخت انجام شود. این مبلغ جهت آغاز فرآیند طراحی و توسعه هوشمند وبسایت شما ضروری است.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش خدمات AMIXAMA -->
+        <section id="services" class="slide-in">
+            <h2>خدمات AMIXAMA</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>طراحی هوشمند مبتنی بر AI</h3>
+                    <p>طراحی وبسایت‌هایی که با هوش مصنوعی بهینه می‌شوند و بر اساس رفتار کاربران تکامل می‌یابند.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>وبسایت‌های فروش‌محور</h3>
+                    <p>ساخت فروشگاه‌های آنلاین با معماری تبدیل بالا و سیستم‌های پیشنهاد هوشمند.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>وبسایت‌های صنعت‌محور</h3>
+                    <p>طراحی پلتفرم‌های تخصصی برای صنایع مختلف با نمایش حرفه‌ای محصولات و خدمات.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>بهینه‌سازی مستمر</h3>
+                    <p>آنالیز مداوم و بهبود خودکار وبسایت بر اساس داده‌های رفتاری کاربران.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش نقشه راه -->
+        <section id="roadmap" class="slide-in">
+            <h2>نقشه راه AMIXAMA</h2>
+            <div class="roadmap-container">
+                <div class="roadmap-step">
+                    <span class="step-number">۱</span>
+                    <h3>تحلیل هوشمند صنعت</h3>
+                    <p>بررسی دقیق بازار، رقبا و نیازهای مخاطبان هدف با استفاده از هوش مصنوعی</p>
+                </div>
+                
+                <div class="roadmap-step">
+                    <span class="step-number">۲</span>
+                    <h3>طراحی معماری اطلاعات</h3>
+                    <p>طراحی ساختار بهینه برای ناوبری و تجربه کاربری بر اساس تحلیل‌های انجام شده</p>
+                </div>
+                
+                <div class="roadmap-step">
+                    <span class="step-number">۳</span>
+                    <h3>تولید محتوای هوشمند</h3>
+                    <p>ایجاد محتوای بهینه شده برای سئو و تبدیل با کمک ابزارهای هوش مصنوعی</p>
+                </div>
+                
+                <div class="roadmap-step">
+                    <span class="step-number">۴</span>
+                    <h3>توسعه و پیاده‌سازی</h3>
+                    <p>کدنویسی با استفاده از تکنولوژی‌های روز و یکپارچه‌سازی سیستم‌های هوشمند</p>
+                </div>
+                
+                <div class="roadmap-step">
+                    <span class="step-number">۵</span>
+                    <h3>راه‌اندازی و پشتیبانی</h3>
+                    <p>استقرار پروژه و پشتیبانی مستمر همراه با بهینه‌سازی خودکار</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش اعتماد و تضمین -->
+        <section id="trust" class="slide-in">
+            <h2>چرا به AMIXAMA اعتماد کنید؟</h2>
+            <div class="trust-badges">
+                <div class="badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <h4>تضمین کیفیت</h4>
+                        <p>کیفیت کار ما با استانداردهای بین‌المللی تضمین شده است</p>
+                    </div>
+                </div>
+                
+                <div class="badge">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>پشتیبانی ۲۴/۷</h4>
+                        <p>همراهی و پشتیبانی دائمی حتی پس از تحویل پروژه</p>
+                    </div>
+                </div>
+                
+                <div class="badge">
+                    <i class="fas fa-sync-alt"></i>
+                    <div>
+                        <h4>تکامل مستمر</h4>
+                        <p>وبسایت شما به مرور زمان هوشمندتر و بهینه‌تر می‌شود</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش تماس -->
+        <section id="contact" class="slide-in">
+            <h2>راه ارتباطی</h2>
+            <p>برای مشاوره رایگان یا شروع پروژه خود، از طریق واتساپ با ما در ارتباط باشید:</p>
+            <div style="margin-top: 2rem;">
+                <a href="https://wa.me/989123456789" target="_blank" class="whatsapp-btn" style="display: inline-flex;">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>ارتباط از طریق واتساپ تجاری</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- دکمه واتساپ ثابت -->
+    <div class="whatsapp-contact">
+        <a href="https://wa.me/989123456789" target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+            <span>شروع مکالمه</span>
+        </a>
+    </div>
+
+    <!-- فوتر -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>AMIXAMA</h3>
+                <p>مرجع طراحی وبسایت‌های هوشمند و تکاملی</p>
+            </div>
+            
+            <div>
+                <h3>لینک‌های سریع</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="#about" style="color: var(--light-gray); text-decoration: none;">درباره ما</a></li>
+                    <li><a href="#services" style="color: var(--light-gray); text-decoration: none;">خدمات</a></li>
+                    <li><a href="#roadmap" style="color: var(--light-gray); text-decoration: none;">نقشه راه</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>اطلاعات تماس</h3>
+                <p><i class="fas fa-phone"></i> تلفن: ۰۲۱-۱۲۳۴۵۶۷۸</p>
+                <p><i class="fas fa-envelope"></i> ایمیل: info@amixama.com</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© ۲۰۲۴ AMIXAMA Digital Services. تمامی حقوق محفوظ است.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">این وبسایت با تکنولوژی‌های پیشرفته و هوش مصنوعی طراحی و توسعه یافته است.</p>
+        </div>
+    </footer>
+
+    <script>
+        // اسکرول نرم برای لینک‌های داخلی
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // آپدیت وضعیت فعال منو
+                    document.querySelectorAll('.nav-menu a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // انیمیشن اسکرول برای بخش‌ها
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-in');
+                }
+            });
+        }, observerOptions);
+        
+        // مشاهده همه بخش‌ها
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // تغییر استایل نوار نویگیشن هنگام اسکرول
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(13, 27, 42, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.backgroundColor = 'rgba(13, 27, 42, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+            
+            // آپدیت منوی فعال بر اساس اسکرول
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentSection = '#' + section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // شبیه‌سازی پنل کاربری
+        document.querySelector('.user-icon').addEventListener('click', () => {
+            alert('پنل کاربری AMIXAMA\n\nاین بخش در نسخه کامل وبسایت شامل:\n- وضعیت پروژه‌های جاری\n- تاریخچه پرداخت‌ها\n- تنظیمات حساب کاربری\n- پشتیبانی تخصصی\nمی‌باشد.');
+        });
+        
+        // نمایش تأییدیه قبل از شروع پروژه
+        document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (!confirm('برای شروع پروژه، نیاز به پرداخت ۱/۳ مبلغ کل به عنوان پیش‌پرداخت دارید. آیا می‌خواهید به واتساپ هدایت شوید؟')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
