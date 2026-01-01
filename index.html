@@ -1,1258 +1,823 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>AMIXAMA — سامانه‌های دیجیتال</title>
-<meta name="description" content="AMIXAMA — طراحی و توسعه وب، فروشگاه آنلاین، هویت سازمانی، سئو و پشتیبانی فنی. سامانه‌هایی کاربردی و کم‌حاشیه.">
-<meta name="theme-color" content="#0a0a0f">
-<link rel="canonical" href="https://example.com/">
-<meta property="og:title" content="AMIXAMA — سامانه‌های دیجیتال">
-<meta property="og:description" content="خدمات توسعه وب، تجارت الکترونیک، هویت بصری و پشتیبانی فنی — تمرکز بر عملکرد.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=60">
-<!-- پیش‌بارگذاری منابع -->
-<link rel="preload" href="https://assets.codepen.io/1468070/abstract-neon-grid.mp4" as="video" type="video/mp4">
-<!-- سبک Glassmorphism با المان‌های متحرک پیشرفته -->
-<style>
-  :root{
-    --bg: #0a0a0f;
-    --paper: #ffffff;
-    --muted: #a0aec0;
-    --neon: #00f0ff;
-    --accent: #ffcc00;
-    --danger: #ff3b30;
-    --glass-bg: rgba(20, 25, 40, 0.7);
-    --glass-border: rgba(100, 200, 255, 0.15);
-    --container: 1200px;
-    --radius: 16px;
-    --mono: "Courier New", monospace;
-    --sans: "Vazirmatn", "Segoe UI", Roboto, Arial, sans-serif;
-  }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AMIXAMA — ضدسیستم</title>
+    <meta name="description" content="AMIXAMA — طراحی ضدسیستم. قواعد را می‌شکنیم تا سیستم‌های واقعی بسازیم.">
+    <meta name="theme-color" content="#4a1e8c">
+    
+    <style>
+        /* سیستم ضد طراحی - مات، بنفش، سفید، بلوری */
+        :root {
+            --purple-dark: #2d0b5a;
+            --purple-mid: #4a1e8c;
+            --purple-light: #7b3fe4;
+            --purple-glow: #9d70ff;
+            --matte-white: rgba(255, 255, 255, 0.85);
+            --matte-black: rgba(10, 5, 20, 0.9);
+            --blur-intensity: 12px;
+            --distortion: 2px;
+        }
 
-  /* ریست سبک‌ها */
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{
-    font-family:var(--sans);
-    background: radial-gradient(ellipse at center, #0c0c1a 0%, #000000 100%);
-    color:var(--paper);
-    direction:rtl;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.6;
-    overflow-x:hidden;
-    min-height: 100vh;
-  }
+        /* ریست عمدا ناقص */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scrollbar-width: none;
+        }
+        
+        /* اسکرول‌بار را پنهان می‌کنیم اما اسکرول کار می‌کند */
+        ::-webkit-scrollbar {
+            display: none;
+        }
 
-  .wrap{ width:100%; max-width:var(--container); margin:0 auto; padding:0 24px; }
+        body {
+            font-family: 'Courier New', monospace;
+            background: var(--matte-black);
+            color: var(--matte-white);
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.3;
+            transform: rotate(0.3deg); /* اعوجاج عمدی */
+        }
 
-  /* انیمیشن‌های کلیدی */
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) scale(1); }
-    50% { transform: translateY(-15px) scale(1.03); }
-  }
-  @keyframes glow {
-    0%, 100% { 
-      text-shadow: 0 0 10px var(--neon), 
-                   0 0 20px rgba(0, 240, 255, 0.5),
-                   0 0 30px rgba(0, 240, 255, 0.2); 
-    }
-    50% { 
-      text-shadow: 0 0 20px var(--neon), 
-                   0 0 40px rgba(0, 240, 255, 0.8), 
-                   0 0 60px rgba(0, 240, 255, 0.4),
-                   0 0 80px rgba(0, 240, 255, 0.2); 
-    }
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
-  }
-  @keyframes slideIn {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-  @keyframes spin {
-    100% { transform: rotate(360deg); }
-  }
-  @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-  @keyframes borderFlow {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 200% 0%; }
-  }
+        /* اعوجاج متناوب برای کل صفحه */
+        @keyframes bodyDistort {
+            0%, 100% { transform: rotate(0.3deg) skew(0.1deg); }
+            50% { transform: rotate(-0.2deg) skew(-0.1deg); }
+        }
 
-  /* هِدر Glassmorphism با underline نئون متحرک */
-  header{
-    position:fixed;
-    left:0; right:0; top:0;
-    z-index:1200;
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    border-bottom: none;
-    padding: 18px 0;
-    transition: all 0.4s ease;
-  }
-  header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 15%;
-    right: 15%;
-    height: 2px;
-    background: linear-gradient(90deg, 
-      transparent, 
-      var(--neon), 
-      var(--accent), 
-      var(--neon), 
-      transparent);
-    background-size: 200% 100%;
-    animation: borderFlow 3s linear infinite;
-    opacity: 0.8;
-  }
-  .header-inner{ 
-    display:flex; 
-    align-items:center; 
-    justify-content:space-between; 
-    gap: 20px; 
-  }
-  .brand{
-    display:flex; 
-    align-items:center; 
-    gap: 16px;
-  }
-  /* لوگوی چرخان با Glassmorphism */
-  .logo{
-    font-weight:900; 
-    font-size: 20px; 
-    letter-spacing: 6px;
-    color: var(--paper); 
-    text-transform:uppercase;
-    padding: 10px 18px;
-    border-radius: var(--radius);
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    position: relative;
-    overflow: hidden;
-    animation: spin 30s linear infinite paused;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .logo:hover {
-    animation-play-state: running;
-    border-color: var(--neon);
-    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
-    transform: scale(1.05);
-  }
-  .logo::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, 
-      transparent 30%, 
-      rgba(0, 240, 255, 0.1) 50%, 
-      transparent 70%);
-    z-index: -1;
-    animation: borderFlow 2s linear infinite;
-  }
+        body {
+            animation: bodyDistort 20s infinite alternate ease-in-out;
+        }
 
-  /* ناوبری Glassmorphism */
-  nav.nav{ 
-    display:flex; 
-    gap: 8px; 
-    align-items:center; 
-  }
-  .nav a{
-    color: var(--paper); 
-    text-decoration: none; 
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: calc(var(--radius) - 4px);
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid transparent;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-  }
-  .nav a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-      transparent, 
-      rgba(255, 255, 255, 0.1), 
-      transparent);
-    transition: left 0.6s ease;
-  }
-  .nav a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--neon);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 240, 255, 0.15);
-  }
-  .nav a:hover::before {
-    left: 100%;
-  }
+        /* کانتینرهای نامتعارف */
+        .container {
+            width: 93%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+            position: relative;
+        }
 
-  /* دکمه‌های Glassmorphism */
-  .btn{
-    display:inline-flex; 
-    align-items:center; 
-    justify-content:center;
-    padding: 12px 24px; 
-    border-radius: calc(var(--radius) - 4px); 
-    font-weight: 600; 
-    font-size: 14px;
-    background: transparent; 
-    color: var(--paper); 
-    border: 1px solid var(--glass-border);
-    cursor:pointer; 
-    text-decoration:none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-  }
-  .btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, 
-      transparent 30%, 
-      rgba(255, 255, 255, 0.1) 50%, 
-      transparent 70%);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .btn:hover::before {
-    opacity: 1;
-  }
-  .btn:active{ transform:translateY(1px) scale(0.98); }
-  .btn--primary{
-    background: linear-gradient(135deg, 
-      rgba(0, 240, 255, 0.2), 
-      rgba(0, 200, 255, 0.1));
-    border-color: var(--neon);
-    color: var(--paper);
-    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
-    animation: pulse 2s infinite;
-  }
-  .btn--primary:hover {
-    background: linear-gradient(135deg, 
-      rgba(0, 240, 255, 0.3), 
-      rgba(0, 200, 255, 0.2));
-    box-shadow: 0 0 40px rgba(0, 240, 255, 0.4);
-    transform: translateY(-3px);
-  }
-  .btn--ghost{
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--glass-border);
-  }
-  .btn--ghost:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--paper);
-    transform: translateY(-3px);
-  }
+        /* هدر ضد طراحی */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 20px; /* قرارگیری در سمت چپ برای سایت RTL */
+            z-index: 1000;
+            mix-blend-mode: difference;
+        }
 
-  /* هِرو با ویدیوی پس‌زمینه متحرک */
-  main{ padding-top: 120px; }
-  .hero{
-    min-height: 90vh; 
-    display:flex; 
-    align-items:center; 
-    justify-content:center;
-    padding: 60px 20px; 
-    position:relative; 
-    overflow:hidden;
-    border-bottom: 1px solid var(--glass-border);
-  }
-  /* ویدیوی پس‌زمینه انتزاعی */
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('https://assets.codepen.io/1468070/abstract-neon-grid.mp4') center/cover no-repeat;
-    opacity: 0.2;
-    z-index: -2;
-  }
-  /* گرادیانت متحرک روی ویدیو */
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(circle at 20% 50%, 
-        rgba(0, 240, 255, 0.1) 0%, 
-        transparent 50%),
-      radial-gradient(circle at 80% 20%, 
-        rgba(255, 204, 0, 0.08) 0%, 
-        transparent 50%),
-      radial-gradient(circle at 40% 80%, 
-        rgba(255, 0, 255, 0.05) 0%, 
-        transparent 50%);
-    background-size: 200% 200%;
-    animation: gradientShift 10s ease infinite;
-    z-index: -1;
-  }
+        .logo-small {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--purple-glow);
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            letter-spacing: 3px;
+            opacity: 0.7;
+        }
 
-  .hero-inner{ 
-    width:100%; 
-    max-width:var(--container); 
-    display:flex; 
-    gap: 48px; 
-    align-items:center; 
-    justify-content:space-between; 
-  }
+        /* ناوبری معکوس */
+        nav {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
 
-  .hero-left{ max-width: 760px; }
-  .kicker{
-    display:inline-block; 
-    font-weight: 700; 
-    letter-spacing: 3px; 
-    font-size: 12px;
-    padding: 8px 16px; 
-    border-radius: 20px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    color: var(--neon); 
-    text-transform:uppercase;
-    margin-bottom: 24px;
-    animation: slideIn 0.8s ease-out;
-  }
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-end;
+        }
 
-  /* عنوان اصلی با انیمیشن‌های پیشرفته */
-  .hero-title{
-    font-size: clamp(56px, 10vw, 128px);
-    line-height: 0.9;
-    font-weight: 900;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    background: linear-gradient(90deg, 
-      #ffffff, 
-      #b0f5ff, 
-      #80ebff, 
-      #ffffff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    background-size: 200% auto;
-    animation: 
-      float 6s ease-in-out infinite,
-      glow 3s ease-in-out infinite,
-      gradientShift 5s ease infinite;
-    margin: 20px 0;
-    display: inline-block;
-    position: relative;
-    cursor: default;
-    transition: all 0.3s ease;
-  }
-  .hero-title:hover {
-    animation-play-state: paused;
-    transform: scale(1.05);
-  }
+        .nav-link {
+            color: var(--matte-white);
+            text-decoration: none;
+            font-size: 13px;
+            padding: 5px 10px;
+            background: rgba(74, 30, 140, 0.3);
+            backdrop-filter: blur(var(--blur-intensity));
+            border-radius: 2px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
 
-  /* زیرعنوان */
-  .hero-sub{ 
-    color: var(--muted); 
-    font-size: 18px; 
-    max-width: 54ch; 
-    margin: 32px 0;
-    line-height: 1.8;
-    animation: slideIn 0.8s ease-out 0.2s backwards;
-  }
+        .nav-link:hover {
+            background: rgba(123, 63, 228, 0.5);
+            border: 1px solid var(--purple-glow);
+            transform: translateX(-10px); /* حرکت برخلاف انتظار */
+        }
 
-  /* دکمه‌های CTA */
-  .hero-ctas{ 
-    display:flex; 
-    gap: 16px; 
-    align-items:center; 
-    flex-wrap:wrap;
-    animation: slideIn 0.8s ease-out 0.4s backwards;
-  }
+        /* بخش اصلی با لوگوی بزرگ متحرک */
+        .hero {
+            min-height: 130vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 40px 20px;
+        }
 
-  /* Ticker متحرک */
-  .ticker{
-    display:block; 
-    width:100%; 
-    overflow:hidden; 
-    white-space:nowrap; 
-    margin-top: 32px;
-    color: var(--muted); 
-    font-size: 14px;
-    padding: 12px 0;
-    border-top: 1px solid var(--glass-border);
-    border-bottom: 1px solid var(--glass-border);
-  }
-  .ticker span{
-    display:inline-block; 
-    padding-right: 40px; 
-    animation: ticker 20s linear infinite;
-    font-weight: 300;
-    letter-spacing: 1px;
-  }
-  @keyframes ticker{ 
-    0%{ transform:translateX(0) } 
-    100%{ transform:translateX(-100%) } 
-  }
+        /* لوگوی بزرگ متحرک */
+        .main-logo {
+            font-size: clamp(80px, 20vw, 200px);
+            font-weight: 900;
+            color: transparent;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: -5px;
+            line-height: 0.8;
+            text-align: center;
+            mix-blend-mode: screen;
+        }
 
-  /* ستون سمت راست — کارت‌های Glassmorphism */
-  .hero-right{ 
-    width: 380px; 
-    display:flex; 
-    flex-direction:column; 
-    gap: 20px; 
-  }
-  .card{
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    border: 1px solid var(--glass-border);
-    padding: 28px;
-    border-radius: var(--radius);
-    text-align: right;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-    position: relative;
-    overflow: hidden;
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, 
-      rgba(255, 255, 255, 0.1) 0%, 
-      transparent 70%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .card:hover::before {
-    opacity: 1;
-  }
-  .card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: var(--neon);
-    box-shadow: 
-      0 20px 40px rgba(0, 0, 0, 0.3),
-      0 0 60px rgba(0, 240, 255, 0.1);
-  }
-  .card h4{ 
-    margin-bottom: 12px; 
-    color: var(--neon); 
-    font-size: 18px; 
-    letter-spacing: 1px; 
-    font-weight: 700; 
-  }
-  .card p{ 
-    color: var(--muted); 
-    font-size: 15px; 
-    line-height: 1.7;
-  }
+        /* انیمیشن‌های پیچیده برای لوگو */
+        @keyframes logoFloat {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg) scale(1);
+                text-shadow: 
+                    0 0 20px var(--purple-glow),
+                    0 0 40px var(--purple-light),
+                    0 0 60px var(--purple-mid);
+            }
+            25% { 
+                transform: translateY(-20px) rotate(0.5deg) scale(1.02);
+                text-shadow: 
+                    0 0 30px var(--purple-glow),
+                    0 0 60px var(--purple-light),
+                    0 0 90px var(--purple-mid);
+            }
+            50% { 
+                transform: translateY(10px) rotate(-0.5deg) scale(0.98);
+                text-shadow: 
+                    0 0 25px var(--purple-glow),
+                    0 0 50px var(--purple-light),
+                    0 0 75px var(--purple-mid);
+            }
+            75% { 
+                transform: translateY(-10px) rotate(0.3deg) scale(1.01);
+            }
+        }
 
-  /* بخش‌ها با underline نئونی متحرک */
-  section.section{ 
-    padding: 80px 20px; 
-    position: relative;
-    overflow: hidden;
-  }
-  section.section::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 10%;
-    left: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, 
-      transparent, 
-      var(--neon), 
-      var(--accent), 
-      var(--neon), 
-      transparent);
-    background-size: 200% 100%;
-    animation: borderFlow 4s linear infinite;
-  }
-  .wrap-grid{ 
-    width:100%; 
-    max-width:var(--container); 
-    margin:0 auto; 
-  }
-  .h2{
-    font-size: 32px; 
-    font-weight: 800; 
-    letter-spacing: 1px; 
-    margin-bottom: 40px; 
-    color: var(--paper);
-    position: relative;
-    display: inline-block;
-    padding-bottom: 12px;
-  }
-  .h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--neon), var(--accent));
-    border-radius: 2px;
-  }
+        @keyframes logoDistort {
+            0%, 100% { 
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            }
+            25% { 
+                clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
+            }
+            50% { 
+                clip-path: polygon(0% 5%, 100% 0%, 95% 100%, 5% 95%);
+            }
+            75% { 
+                clip-path: polygon(5% 5%, 95% 0%, 95% 95%, 5% 100%);
+            }
+        }
 
-  /* خدمات — Grid Glassmorphism */
-  .services-grid{
-    display:grid; 
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); 
-    gap: 24px;
-  }
-  .service{
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
-    padding: 32px;
-    border-radius: var(--radius);
-    text-align: right;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-    position: relative;
-    overflow: hidden;
-  }
-  .service::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, 
-      transparent 40%, 
-      rgba(0, 240, 255, 0.05) 50%, 
-      transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .service:hover::before {
-    opacity: 1;
-  }
-  .service h3{ 
-    font-size: 20px; 
-    margin-bottom: 16px; 
-    color: var(--accent); 
-    font-weight: 700; 
-    letter-spacing: 0.5px; 
-  }
-  .service p{ 
-    color: var(--muted); 
-    font-size: 15px; 
-    line-height: 1.7;
-  }
+        .main-logo {
+            animation: 
+                logoFloat 8s infinite ease-in-out,
+                logoDistort 12s infinite linear;
+        }
 
-  .service:hover{
-    transform:translateY(-10px);
-    border-color: var(--neon);
-    box-shadow: 
-      0 20px 40px rgba(0, 0, 0, 0.3),
-      0 0 60px rgba(0, 240, 255, 0.1);
-  }
+        /* لایه‌های پس‌زمینه مات و بلوری */
+        .logo-bg-layer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vmax;
+            height: 80vmax;
+            background: radial-gradient(circle, 
+                var(--purple-light) 0%, 
+                transparent 70%);
+            opacity: 0.15;
+            filter: blur(40px);
+            z-index: 1;
+            animation: bgPulse 15s infinite alternate;
+        }
 
-  /* نمونه‌کارها — کارت‌های Glassmorphism با hover پیشرفته */
-  .portfolio{ 
-    display:grid; 
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); 
-    gap: 24px; 
-    margin-top: 24px; 
-  }
-  .card-portfolio{
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
-    padding: 0;
-    overflow: hidden; 
-    border-radius: var(--radius);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-    position: relative;
-  }
-  .card-portfolio::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, 
-      transparent 40%, 
-      rgba(255, 204, 0, 0.05) 50%, 
-      transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 1;
-  }
-  .card-portfolio:hover::before {
-    opacity: 1;
-  }
-  .card-portfolio img{ 
-    width:100%; 
-    height: 200px; 
-    object-fit:cover; 
-    display:block;
-    transition: all 0.6s ease;
-    filter: brightness(0.9);
-  }
-  .card-portfolio .meta{ 
-    padding: 24px; 
-    color: var(--paper); 
-    text-align: right; 
-    position: relative;
-    z-index: 2;
-  }
-  .card-portfolio h4{ 
-    color: var(--neon); 
-    font-weight: 700; 
-    margin-bottom: 8px; 
-    font-size: 18px;
-  }
-  .card-portfolio p{ 
-    color: var(--muted); 
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .card-portfolio:hover{ 
-    transform:translateY(-12px);
-    border-color: var(--neon);
-    box-shadow: 
-      0 25px 50px rgba(0, 0, 0, 0.4),
-      0 0 80px rgba(0, 240, 255, 0.15);
-  }
-  .card-portfolio:hover img{
-    transform: scale(1.08);
-    filter: brightness(1.1);
-  }
+        @keyframes bgPulse {
+            0% { 
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                opacity: 0.1;
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(1.3) rotate(180deg);
+                opacity: 0.25;
+            }
+        }
 
-  /* تماس — فرم Glassmorphism */
-  .contact-grid{ 
-    display:grid; 
-    grid-template-columns:1fr 380px; 
-    gap: 32px; 
-    align-items:start; 
-  }
-  .form{ 
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
-    padding: 32px;
-    border-radius: var(--radius);
-  }
-  .input, .textarea{
-    width:100%; 
-    padding: 16px 20px; 
-    border: 1px solid var(--glass-border); 
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    color: var(--paper);
-    margin-bottom: 16px; 
-    border-radius: calc(var(--radius) - 4px); 
-    font-size: 15px;
-    transition: all 0.3s ease;
-    font-family: var(--sans);
-  }
-  .input:focus, .textarea:focus{
-    outline: none;
-    border-color: var(--neon);
-    box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
-    background: rgba(255, 255, 255, 0.08);
-  }
-  .textarea{ 
-    min-height: 160px; 
-    resize:vertical; 
-    line-height: 1.6;
-  }
+        /* متن توضیحی با چیدمان غیرمعمول */
+        .hero-description {
+            position: absolute;
+            bottom: 20%;
+            left: 10%;
+            width: 300px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--matte-white);
+            opacity: 0.8;
+            transform: rotate(-2deg);
+            padding: 20px;
+            background: rgba(45, 11, 90, 0.5);
+            backdrop-filter: blur(var(--blur-intensity));
+            border-left: 3px solid var(--purple-glow);
+        }
 
-  /* فوتر Glassmorphism */
-  footer{ 
-    padding: 40px 20px; 
-    text-align:center; 
-    color: var(--muted); 
-    border-top: 1px solid var(--glass-border);
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-  }
+        /* اسکرول افقی عمدی */
+        .horizontal-scroll {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            padding: 40px 20px;
+            margin: 40px 0;
+            background: rgba(74, 30, 140, 0.1);
+            backdrop-filter: blur(var(--blur-intensity));
+            border-top: 1px solid var(--purple-light);
+            border-bottom: 1px solid var(--purple-light);
+        }
 
-  /* مودال Glassmorphism */
-  #modal {
-    position: fixed; 
-    left: 0; top: 0; right: 0; bottom: 0; 
-    display: none; 
-    align-items: center; 
-    justify-content: center; 
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 1400;
-    padding: 20px;
-  }
-  #modal > div {
-    width: 92%; 
-    max-width: 900px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
-    animation: slideIn 0.4s ease-out;
-  }
+        .scroll-content {
+            display: inline-flex;
+            gap: 40px;
+            padding-right: 100px;
+        }
 
-  /* دسترسی و reduced motion */
-  @media(prefers-reduced-motion: reduce){
-    .hero-title, 
-    .neon-layer, 
-    .ticker span, 
-    .service:hover, 
-    .card-portfolio:hover,
-    .logo,
-    .btn--primary,
-    .nav a,
-    .card,
-    section.section::after,
-    header::after {
-      animation: none !important; 
-      transition: none !important; 
-    }
-    .hero-title:hover {
-      transform: none !important;
-    }
-  }
+        .scroll-item {
+            display: inline-block;
+            width: 300px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            border: 1px solid rgba(123, 63, 228, 0.3);
+            white-space: normal;
+            vertical-align: top;
+        }
 
-  /* فوکوس برای دسترسی */
-  .focus-outline{ 
-    outline: 3px solid rgba(0, 240, 255, 0.5); 
-    outline-offset: 4px; 
-    border-radius: 8px; 
-  }
+        /* کارت‌های نامتقارن */
+        .services {
+            padding: 80px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+        }
 
-  /* ریسپانسیو */
-  @media(max-width: 1200px){
-    .hero-inner{ 
-      flex-direction: column; 
-      align-items: flex-start; 
-      gap: 40px; 
-    }
-    .hero-right{ 
-      width: 100%; 
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-    .hero-right .card {
-      flex: 1 1 300px;
-    }
-    .contact-grid{ 
-      grid-template-columns:1fr; 
-    }
-  }
-  @media(max-width: 768px){
-    .nav{ 
-      display: none; 
-    }
-    .hero-title{ 
-      font-size: clamp(40px, 12vw, 80px); 
-      letter-spacing: 2px; 
-    }
-    .logo{ 
-      font-size: 16px; 
-      padding: 8px 16px; 
-      letter-spacing: 4px; 
-    }
-    header{ 
-      padding: 12px 0; 
-    }
-    .services-grid,
-    .portfolio {
-      grid-template-columns: 1fr;
-    }
-    .hero-ctas {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    .hero-ctas .btn {
-      width: 100%;
-      text-align: center;
-    }
-  }
+        .service-card {
+            background: rgba(45, 11, 90, 0.6);
+            backdrop-filter: blur(var(--blur-intensity));
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid var(--purple-light);
+            transform: rotate(var(--rotation));
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
 
-  /* حالت تاریک/روشن اضافی */
-  @media (prefers-color-scheme: light) {
-    :root{
-      --bg: #f5f7fa;
-      --paper: #1a202c;
-      --muted: #718096;
-      --glass-bg: rgba(255, 255, 255, 0.7);
-      --glass-border: rgba(0, 0, 0, 0.1);
-    }
-    body {
-      background: radial-gradient(ellipse at center, #e2e8f0 0%, #cbd5e0 100%);
-    }
-    .hero::before {
-      opacity: 0.1;
-    }
-  }
-</style>
+        /* چرخش تصادفی کارت‌ها */
+        .service-card:nth-child(odd) {
+            --rotation: 0.5deg;
+        }
+        .service-card:nth-child(even) {
+            --rotation: -0.5deg;
+        }
+
+        .service-card:hover {
+            --rotation: 0deg;
+            transform: scale(1.05) rotate(0deg);
+            z-index: 10;
+            box-shadow: 
+                0 0 30px rgba(123, 63, 228, 0.3),
+                inset 0 0 30px rgba(157, 112, 255, 0.1);
+        }
+
+        /* افکت‌های خطای عمدی */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch::before {
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+            color: #ff00ff;
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+            color: #00ffff;
+            z-index: -2;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip-path: inset(40% 0 61% 0); transform: translate(-2px, 2px); }
+            5% { clip-path: inset(92% 0 1% 0); transform: translate(1px, -2px); }
+            10% { clip-path: inset(43% 0 1% 0); transform: translate(-1px, 3px); }
+            15% { clip-path: inset(25% 0 58% 0); transform: translate(2px, -1px); }
+            20% { clip-path: inset(54% 0 7% 0); transform: translate(-2px, 2px); }
+            100% { clip-path: inset(58% 0 43% 0); transform: translate(0); }
+        }
+
+        /* فرم با طراحی مختل شده */
+        .contact-form {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--purple-glow);
+            font-size: 14px;
+            transform: rotate(-0.5deg);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--purple-light);
+            color: var(--matte-white);
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* اعوجاج هنگام فوکوس */
+        .form-input:focus {
+            outline: none;
+            border-color: var(--purple-glow);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px) skew(-1deg);
+            box-shadow: 
+                10px 0 20px rgba(123, 63, 228, 0.3),
+                inset 0 0 20px rgba(157, 112, 255, 0.1);
+        }
+
+        /* دکمه‌های نامتعارف */
+        .anti-button {
+            padding: 15px 40px;
+            background: rgba(123, 63, 228, 0.3);
+            border: 1px solid var(--purple-light);
+            color: var(--matte-white);
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            transform: rotate(0.5deg);
+        }
+
+        .anti-button:hover {
+            background: rgba(123, 63, 228, 0.6);
+            transform: rotate(-0.5deg) scale(1.05);
+            border-color: var(--purple-glow);
+            box-shadow: 
+                0 0 30px rgba(123, 63, 228, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* عناصر شناور تصادفی */
+        .floating-element {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(123, 63, 228, 0.1);
+            border: 1px solid rgba(157, 112, 255, 0.3);
+            backdrop-filter: blur(5px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* انیمیشن‌های شناور تصادفی */
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation: floatRandom 25s infinite linear;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation: floatRandom 30s infinite linear reverse;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation: floatRandom 35s infinite linear;
+        }
+
+        @keyframes floatRandom {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 50px) rotate(90deg); }
+            50% { transform: translate(50px, 100px) rotate(180deg); }
+            75% { transform: translate(-50px, 50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        /* پانویس معکوس */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--purple-light);
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-text {
+            color: var(--matte-white);
+            opacity: 0.7;
+            font-size: 12px;
+            transform: rotate(180deg);
+            writing-mode: vertical-rl;
+            margin: 0 auto;
+            height: 100px;
+        }
+
+        /* افکت لرزش عمدی */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+            20%, 40%, 60%, 80% { transform: translateX(3px); }
+        }
+
+        .shake-on-hover:hover {
+            animation: shake 0.5s;
+        }
+
+        /* حالت موبایل - حتی آشفته‌تر */
+        @media (max-width: 768px) {
+            .main-logo {
+                font-size: clamp(60px, 15vw, 120px);
+                letter-spacing: -3px;
+            }
+            
+            .hero-description {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                width: 100%;
+                transform: rotate(1deg);
+                margin-top: 40px;
+            }
+            
+            .service-card {
+                transform: rotate(var(--rotation)) scale(0.95);
+            }
+            
+            .service-card:hover {
+                transform: scale(1) rotate(0deg);
+            }
+            
+            /* در موبایل هم‌پوشانی عمدی را بیشتر می‌کنیم */
+            .services {
+                gap: 10px;
+            }
+            
+            .form-input:focus {
+                transform: translateX(5px) skew(-2deg);
+            }
+            
+            /* منو در موبایل به هم می‌ریزد */
+            nav {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .nav-list {
+                gap: 8px;
+            }
+            
+            .nav-link {
+                font-size: 11px;
+                padding: 3px 6px;
+            }
+        }
+
+        /* چاپ - حتی در چاپ هم ضد طراحی باشد */
+        @media print {
+            body {
+                transform: none;
+                background: white !important;
+                color: black !important;
+            }
+            
+            .main-logo {
+                color: black !important;
+                text-shadow: none !important;
+            }
+            
+            .service-card {
+                break-inside: avoid;
+                border: 2px solid black !important;
+                transform: none !important;
+            }
+            
+            /* در چاپ هم المان‌ها روی هم بیفتند */
+            .hero-description {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- عناصر شناور تصادفی -->
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
 
-  <!-- HEADER -->
-  <header>
-    <div class="wrap header-inner">
-      <div class="brand">
-        <div class="logo" id="logo">AMIXAMA</div>
-        <div style="font-weight:600; color:var(--muted); font-size:14px; backdrop-filter: blur(5px); padding: 6px 12px; border-radius: 8px; border: 1px solid var(--glass-border);">
-          Digital Systems
+    <!-- هدر با موقعیت عکس -->
+    <header>
+        <div class="logo-small shake-on-hover">AMX-SYS</div>
+    </header>
+
+    <!-- ناوبری در مکان غیرمنتظره -->
+    <nav>
+        <ul class="nav-list">
+            <li><a href="#home" class="nav-link glitch" data-text="خانه">خانه</a></li>
+            <li><a href="#services" class="nav-link glitch" data-text="سیستم‌ها">سیستم‌ها</a></li>
+            <li><a href="#work" class="nav-link glitch" data-text="تخریب">تخریب</a></li>
+            <li><a href="#contact" class="nav-link glitch" data-text="ارتباط معکوس">ارتباط معکوس</a></li>
+        </ul>
+    </nav>
+
+    <!-- بخش اصلی با لوگوی بزرگ -->
+    <section id="home" class="hero">
+        <div class="logo-bg-layer"></div>
+        <h1 class="main-logo glitch" data-text="AMIXAMA">AMIXAMA</h1>
+        <div class="hero-description shake-on-hover">
+            <p>سیستم‌های دیجیتال را می‌سازیم. قواعد را می‌شکنیم. فرم‌های جدید خلق می‌کنیم. این یک ضدسیستم است.</p>
+            <p style="margin-top: 10px; font-size: 12px; opacity: 0.6;">(اسکرول کنید، اما نه به روشی که انتظار دارید)</p>
         </div>
-      </div>
-
-      <nav class="nav" role="navigation" aria-label="ناوبری">
-        <a href="#home">خانه</a>
-        <a href="#services">خدمات</a>
-        <a href="#portfolio">نمونه‌کارها</a>
-        <a href="#about">درباره</a>
-        <a href="#contact">تماس</a>
-      </nav>
-
-      <div class="cta">
-        <a class="btn btn--ghost" href="https://t.me/AMIXAMA" target="_blank" rel="noopener">تلگرام</a>
-        <a class="btn btn--primary" href="https://wa.me/989123456789" target="_blank" rel="noopener">واتس‌اپ</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO -->
-    <section id="home" class="hero" role="region" aria-label="صفحه اصلی">
-      <div class="hero-inner wrap">
-        <div class="hero-left">
-          <div class="kicker">سیستم، نه تزئین</div>
-
-          <h1 class="hero-title" id="heroTitle">AMIXAMA</h1>
-
-          <p class="hero-sub">AMIXAMA سامانه‌های دیجیتال کاربردی و قابل اتکا می‌سازد: طراحی وب، تجارت الکترونیک، هویت سازمانی و پشتیبانی فنی. راهکارهایی ساده، دقیق و قابل اتکا برای کسب‌وکارهای حرفه‌ای.</p>
-
-          <div class="hero-ctas" style="margin-top:32px">
-            <a class="btn btn--primary" href="#contact">درخواست مشاوره</a>
-            <a class="btn btn--ghost" href="#services">مشاهده خدمات</a>
-          </div>
-
-          <div class="ticker" aria-hidden="true" style="margin-top:40px">
-            <span>تحویل مرحله‌ای • معماری مقیاس‌پذیر • پشتیبانی ۲۴/۷ • تمرکز روی عملکرد • امنیت سطح بالا • طراحی کاربرمحور</span>
-          </div>
-        </div>
-
-        <aside class="hero-right" aria-hidden="false">
-          <div class="card">
-            <h4>نتیجه‌محوری</h4>
-            <p>هر پروژه با معیارهای کسب‌وکار سنجیده می‌شود: KPI مشخص، تست و تحویل مرحله‌ای.</p>
-          </div>
-          <div class="card">
-            <h4>امنیت و نگهداری</h4>
-            <p>پکیج‌های SLA، بکاپ، و مانیتورینگ برای تضمین ثبات سیستم‌ها.</p>
-          </div>
-        </aside>
-      </div>
     </section>
 
-    <!-- SERVICES -->
-    <section id="services" class="section" aria-labelledby="servicesTitle">
-      <div class="wrap-grid">
-        <h2 class="h2" id="servicesTitle">خدمات</h2>
-        <div class="services-grid" role="list">
-          <div class="service" role="listitem">
-            <h3>طراحی و توسعه وب</h3>
-            <p>سایت‌های واکنش‌گرا، معماری تمیز و تست‌پذیر، کد قابل نگهداری برای رشد بلندمدت.</p>
-          </div>
-
-          <div class="service" role="listitem">
-            <h3>فروشگاه آنلاین</h3>
-            <p>پلتفرم تجارت الکترونیک با درگاه، مدیریت سفارشات و مسیر افزایش فروش.</p>
-          </div>
-
-          <div class="service" role="listitem">
-            <h3>هویت سازمانی</h3>
-            <p>لوگو، پالت رنگ، نگارش راهنمای برند؛ ابزارهایی برای ثبات و تاثیر برند.</p>
-          </div>
-
-          <div class="service" role="listitem">
-            <h3>سئو و آنالیز</h3>
-            <p>آنالیز فنی، بهینه‌سازی محتوا و مانیتورینگ نتایج برای بهبود دیده‌شدن.</p>
-          </div>
-
-          <div class="service" role="listitem">
-            <h3>پشتیبانی فنی</h3>
-            <p>مانیتورینگ، آپدیت‌های امنیتی و پاسخ سریع به موارد بحرانی.</p>
-          </div>
-
-          <div class="service" role="listitem">
-            <h3>مشاوره فنی</h3>
-            <p>نقشهٔ راه فنی، انتخاب پشته و طراحی معماری مقیاس‌پذیر.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="section" aria-labelledby="portfolioTitle">
-      <div class="wrap-grid">
-        <h2 class="h2" id="portfolioTitle">نمونه‌کارها</h2>
-        <div class="portfolio" id="portfolioGrid" role="list">
-          <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" data-title="وب‌سایت شرکتی" data-desc="سازمان‌دهی محتوای شرکت، سرعت و امنیت بالا">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80" alt="وب‌سایت شرکتی" loading="lazy">
-            <div class="meta"><h4>وب‌سایت شرکتی</h4><p>طراحی ساختاری و پنل مدیریت ساده.</p></div>
-          </article>
-
-          <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1400&q=80" data-title="فروشگاه آنلاین" data-desc="پلتفرم فروش با مدیریت سفارش">
-            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=80" alt="فروشگاه آنلاین" loading="lazy">
-            <div class="meta"><h4>فروشگاه آنلاین</h4><p>یکپارچه‌سازی درگاه و مدیریت محصولات.</p></div>
-          </article>
-
-          <article class="card-portfolio" tabindex="0" data-src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1400&q=80" data-title="داشبورد مدیریتی" data-desc="داشبورد KPI برای تصمیم‌گیری">
-            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=80" alt="داشبورد" loading="lazy">
-            <div class="meta"><h4>داشبورد مدیریتی</h4><p>گزارشات سفارشی و کنترل پنل مدیریتی.</p></div>
-          </article>
-        </div>
-
-        <div style="text-align:center; margin-top:32px">
-          <button class="btn btn--primary" id="loadMore">بارگذاری بیشتر</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section" aria-labelledby="aboutTitle">
-      <div class="wrap-grid">
-        <h2 class="h2" id="aboutTitle">دربارهٔ ما</h2>
-        <p style="color:var(--muted); max-width:900px; font-size: 17px; line-height: 1.9;">
-          AMIXAMA یک تیم فنی‌محور است که سامانه‌های قابل اعتماد و عملی برای کسب‌وکارها می‌سازد. تمرکز ما اجرای دقیق، امنیت و خروجی قابل اندازه‌گیری است؛ نه جلوه‌های بی‌حاصل. هر پروژه با اهداف کسب‌وکار شما تطبیق داده می‌شود و راه‌حل‌های پیاده‌سازی‌شده قابل نگهداری و توسعه خواهند بود.
-        </p>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section" aria-labelledby="contactTitle">
-      <div class="wrap-grid">
-        <h2 class="h2" id="contactTitle">تماس</h2>
-        <div class="contact-grid">
-          <form class="form" id="contactForm" onsubmit="return false" aria-label="فرم تماس">
-            <input class="input" id="name" name="name" type="text" placeholder="نام کامل *" required>
-            <input class="input" id="email" name="email" type="email" placeholder="ایمیل *" required>
-            <input class="input" id="phone" name="phone" type="tel" placeholder="شماره تلفن">
-            <textarea class="textarea" id="message" name="message" placeholder="توضیح پروژه *" required></textarea>
-            <div style="display:flex; gap:12px; margin-top:16px; flex-wrap:wrap">
-              <button class="btn btn--primary" id="submit">ارسال درخواست</button>
-              <button class="btn btn--ghost" id="reset" type="button">پاک کردن</button>
+    <!-- اسکرول افقی عمدی -->
+    <section class="horizontal-scroll" id="work">
+        <div class="scroll-content">
+            <div class="scroll-item">
+                <h3 class="glitch" data-text="سیستم‌های معیوب">سیستم‌های معیوب</h3>
+                <p>سیستم‌هایی می‌سازیم که عمداً ناقص هستند. این نقص‌ها قابلیت انعطاف ایجاد می‌کنند.</p>
             </div>
-            <div id="status" style="margin-top:16px; color:var(--muted); display:none"></div>
-          </form>
-
-          <aside style="padding:32px; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: var(--radius); text-align:right;">
-            <strong style="display:block; margin-bottom:16px; color:var(--neon); font-size: 20px;">راه‌های ارتباطی</strong>
-            <div style="color:var(--muted); font-size:15px; line-height: 1.8;">
-              <div style="margin-bottom:12px">واتس‌اپ: <a href="https://wa.me/989123456789" style="color:var(--paper); text-decoration: none; border-bottom: 1px solid var(--neon); padding-bottom: 2px;">+98 912 345 6789</a></div>
-              <div style="margin-bottom:12px">تلگرام: <a href="https://t.me/AMIXAMA" style="color:var(--paper); text-decoration: none; border-bottom: 1px solid var(--neon); padding-bottom: 2px;">@AMIXAMA</a></div>
-              <div style="margin-top:20px; padding-top:20px; border-top: 1px solid var(--glass-border); color:var(--muted)">آدرس: تهران — جزئیات پس از تماس</div>
-              <div style="margin-top:12px; font-size: 14px;">پاسخگویی: شنبه تا پنجشنبه، ۹ الی ۱۸</div>
+            <div class="scroll-item">
+                <h3 class="glitch" data-text="کدهای ناخوانا">کدهای ناخوانا</h3>
+                <p>کدی که فقط ماشین می‌فهمد. بهره‌وری بی‌نهایت. خوانایی صفر.</p>
             </div>
-          </aside>
+            <div class="scroll-item">
+                <h3 class="glitch" data-text="رابط‌های مخرب">رابط‌های مخرب</h3>
+                <p>رابط کاربری که کاربر را به چالش می‌کشد. آموزش می‌دهد. تغییر می‌دهد.</p>
+            </div>
+            <div class="scroll-item">
+                <h3 class="glitch" data-text="الگوریتم‌های تصادفی">الگوریتم‌های تصادفی</h3>
+                <p>نظم در بی‌نظمی. سیستم‌هایی که هرگز تکرار نمی‌شوند.</p>
+            </div>
         </div>
-      </div>
     </section>
 
+    <!-- خدمات با کارت‌های کج -->
+    <section id="services" class="services container">
+        <div class="service-card">
+            <h3 class="glitch" data-text="طراحی معکوس">طراحی معکوس</h3>
+            <p>از پایان شروع می‌کنیم. از راه‌حل به مسئله می‌رسیم. منطق وارونه.</p>
+        </div>
+        <div class="service-card">
+            <h3 class="glitch" data-text="توسده نامتقارن">توسعه نامتقارن</h3>
+            <p>کدهای نامتوازن که بهتر کار می‌کنند. معماری‌های عمداً ناکامل.</p>
+        </div>
+        <div class="service-card">
+            <h3 class="glitch" data-text="امنیت شفاف">امنیت شفاف</h3>
+            <p>حفره‌های امنیتی را نمایش می‌دهیم. آسیب‌پذیری را به قابلیت تبدیل می‌کنیم.</p>
+        </div>
+        <div class="service-card">
+            <h3 class="glitch" data-text="هوش غیرخطی">هوش غیرخطی</h3>
+            <p>الگوریتم‌هایی که مسیر مستقیم را انتخاب نمی‌کنند. راه‌های جدید کشف می‌کنند.</p>
+        </div>
+    </section>
+
+    <!-- فرم تماس آشفته -->
+    <section class="contact-form container" id="contact">
+        <h2 class="glitch" data-text="ارتباط معکوس" style="margin-bottom: 40px; text-align: center; font-size: 24px;">ارتباط معکوس</h2>
+        <form id="anti-form">
+            <div class="form-group">
+                <label class="form-label glitch" data-text="نام شما">نام شما</label>
+                <input type="text" class="form-input shake-on-hover" placeholder="(ترجیحاً نادرست وارد کنید)">
+            </div>
+            <div class="form-group">
+                <label class="form-label glitch" data-text="ایمیل معکوس">ایمیل معکوس</label>
+                <input type="email" class="form-input shake-on-hover" placeholder="com.example@">
+            </div>
+            <div class="form-group">
+                <label class="form-label glitch" data-text="پیام وارونه">پیام وارونه</label>
+                <textarea class="form-input shake-on-hover" rows="5" placeholder="پیام را از پایان بنویسید..."></textarea>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button type="button" class="anti-button glitch shake-on-hover" data-text="ارسال ناقص">ارسال ناقص</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- فوتر وارونه -->
     <footer>
-      <div class="wrap" style="padding:32px 0; text-align:center; color:var(--muted); font-size: 14px;">
-        © <span id="year"></span> AMIXAMA — همه حقوق محفوظ
-        <div style="margin-top:12px; opacity: 0.7; font-size: 13px;">
-          ساخته شده با تمرکز بر عملکرد و کاربردی بودن
+        <div class="footer-text">
+            AMIXAMA ضدسیستم ۲۰۲۴ — تمام حقوق محفوظ نیست
         </div>
-      </div>
     </footer>
-  </main>
 
-  <!-- مودال Glassmorphism برای نمونه‌کارها -->
-  <div id="modal" aria-hidden="true" style="position:fixed; left:0;top:0;right:0;bottom:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index:1400; padding: 20px;">
-    <div style="width:92%; max-width:900px; background: var(--glass-bg); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border: 1px solid var(--glass-border); border-radius: var(--radius); overflow:hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.6);">
-      <div id="modalInner" style="padding:32px; color:var(--paper)"></div>
-      <div style="padding:20px 32px; text-align:left; border-top: 1px solid var(--glass-border);">
-        <button id="modalClose" class="btn btn--ghost">بستن</button>
-      </div>
-    </div>
-  </div>
-
-<script>
-  /* اسکریپت اصلی با بهینه‌سازی‌های جدید */
-  (function(){
-    // فعال‌سازی عنوان اصلی با تاخیر
-    const heroTitle = document.getElementById('heroTitle');
-    function activateHero(){
-      if(!heroTitle) return;
-      const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if(!reduced){
-        heroTitle.style.animationPlayState = 'running';
-      }
-    }
-
-    // Ticker متحرک
-    function initTicker(){
-      const ticker = document.querySelector('.ticker span');
-      if(ticker && ticker.textContent.length < 100){
-        ticker.innerHTML = ticker.innerHTML + ' • ' + ticker.innerHTML + ' • ' + ticker.innerHTML;
-      }
-    }
-
-    // Modal نمونه‌کار
-    const modal = document.getElementById('modal');
-    const modalInner = document.getElementById('modalInner');
-    const modalClose = document.getElementById('modalClose');
-    function openModal(src, title, desc){
-      modalInner.innerHTML = `
-        <h3 style="margin-bottom: 16px; color: var(--neon); font-size: 24px;">${title || ''}</h3>
-        <p style="color: var(--muted); margin-bottom: 24px; font-size: 16px; line-height: 1.7;">${desc || ''}</p>
-        ${src ? `<img src="${src}" style="width:100%; height: auto; max-height: 500px; object-fit: contain; display:block; border-radius: 12px; margin-top: 20px;" alt="${title}">` : ''}
-      `;
-      modal.style.display = 'flex';
-      modal.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal(){ 
-      modal.style.display='none'; 
-      modal.setAttribute('aria-hidden','true'); 
-      modalInner.innerHTML=''; 
-      document.body.style.overflow = 'auto';
-    }
-    if(modalClose) modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e)=> { if(e.target === modal) closeModal(); });
-
-    // اتصال کارت‌های نمونه‌کار
-    function bindPortfolio(){
-      document.querySelectorAll('.card-portfolio').forEach(card=>{
-        if(card._bound) return;
-        card.addEventListener('click', ()=>{
-          const src = card.dataset.src || card.querySelector('img')?.src || '';
-          const title = card.dataset.title || card.querySelector('h4')?.innerText || '';
-          const desc = card.dataset.desc || card.querySelector('p')?.innerText || '';
-          openModal(src, title, desc);
-        });
-        card.addEventListener('keypress', (e)=>{
-          if(e.key === 'Enter' || e.key === ' '){
-            e.preventDefault();
-            const src = card.dataset.src || card.querySelector('img')?.src || '';
-            const title = card.dataset.title || card.querySelector('h4')?.innerText || '';
-            const desc = card.dataset.desc || card.querySelector('p')?.innerText || '';
-            openModal(src, title, desc);
-          }
-        });
-        card._bound = true;
-      });
-    }
-
-    // fallback تصاویر
-    function createPlaceholder(card){
-      const img = card.querySelector('img');
-      if(img) img.style.display = 'none';
-      if(card.querySelector('.img-placeholder')) return;
-      const ph = document.createElement('div');
-      ph.className = 'img-placeholder';
-      ph.style.height = '200px';
-      ph.style.display = 'flex';
-      ph.style.flexDirection = 'column';
-      ph.style.alignItems = 'center';
-      ph.style.justifyContent = 'center';
-      ph.style.background = 'linear-gradient(135deg, rgba(0,240,255,0.05), rgba(255,204,0,0.05))';
-      ph.style.borderBottom = '1px solid var(--glass-border)';
-      ph.innerHTML = `
-        <div style="width: 60px; height: 60px; border: 2px solid var(--glass-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
-          <span style="color: var(--muted); font-size: 24px;">🖼️</span>
-        </div>
-        <strong style="display:block;margin-bottom:6px;color:var(--paper)">${card.dataset.title||'نمونه‌کار'}</strong>
-        <small style="color:var(--muted); text-align: center; padding: 0 20px;">${card.dataset.desc||'تصویر در دسترس نیست'}</small>
-      `;
-      card.insertBefore(ph, card.querySelector('.meta'));
-    }
-    function ensurePortfolioImages(){
-      document.querySelectorAll('.card-portfolio').forEach(card=>{
-        const img = card.querySelector('img');
-        if(!img){ createPlaceholder(card); return; }
-        img.addEventListener('error', ()=> createPlaceholder(card));
-        if(img.complete && typeof img.naturalWidth !== 'undefined' && img.naturalWidth === 0) createPlaceholder(card);
-      });
-    }
-
-    // بارگذاری بیشتر
-    const loadBtn = document.getElementById('loadMore');
-    if(loadBtn){
-      loadBtn.addEventListener('click', ()=>{
-        const grid = document.getElementById('portfolioGrid');
-        const items = [
-          {title: 'پنل مدیریت پیشرفته', desc: 'داشبورد تحلیلی با نمودارهای زنده', img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80'},
-          {title: 'اپلیکیشن موبایل', desc: 'رابط کاربری روان و عملکرد بهینه', img: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w-900&q=80'},
-          {title: 'سیستم رزرواسیون', desc: 'مدیریت نوبت‌دهی آنلاین', img: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=900&q=80'}
-        ];
+    <script>
+        // اسکریپت‌های ضد طراحی
         
-        items.forEach(item => {
-          const art = document.createElement('article');
-          art.className = 'card-portfolio';
-          art.tabIndex = 0;
-          art.dataset.title = item.title;
-          art.dataset.desc = item.desc;
-          art.dataset.src = item.img;
-          art.innerHTML = `
-            <img src="${item.img}" alt="${item.title}" loading="lazy" style="width:100%; height:200px; object-fit:cover; display:block;">
-            <div class="meta"><h4>${item.title}</h4><p style="color:var(--muted)">${item.desc}</p></div>
-          `;
-          grid.appendChild(art);
+        // لرزش تصادفی المان‌ها
+        function randomShake() {
+            const elements = document.querySelectorAll('.shake-on-hover');
+            elements.forEach(el => {
+                setInterval(() => {
+                    if (Math.random() > 0.7) {
+                        el.style.transform = `translate(${Math.random() * 6 - 3}px, ${Math.random() * 6 - 3}px)`;
+                        setTimeout(() => {
+                            el.style.transform = '';
+                        }, 200);
+                    }
+                }, 3000);
+            });
+        }
+        
+        // اعوجاج تصادفی متن‌ها
+        function textDistort() {
+            const texts = document.querySelectorAll('p, h1, h2, h3');
+            texts.forEach(text => {
+                setInterval(() => {
+                    if (Math.random() > 0.9) {
+                        const letters = 'ا ب پ ت ث ج چ ح خ د ذ ر ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن و ه ی';
+                        const randomLetter = letters.split(' ')[Math.floor(Math.random() * letters.split(' ').length)];
+                        const originalText = text.textContent;
+                        const position = Math.floor(Math.random() * originalText.length);
+                        const newText = originalText.substring(0, position) + randomLetter + originalText.substring(position + 1);
+                        text.textContent = newText;
+                        
+                        setTimeout(() => {
+                            text.textContent = originalText;
+                        }, 100);
+                    }
+                }, 2000);
+            });
+        }
+        
+        // اسکرول غیرخطی
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const scrollDelta = currentScroll - lastScroll;
+            
+            // گاهی اسکرول را معکوس می‌کنیم
+            if (Math.random() > 0.95 && scrollDelta !== 0) {
+                window.scrollBy(0, -scrollDelta * 0.5);
+            }
+            
+            // اعوجاج بصری بر اساس اسکرول
+            document.body.style.transform = `rotate(${0.3 + Math.sin(currentScroll * 0.01) * 0.2}deg)`;
+            
+            lastScroll = currentScroll;
         });
         
-        bindPortfolio();
-        ensurePortfolioImages();
-        loadBtn.textContent = 'نمایش داده شد';
-        loadBtn.disabled = true;
-        loadBtn.style.opacity = '0.7';
+        // کلیک‌های تصادفی
+        document.addEventListener('click', (e) => {
+            if (Math.random() > 0.8) {
+                const ripple = document.createElement('div');
+                ripple.style.position = 'fixed';
+                ripple.style.left = e.clientX + 'px';
+                ripple.style.top = e.clientY + 'px';
+                ripple.style.width = '0';
+                ripple.style.height = '0';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'radial-gradient(circle, rgba(123, 63, 228, 0.3), transparent)';
+                ripple.style.zIndex = '9999';
+                ripple.style.pointerEvents = 'none';
+                document.body.appendChild(ripple);
+                
+                const size = Math.random() * 100 + 50;
+                ripple.animate([
+                    { width: '0', height: '0', opacity: 1 },
+                    { width: size + 'px', height: size + 'px', opacity: 0 }
+                ], {
+                    duration: 800,
+                    easing: 'cubic-bezier(0.2, 0.8, 0.4, 1)'
+                });
+                
+                setTimeout(() => ripple.remove(), 800);
+            }
+        });
         
-        // اسکرول به آیتم‌های جدید
-        grid.lastElementChild.scrollIntoView({behavior: 'smooth', block: 'nearest'});
-      });
-    }
-
-    // فرم تماس
-    const form = document.getElementById('contactForm');
-    const status = document.getElementById('status');
-    const submit = document.getElementById('submit');
-    const resetBtn = document.getElementById('reset');
-    if(submit){
-      submit.addEventListener('click', ()=>{
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('message').value.trim();
-        if(!name || !email || !message){
-          status.style.display='block'; 
-          status.style.color= 'var(--danger)'; 
-          status.innerHTML = '<span style="display:inline-flex; align-items:center; gap:6px;">⚠️ پر کردن همه فیلدهای ستاره‌دار الزامی است.</span>'; 
-          return;
-        }
-        status.style.display='block'; 
-        status.style.color = 'var(--muted)'; 
-        status.innerHTML = '<span style="display:inline-flex; align-items:center; gap:6px;">⏳ در حال ارسال...</span>'; 
-        submit.disabled = true;
-        submit.innerHTML = 'در حال ارسال...';
+        // فرم معکوس
+        document.querySelector('.anti-button').addEventListener('click', () => {
+            const inputs = document.querySelectorAll('.form-input');
+            let message = 'فرم معکوس ارسال شد:\n\n';
+            
+            inputs.forEach(input => {
+                const value = input.value;
+                const reversed = value.split('').reverse().join('');
+                message += `${input.placeholder}: ${reversed}\n`;
+                
+                // پاک کردن با انیمیشن عجیب
+                input.animate([
+                    { opacity: 1, transform: 'translateX(0)' },
+                    { opacity: 0, transform: 'translateX(50px)' }
+                ], {
+                    duration: 500,
+                    fill: 'forwards'
+                });
+                
+                setTimeout(() => {
+                    input.value = '';
+                    input.style.opacity = '1';
+                    input.style.transform = '';
+                }, 600);
+            });
+            
+            // نمایش پیام در کنسول (به جای alert معمولی)
+            console.log('%c' + message, 'color: #9d70ff; font-size: 14px; font-weight: bold;');
+            
+            // ایجاد یک المان برای نمایش پیام
+            const messageEl = document.createElement('div');
+            messageEl.textContent = 'فرم در جهت معکوس پردازش شد';
+            messageEl.style.position = 'fixed';
+            messageEl.style.top = '50%';
+            messageEl.style.left = '50%';
+            messageEl.style.transform = 'translate(-50%, -50%) rotate(180deg)';
+            messageEl.style.background = 'rgba(45, 11, 90, 0.9)';
+            messageEl.style.color = '#9d70ff';
+            messageEl.style.padding = '20px';
+            messageEl.style.border = '1px solid #7b3fe4';
+            messageEl.style.zIndex = '10000';
+            messageEl.style.backdropFilter = 'blur(10px)';
+            document.body.appendChild(messageEl);
+            
+            setTimeout(() => {
+                messageEl.animate([
+                    { opacity: 1, transform: 'translate(-50%, -50%) rotate(180deg)' },
+                    { opacity: 0, transform: 'translate(-50%, -50%) rotate(360deg) scale(0.5)' }
+                ], {
+                    duration: 1000,
+                    fill: 'forwards'
+                });
+                setTimeout(() => messageEl.remove(), 1100);
+            }, 2000);
+        });
         
-        setTimeout(()=>{ 
-          status.style.color = 'var(--neon)'; 
-          status.innerHTML = '<span style="display:inline-flex; align-items:center; gap:6px;">✅ درخواست ثبت شد. ظرف ۲۴ ساعت کاری با شما تماس می‌گیریم.</span>'; 
-          submit.disabled = false; 
-          submit.innerHTML = 'ارسال درخواست';
-          form.reset();
-          
-          // پنهان کردن پیام بعد از ۵ ثانیه
-          setTimeout(()=>{
-            status.style.display = 'none';
-          }, 5000);
-        }, 1500);
-      });
-    }
-    if(resetBtn) resetBtn.addEventListener('click', ()=> { 
-      if(form) form.reset(); 
-      if(status) status.style.display='none'; 
-      if(submit) submit.disabled = false;
-    });
-
-    // دسترسی: focus با کیبورد
-    (function(){
-      let usingKeyboard = false;
-      window.addEventListener('keydown', (e)=> { if(e.key === 'Tab') usingKeyboard = true; });
-      window.addEventListener('mousedown', ()=> usingKeyboard = false);
-      document.body.addEventListener('focusin', (e)=> { 
-        if(usingKeyboard && e.target.tagName !== 'BODY') {
-          e.target.classList.add('focus-outline'); 
-        }
-      });
-      document.body.addEventListener('focusout', (e)=> { 
-        e.target.classList.remove('focus-outline'); 
-      });
-    })();
-
-    // اسکرول نرم
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
-        const targetElement = document.querySelector(targetId);
-        if(targetElement){
-          window.scrollTo({
-            top: targetElement.offsetTop - 100,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // تغییر استایل هدر هنگام اسکرول
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      const header = document.querySelector('header');
-      if(currentScroll <= 0){
-        header.style.background = 'var(--glass-bg)';
-        header.style.backdropFilter = 'blur(15px) saturate(180%)';
-      } else if(currentScroll > lastScroll){
-        header.style.background = 'rgba(10, 10, 15, 0.9)';
-        header.style.backdropFilter = 'blur(20px) saturate(200%)';
-      } else {
-        header.style.background = 'var(--glass-bg)';
-        header.style.backdropFilter = 'blur(15px) saturate(180%)';
-      }
-      lastScroll = currentScroll;
-    });
-
-    // init on load
-    window.addEventListener('load', ()=> {
-      activateHero();
-      initTicker();
-      bindPortfolio(); 
-      ensurePortfolioImages();
-      if(document.getElementById('year')){
-        document.getElementById('year').textContent = new Date().getFullYear();
-      }
-      
-      // پیش‌بارگذاری تصاویر مهم
-      const preloadImages = [
-        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80',
-        'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=80',
-        'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=80'
-      ];
-      preloadImages.forEach(src => {
-        const img = new Image();
-        img.src = src;
-      });
-    });
-
-    // fallback init
-    setTimeout(()=> { 
-      if(!document.getElementById('year') || !heroTitle) { 
-        activateHero(); 
-        bindPortfolio(); 
-        ensurePortfolioImages(); 
-      } 
-    }, 2000);
-  })();
-</script>
+        // راه‌اندازی زمانی که DOM لود شد
+        document.addEventListener('DOMContentLoaded', () => {
+            randomShake();
+            textDistort();
+            
+            // شروع با کمی تأخیر برای اثر غافلگیری
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // اعوجاج متناوب صفحه
+            setInterval(() => {
+                const rotation = Math.random() * 0.6 - 0.3;
+                const skew = Math.random() * 0.4 - 0.2;
+                document.body.style.transform = `rotate(${rotation}deg) skew(${skew}deg)`;
+            }, 10000);
+        });
+    </script>
 </body>
 </html>
