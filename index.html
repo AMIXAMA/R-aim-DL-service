@@ -1,1363 +1,1125 @@
 <!DOCTYPE html>
-<html lang="fa-IR" dir="rtl">
+<html lang="fa" dir="rtl">
 <head>
-    <!-- متا تگ‌های سئو -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AMIXAMA - سیستم طراحی وبسایت‌های تکاملی با هوش مصنوعی و طراحی الگوریتمیک. ساخت وبسایت‌های فروش‌محور و صنعت‌محور با سبک‌های غیرتکراری.">
-    <meta name="keywords" content="طراحی وب, هوش مصنوعی, طراحی الگوریتمیک, وبسایت تکاملی, طراحی حرفه‌ای, AMIXAMA">
-    <meta name="author" content="AMIXAMA Digital Systems">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="AMIXAMA | طراحی وبسایت‌های هوشمند و تکاملی">
-    <meta property="og:description" content="سیستم طراحی وبسایت‌های تکاملی با هوش مصنوعی و طراحی الگوریتمیک">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="fa_IR">
-    
-    <!-- Canonical URL برای سئو -->
-    <link rel="canonical" href="https://amixama.com">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⎔</text></svg>">
-    
-    <!-- Preconnect برای بهبود performance -->
+    <title>AMIXAMA | سیستم طراحی وبسایت‌های تکاملی پویا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- فونت‌های بهینه شده -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome به صورت partial load -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    
-    <title>AMIXAMA | طراحی وبسایت‌های هوشمند و تکاملی با هوش مصنوعی</title>
-    
-    <!-- استایل‌های اولیه -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Reset و Base Styles - بهینه شده برای Performance */
         :root {
-            --primary-black: #0a0a0a;
-            --secondary-black: #111111;
-            --accent-orange: #ff5a1f;
-            --accent-orange-dark: #cc4a19;
-            --text-primary: #f5f5f5;
-            --text-secondary: #b0b0b0;
-            --text-muted: #777777;
-            --border-color: #2a2a2a;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
+            /* پالت Techwear */
+            --base-0: #0a0a0a;
+            --base-10: #111111;
+            --base-20: #1a1a1a;
+            --base-30: #222222;
+            --base-40: #2a2a2a;
+            --base-50: #333333;
+            
+            /* رنگ تاکید - سبز سایبری */
+            --accent: #00ff88;
+            --accent-dark: #00cc6d;
+            --accent-glow: rgba(0, 255, 136, 0.2);
+            
+            /* رنگ‌های سایبربانک (حداکثر ۵٪) */
+            --cyber-gold: #ffd700;
+            --cyber-silver: #c0c0c0;
+            --cyber-bronze: #cd7f32;
+            
+            /* سیستم */
+            --system-success: #00ff88;
+            --system-warning: #ffaa00;
+            --system-error: #ff4444;
+            --system-info: #0099ff;
             
             /* تایپوگرافی */
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-mono: 'Space Grotesk', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
             
             /* هندسه */
-            --spacing-xs: 0.25rem;
-            --spacing-sm: 0.5rem;
-            --spacing-md: 1rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 4rem;
+            --grid-unit: 8px;
+            --border-radius-sm: 4px;
+            --border-radius: 8px;
+            --border-radius-lg: 16px;
             
-            /* انیمیشن */
-            --transition-fast: 120ms;
-            --transition-normal: 250ms;
+            /* انیمیشن Kinetic */
+            --kinetic-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --kinetic-normal: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --kinetic-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            --morph-duration: 0.6s;
+            
+            /* سایه‌ها */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 30px var(--accent-glow);
         }
-        
-        /* Critical CSS - بارگذاری اولیه */
+
+        /* Reset & Performance Optimizations */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        
+
         html {
             scroll-behavior: smooth;
-            font-size: 16px;
+            overflow-x: hidden;
         }
-        
+
         body {
             font-family: var(--font-sans);
-            background-color: var(--primary-black);
-            color: var(--text-primary);
+            background-color: var(--base-0);
+            color: #f0f0f0;
             line-height: 1.6;
             overflow-x: hidden;
-            min-height: 100vh;
             font-weight: 400;
-        }
-        
-        /* Preloader - Boot لود کوتاه */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-black);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-        
-        .preloader-content {
-            text-align: center;
-            font-family: var(--font-mono);
-        }
-        
-        .loader-text {
-            color: var(--accent-orange);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            margin-bottom: var(--spacing-lg);
-            text-transform: uppercase;
-        }
-        
-        .loader-bar {
-            width: 200px;
-            height: 2px;
-            background: rgba(255, 90, 31, 0.1);
             position: relative;
-            overflow: hidden;
+            will-change: transform;
+            transform: translateZ(0);
         }
-        
-        .loader-bar::after {
-            content: '';
-            position: absolute;
-            left: -100%;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
-            animation: loading 1.5s ease-in-out infinite;
-        }
-        
-        @keyframes loading {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-        
-        /* Utility Classes */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-md);
-        }
-        
-        .section {
-            padding: var(--spacing-xl) 0;
-        }
-        
-        /* هدر و نویگیشن */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            padding: var(--spacing-md) 0;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            text-decoration: none;
-        }
-        
-        .logo-symbol {
-            width: 32px;
-            height: 32px;
-            background: var(--accent-orange);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-mono);
-            font-weight: 800;
-            color: var(--primary-black);
-            font-size: 1.2rem;
-        }
-        
-        .logo-text {
-            font-family: var(--font-mono);
-            font-size: 1.5rem;
+
+        /* Kinetic Typography */
+        h1, h2, h3, h4, h5, h6 {
             font-weight: 700;
-            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: calc(var(--grid-unit) * 2);
+            transform-origin: right center;
+            transition: transform var(--kinetic-normal);
         }
-        
-        .logo-text span {
-            color: var(--accent-orange);
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: var(--spacing-lg);
-        }
-        
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             position: relative;
-            padding: var(--spacing-sm) 0;
-            transition: color var(--transition-fast);
+            display: inline-block;
         }
-        
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--text-primary);
+
+        h1:hover {
+            transform: translateX(-4px);
         }
-        
-        .nav-link::after {
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #ffffff;
+            position: relative;
+            padding-bottom: calc(var(--grid-unit) * 2);
+        }
+
+        h2::after {
             content: '';
             position: absolute;
             bottom: 0;
             right: 0;
             width: 0;
-            height: 2px;
-            background: var(--accent-orange);
-            transition: width var(--transition-normal);
+            height: 3px;
+            background: var(--accent);
+            transition: width var(--kinetic-slow) cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .nav-link:hover::after,
-        .nav-link.active::after {
+
+        h2.in-view::after {
+            width: 100px;
+        }
+
+        .mono {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 0.95em;
+            letter-spacing: -0.3px;
+            font-weight: 500;
+        }
+
+        /* Kinetic Navigation */
+        .kinetic-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: all var(--kinetic-normal);
+            transform: translateY(0);
+            will-change: transform, background, border-color;
+        }
+
+        .kinetic-nav.scrolled {
+            background: rgba(10, 10, 10, 0.98);
+            border-bottom-color: var(--base-30);
+            box-shadow: var(--shadow-md);
+        }
+
+        .kinetic-nav.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: calc(var(--grid-unit) * 2) calc(var(--grid-unit) * 3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kinetic-logo {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--grid-unit) * 2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-geometric {
+            width: 48px;
+            height: 48px;
+            position: relative;
+            background: transparent;
+            border: 2px solid var(--base-40);
+            transition: all var(--kinetic-normal);
+            overflow: hidden;
+        }
+
+        .logo-geometric::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, var(--accent-glow) 50%, transparent 70%);
+            background-size: 200% 200%;
+            animation: logo-shimmer 3s infinite linear;
+            opacity: 0;
+            transition: opacity var(--kinetic-normal);
+        }
+
+        .logo-geometric:hover::before {
+            opacity: 1;
+        }
+
+        .logo-geometric::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all var(--kinetic-normal);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .logo-geometric:hover::after {
+            transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
+            background: var(--accent-dark);
+        }
+
+        .logo-text {
+            font-family: var(--font-mono);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-text::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width var(--kinetic-normal);
+        }
+
+        .kinetic-logo:hover .logo-text::after {
             width: 100%;
         }
-        
-        .nav-actions {
+
+        .kinetic-menu {
             display: flex;
-            gap: var(--spacing-md);
+            gap: calc(var(--grid-unit) * 4);
+            list-style: none;
         }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid var(--border-color);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
+
+        .kinetic-link {
+            color: #b0b0b0;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all var(--transition-fast);
+            padding: calc(var(--grid-unit) * 1.5) calc(var(--grid-unit) * 2);
+            border-radius: var(--border-radius-sm);
+            transition: all var(--kinetic-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kinetic-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .kinetic-link:hover::before {
+            transform: translateX(100%);
+        }
+
+        .kinetic-link:hover {
+            color: #ffffff;
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .kinetic-link.active {
+            color: var(--accent);
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .kinetic-link.active::after {
+            content: '→';
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--font-mono);
+            color: var(--accent);
+        }
+
+        /* Kinetic Buttons */
+        .kinetic-btn {
             font-family: var(--font-sans);
-        }
-        
-        .btn:hover {
-            border-color: var(--accent-orange);
-            background: rgba(255, 90, 31, 0.1);
-        }
-        
-        .btn-primary {
-            background: var(--accent-orange);
-            border-color: var(--accent-orange);
-            color: var(--primary-black);
-        }
-        
-        .btn-primary:hover {
-            background: var(--accent-orange-dark);
-            border-color: var(--accent-orange-dark);
-        }
-        
-        /* Mobile Menu Toggle */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
+            font-weight: 600;
+            padding: calc(var(--grid-unit) * 2) calc(var(--grid-unit) * 4);
+            border: 2px solid var(--base-40);
+            background: var(--base-20);
+            color: #ffffff;
+            border-radius: var(--border-radius);
             cursor: pointer;
+            transition: all var(--kinetic-normal);
+            display: inline-flex;
+            align-items: center;
+            gap: calc(var(--grid-unit) * 1.5);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
         }
-        
-        /* بخش اصلی - Hero با المان متحرک الگوریتمی */
-        .hero {
+
+        .kinetic-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 30%, rgba(0, 255, 136, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .kinetic-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .kinetic-btn:hover {
+            border-color: var(--accent);
+            background: rgba(0, 255, 136, 0.05);
+            transform: translateY(-2px) translateZ(0);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .kinetic-btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--base-0);
+        }
+
+        .kinetic-btn-primary:hover {
+            background: var(--accent-dark);
+            border-color: var(--accent-dark);
+        }
+
+        /* Kinetic Cards */
+        .kinetic-card {
+            background: var(--base-10);
+            border: 1px solid var(--base-30);
+            border-radius: var(--border-radius);
+            padding: calc(var(--grid-unit) * 4);
+            transition: all var(--kinetic-normal);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+        }
+
+        .kinetic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 255, 136, 0.03) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity var(--kinetic-normal);
+        }
+
+        .kinetic-card:hover::before {
+            opacity: 1;
+        }
+
+        .kinetic-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px) translateZ(0);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            opacity: 0;
+            transition: opacity var(--kinetic-slow);
+            pointer-events: none;
+        }
+
+        .kinetic-card:hover .card-glow {
+            opacity: 0.3;
+        }
+
+        /* Kinetic Grid System */
+        .kinetic-grid {
+            display: grid;
+            gap: calc(var(--grid-unit) * 4);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--kinetic-slow);
+        }
+
+        .kinetic-grid.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+        /* Kinetic Sections */
+        .kinetic-section {
+            padding: calc(var(--grid-unit) * 15) 0;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all var(--kinetic-slow);
+        }
+
+        .kinetic-section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, var(--base-20) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, var(--base-10) 0%, transparent 50%);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Kinetic Hero */
+        .kinetic-hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
-            overflow: hidden;
             padding-top: 80px;
         }
-        
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-        }
-        
-        #generative-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
+
         .hero-content {
             position: relative;
             z-index: 2;
             max-width: 800px;
         }
-        
-        .hero-tag {
-            display: inline-block;
-            background: rgba(255, 90, 31, 0.1);
-            color: var(--accent-orange);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: var(--spacing-lg);
-            font-family: var(--font-mono);
-            letter-spacing: 1px;
-        }
-        
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: var(--spacing-lg);
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-orange) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-description {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-xl);
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: calc(var(--grid-unit) * 4);
             line-height: 1.8;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all var(--kinetic-slow) 0.2s;
         }
-        
-        /* بخش‌های محتوا */
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: var(--spacing-lg);
-            color: var(--text-primary);
-            position: relative;
-            display: inline-block;
+
+        .kinetic-hero.in-view .hero-tagline {
+            opacity: 1;
+            transform: translateX(0);
         }
-        
-        .section-title::after {
-            content: '';
+
+        .hero-visual {
             position: absolute;
-            bottom: -10px;
-            right: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--accent-orange);
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 70%;
+            z-index: 1;
         }
-        
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-xl);
-            max-width: 600px;
+
+        /* Kinetic Isometric */
+        .kinetic-isometric {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
-        
-        /* درباره ما */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-xl);
+
+        .iso-cube {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            transform-style: preserve-3d;
+            transform: rotateX(60deg) rotateZ(45deg);
+            transition: transform var(--kinetic-slow);
+            left: 20%;
+            top: 30%;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent);
+            background: rgba(0, 255, 136, 0.05);
+            transition: all var(--kinetic-normal);
+        }
+
+        .cube-face.front { transform: translateZ(75px); }
+        .cube-face.back { transform: translateZ(-75px) rotateY(180deg); }
+        .cube-face.right { transform: rotateY(90deg) translateZ(75px); }
+        .cube-face.left { transform: rotateY(-90deg) translateZ(75px); }
+        .cube-face.top { transform: rotateX(90deg) translateZ(75px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+        /* Kinetic Data Flow */
+        .kinetic-flow {
+            position: relative;
+            height: 400px;
+            background: var(--base-10);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--base-30);
+            overflow: hidden;
+        }
+
+        .flow-node {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: var(--base-20);
+            border: 2px solid var(--base-40);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            color: #ffffff;
+            transition: all var(--kinetic-normal);
+            cursor: pointer;
+            transform: translateZ(0);
+        }
+
+        .flow-node:hover {
+            border-color: var(--accent);
+            transform: scale(1.1) translateZ(0);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .flow-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, var(--base-40), var(--accent));
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: transform var(--kinetic-slow);
+        }
+
+        .flow-connection.active {
+            transform: scaleX(1);
+        }
+
+        /* Kinetic Dashboard */
+        .kinetic-dashboard {
+            background: var(--base-10);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--base-30);
+            overflow: hidden;
+            transform: translateZ(0);
+        }
+
+        .dashboard-header {
+            background: var(--base-20);
+            padding: calc(var(--grid-unit) * 4);
+            border-bottom: 1px solid var(--base-30);
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
-        
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
-        
-        .about-text p {
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-xl);
-        }
-        
-        .stat-item {
-            text-align: center;
-            padding: var(--spacing-lg);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent-orange);
-            margin-bottom: var(--spacing-sm);
-            font-family: var(--font-mono);
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* خدمات */
-        .services-grid {
+
+        .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-lg);
+            gap: calc(var(--grid-unit) * 3);
+            padding: calc(var(--grid-unit) * 4);
         }
-        
-        .service-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: var(--spacing-xl);
-            transition: all var(--transition-normal);
-            height: 100%;
+
+        .data-widget {
+            background: var(--base-20);
+            border: 1px solid var(--base-30);
+            border-radius: var(--border-radius);
+            padding: calc(var(--grid-unit) * 3);
+            transition: all var(--kinetic-normal);
         }
-        
-        .service-card:hover {
-            border-color: var(--accent-orange);
-            transform: translateY(-5px);
+
+        .data-widget:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
         }
-        
-        .service-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(255, 90, 31, 0.1);
-            border-radius: 8px;
-            display: flex;
+
+        /* Cyberbank Elements (حداکثر ۵٪) */
+        .cyberbank-badge {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: var(--spacing-lg);
-            color: var(--accent-orange);
-            font-size: 1.5rem;
-        }
-        
-        .service-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: var(--spacing-md);
-            color: var(--text-primary);
-        }
-        
-        .service-description {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-        
-        /* نمونه کارها */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: var(--spacing-lg);
-        }
-        
-        .portfolio-item {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            background: rgba(255, 255, 255, 0.03);
-            transition: all var(--transition-normal);
-        }
-        
-        .portfolio-item:hover {
-            border-color: var(--accent-orange);
-            transform: translateY(-5px);
-        }
-        
-        .portfolio-image {
-            width: 100%;
-            height: 240px;
-            background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .portfolio-image::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            bottom: 20px;
-            border: 1px solid rgba(255, 90, 31, 0.3);
-            border-radius: 4px;
-        }
-        
-        .portfolio-content {
-            padding: var(--spacing-lg);
-        }
-        
-        .portfolio-category {
-            display: inline-block;
-            background: rgba(255, 90, 31, 0.1);
-            color: var(--accent-orange);
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .portfolio-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-primary);
-        }
-        
-        .portfolio-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        /* نقشه راه */
-        .roadmap-container {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .roadmap-container::before {
-            content: '';
-            position: absolute;
-            right: 50%;
-            transform: translateX(50%);
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border-color);
-        }
-        
-        .roadmap-item {
-            display: flex;
-            margin-bottom: var(--spacing-xl);
-            position: relative;
-        }
-        
-        .roadmap-item:nth-child(odd) {
-            flex-direction: row-reverse;
-        }
-        
-        .roadmap-content {
-            flex: 1;
-            padding: var(--spacing-lg);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin: 0 var(--spacing-lg);
-            position: relative;
-        }
-        
-        .roadmap-item:nth-child(odd) .roadmap-content {
-            text-align: left;
-        }
-        
-        .roadmap-item:nth-child(even) .roadmap-content {
-            text-align: right;
-        }
-        
-        .roadmap-marker {
-            position: absolute;
-            right: 50%;
-            transform: translateX(50%);
-            width: 16px;
-            height: 16px;
-            background: var(--accent-orange);
-            border-radius: 50%;
-            border: 3px solid var(--primary-black);
-            z-index: 2;
-        }
-        
-        .roadmap-step {
-            display: inline-block;
-            background: rgba(255, 90, 31, 0.1);
-            color: var(--accent-orange);
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: var(--spacing-md);
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(192, 192, 192, 0.05));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            color: var(--cyber-gold);
             font-family: var(--font-mono);
-        }
-        
-        .roadmap-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-primary);
-        }
-        
-        .roadmap-description {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-        
-        /* اعتمادسازی */
-        .trust-badges {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-xl);
-        }
-        
-        .trust-badge {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: var(--spacing-lg);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            min-width: 200px;
-            transition: all var(--transition-normal);
-        }
-        
-        .trust-badge:hover {
-            border-color: var(--accent-orange);
-        }
-        
-        .badge-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(255, 90, 31, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: var(--spacing-md);
-            color: var(--accent-orange);
-            font-size: 1.25rem;
-        }
-        
-        .badge-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-primary);
-        }
-        
-        .badge-description {
             font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
+            margin: 4px;
+            transition: all var(--kinetic-normal);
         }
-        
-        /* دکمه واتساپ ثابت */
-        .whatsapp-float {
-            position: fixed;
-            bottom: var(--spacing-lg);
-            left: var(--spacing-lg);
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
-            transition: all var(--transition-normal);
-            z-index: 999;
+
+        .cyberbank-badge:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(192, 192, 192, 0.1));
+            transform: scale(1.05);
         }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+
+        .security-indicator {
+            position: relative;
+            padding: 12px;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid var(--accent);
+            border-radius: var(--border-radius);
+            margin: 16px 0;
         }
-        
-        /* فوتر */
-        footer {
-            background: var(--secondary-black);
-            border-top: 1px solid var(--border-color);
-            padding: var(--spacing-xl) 0;
-            margin-top: var(--spacing-xl);
+
+        .security-indicator::before {
+            content: '🔒';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
         }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--spacing-xl);
-            margin-bottom: var(--spacing-xl);
+
+        /* Kinetic Animations */
+        @keyframes logo-shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
-        
-        .footer-section h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: var(--spacing-lg);
-            color: var(--text-primary);
-            font-family: var(--font-mono);
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
-        
-        .footer-links {
-            list-style: none;
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
-        
-        .footer-links li {
-            margin-bottom: var(--spacing-sm);
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
         }
-        
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color var(--transition-fast);
+
+        .pulse-animation {
+            animation: pulse-glow 3s ease-in-out infinite;
         }
-        
-        .footer-links a:hover {
-            color: var(--accent-orange);
+
+        /* Kinetic Transitions */
+        .morph-transition {
+            transition: all var(--morph-duration) cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
-        .copyright {
-            text-align: center;
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.9rem;
+
+        .liquid-transition {
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-        
-        /* ریسپانسیو */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 2.5rem;
+
+        /* Performance Optimizations */
+        .will-change-transform {
+            will-change: transform;
+        }
+
+        .will-change-opacity {
+            will-change: opacity;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-visual {
+                display: none;
             }
             
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-grid {
+            .grid-cols-4 {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-        
+
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
+            .kinetic-menu {
+                display: none;
             }
             
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                right: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: var(--primary-black);
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                padding-top: var(--spacing-xl);
-                transition: right 0.3s ease;
-                border-top: 1px solid var(--border-color);
-            }
-            
-            .nav-menu.active {
-                right: 0;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .about-stats {
+            .grid-cols-2,
+            .grid-cols-3,
+            .grid-cols-4 {
                 grid-template-columns: 1fr;
             }
             
-            .portfolio-grid {
-                grid-template-columns: 1fr;
+            .kinetic-section {
+                padding: calc(var(--grid-unit) * 8) 0;
             }
             
-            .roadmap-container::before {
-                right: 30px;
-            }
-            
-            .roadmap-item {
-                flex-direction: row !important;
-            }
-            
-            .roadmap-content {
-                margin-right: 60px;
-                margin-left: 0;
-                text-align: right !important;
-            }
-            
-            .roadmap-marker {
-                right: 30px;
-            }
-            
-            .trust-badges {
-                flex-direction: column;
-                align-items: center;
+            .nav-container {
+                padding: calc(var(--grid-unit) * 2);
             }
         }
-        
+
         @media (max-width: 480px) {
-            .hero-title {
-                font-size: 1.75rem;
+            h1 {
+                font-size: 2.2rem;
             }
             
-            .section-title {
-                font-size: 1.75rem;
+            h2 {
+                font-size: 1.8rem;
             }
             
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .btn {
-                padding: 0.5rem 1rem;
+            .kinetic-btn {
+                padding: calc(var(--grid-unit) * 1.5) calc(var(--grid-unit) * 3);
                 font-size: 0.9rem;
             }
         }
-        
-        /* Lazy Loading برای تصاویر */
-        .lazy {
-            opacity: 0;
-            transition: opacity 0.3s ease;
+
+        /* Kinetic Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
         }
-        
-        .lazy.loaded {
-            opacity: 1;
+
+        ::-webkit-scrollbar-track {
+            background: var(--base-10);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--base-40);
+            border-radius: 5px;
+            transition: all var(--kinetic-normal);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
         }
     </style>
 </head>
 <body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="preloader-content">
-            <div class="loader-text">Boot لود کوتاه با Vanilla JS قبل از نمایش صفحه.</div>
-            <div class="loader-bar"></div>
-        </div>
-    </div>
-
-    <!-- هدر -->
-    <header>
-        <div class="container nav-container">
-            <a href="#home" class="logo">
-                <div class="logo-symbol">⎔</div>
-                <div class="logo-text">AMI<span>XAMA</span></div>
+    <!-- Kinetic Navigation -->
+    <nav class="kinetic-nav" id="kineticNav">
+        <div class="nav-container">
+            <a href="#home" class="kinetic-logo">
+                <div class="logo-geometric"></div>
+                <div class="logo-text">AMIXAMA</div>
             </a>
             
-            <button class="menu-toggle" id="menuToggle" aria-label="منو">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link active">خانه</a></li>
-                <li><a href="#about" class="nav-link">درباره</a></li>
-                <li><a href="#services" class="nav-link">خدمات</a></li>
-                <li><a href="#portfolio" class="nav-link">نمونه کارها</a></li>
-                <li><a href="#roadmap" class="nav-link">نقشه راه</a></li>
-                <li><a href="#trust" class="nav-link">اعتمادسازی</a></li>
+            <ul class="kinetic-menu">
+                <li><a href="#home" class="kinetic-link active">خانه</a></li>
+                <li><a href="#system" class="kinetic-link">سیستم</a></li>
+                <li><a href="#modules" class="kinetic-link">ماژول‌ها</a></li>
+                <li><a href="#dashboard" class="kinetic-link">داشبورد</a></li>
+                <li><a href="#security" class="kinetic-link">امنیت</a></li>
             </ul>
             
             <div class="nav-actions">
-                <a href="#contact" class="btn">تماس با ما</a>
-                <a href="#projects" class="btn btn-primary">شروع پروژه</a>
+                <a href="#login" class="kinetic-btn">ورود</a>
+                <a href="#start" class="kinetic-btn kinetic-btn-primary">شروع پروژه</a>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- صفحه اصلی -->
-    <main>
-        <!-- Hero با المان متحرک الگوریتمی -->
-        <section id="home" class="hero section">
-            <div class="hero-background">
-                <canvas id="generative-canvas"></canvas>
+    <!-- Kinetic Hero Section -->
+    <section id="home" class="kinetic-section kinetic-hero">
+        <div class="section-bg"></div>
+        
+        <div class="hero-visual">
+            <div class="kinetic-isometric">
+                <div class="iso-cube" id="kineticCube">
+                    <div class="cube-face front"></div>
+                    <div class="cube-face back"></div>
+                    <div class="cube-face right"></div>
+                    <div class="cube-face left"></div>
+                    <div class="cube-face top"></div>
+                    <div class="cube-face bottom"></div>
+                </div>
             </div>
-            
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-tag">نسخه ۳.۰ | طراحی الگوریتمیک</div>
-                    <h1 class="hero-title">
-                        سیستم طراحی وبسایت‌های
-                        <span style="display: block; margin-top: 10px;">تکاملی با هوش مصنوعی</span>
-                    </h1>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <span class="cyberbank-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    امنیت سطح بانکی
+                </span>
+                <h1 class="morph-transition">داستان‌گویی جنبشی</h1>
+                <h2>در طراحی رابط کاربری</h2>
+                <p class="hero-tagline">
+                    AMIXAMA با تلفیق 
+                    <span class="mono">Geometric Design</span>، 
+                    <span class="mono">Isometric Visualization</span> و 
+                    <span class="mono">Techwear Aesthetic</span>، 
+                    به همراه Kinetic Storytelling، تجربه‌ای سیال و روایت‌گر خلق می‌کند.
+                    هر تعامل، بخشی از داستان سیستم است.
+                </p>
+                
+                <div class="kinetic-grid grid-cols-3" style="margin-top: 48px;">
+                    <div class="kinetic-card">
+                        <div class="card-glow"></div>
+                        <div class="module-icon" style="margin-bottom: 20px;">
+                            <i class="fas fa-wave-square fa-2x" style="color: var(--accent);"></i>
+                        </div>
+                        <h3>حرکت سیال</h3>
+                        <p>انیمیشن‌های نرم و انتقال‌های مایع بین حالت‌های مختلف</p>
+                    </div>
                     
-                    <p class="hero-description">
-                        AMIXAMA یک اکوسیستم هوشمند برای ساخت وبسایت‌های فروش‌محور و صنعت‌محور است 
-                        که از پایه با طراحی الگوریتمیک و هوش مصنوعی به تکامل می‌رسد. 
-                        ما فقط کدنویسی نمی‌کنیم؛ سیستم‌های زنده می‌سازیم.
-                    </p>
+                    <div class="kinetic-card">
+                        <div class="card-glow"></div>
+                        <div class="module-icon" style="margin-bottom: 20px;">
+                            <i class="fas fa-shapes fa-2x" style="color: var(--accent);"></i>
+                        </div>
+                        <h3>تغییر شکل پویا</h3>
+                        <p>مورفینگ المان‌ها در هنگام تعامل با کاربر</p>
+                    </div>
                     
-                    <div class="nav-actions">
-                        <a href="#about" class="btn btn-primary">شروع همکاری</a>
-                        <a href="#portfolio" class="btn">نمونه کارها</a>
+                    <div class="kinetic-card">
+                        <div class="card-glow"></div>
+                        <div class="module-icon" style="margin-bottom: 20px;">
+                            <i class="fas fa-road fa-2x" style="color: var(--accent);"></i>
+                        </div>
+                        <h3>روایت مسیر</h3>
+                        <p>هر حرکت، کاربر را در نقشه راه سیستم هدایت می‌کند</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- درباره ما -->
-        <section id="about" class="section">
-            <div class="container">
-                <h2 class="section-title">درباره AMIXAMA</h2>
-                <p class="section-subtitle">
-                    ما مرجعی برای ساخت وبسایت‌های هوشمند با معماری تکاملی هستیم.
-                </p>
+    <!-- Kinetic System Section -->
+    <section id="system" class="kinetic-section">
+        <div class="section-bg"></div>
+        <div class="container">
+            <div class="kinetic-grid grid-cols-2">
+                <div>
+                    <span class="cyberbank-badge">
+                        <i class="fas fa-server"></i>
+                        معماری سه‌لایه
+                    </span>
+                    <h2 class="in-view">سیستم Kinetic</h2>
+                    <p style="margin-bottom: 32px; color: #b0b0b0;">
+                        هر پروژه AMIXAMA در سه لایه هماهنگ عمل می‌کند:
+                    </p>
+                    
+                    <div class="kinetic-flow" id="kineticFlow">
+                        <!-- Kinetic Flow nodes will be generated by JS -->
+                    </div>
+                </div>
                 
-                <div class="about-content">
-                    <div>
-                        <div class="about-text">
-                            <p>
-                                AMIXAMA در سال ۱۴۰۲ با یک ایده ساده تأسیس شد: «وبسایت‌ها باید مانند موجودات زنده تکامل یابند».
-                                ما معتقدیم طراحی وب امروز نیازمند رویکردی الگوریتمیک و مبتنی بر داده است.
+                <div>
+                    <div class="security-indicator">
+                        <div style="margin-right: 40px;">
+                            <h4>سیستم امنیتی سطح بالا</h4>
+                            <p style="font-size: 0.9rem; margin-top: 8px;">
+                                تمامی تعاملات با الگوریتم‌های رمزنگاری پیشرفته محافظت می‌شوند
                             </p>
-                            
-                            <p>
-                                سیستم ما بر سه پایه اصلی استوار است: طراحی الگوریتمیک برای ایجاد اشکال و پترن‌های منحصربه‌فرد،
-                                هوش مصنوعی برای تحلیل و بهینه‌سازی مستمر، و معماری تکاملی که با گذشت زمان بهبود می‌یابد.
-                            </p>
-                            
-                            <p>
-                                هر پروژه AMIXAMA از روز اول با قابلیت یادگیری و انطباق طراحی می‌شود. ما به جای ارائه 
-                                یک محصول ثابت، یک سیستم پویا می‌سازیم که با رشد کسب‌وکار شما توسعه می‌یابد.
-                            </p>
-                            
-                            <p>
-                                تیم ما متشکل از طراحان الگوریتمیک، متخصصان هوش مصنوعی و توسعه‌دهندگان فرانت‌اند است
-                                که با همکاری یکدیگر، راه‌حل‌های دیجیتال پیشرفته خلق می‌کنند.
-                            </p>
-                            
-                            <p>
-                                فلسفه کاری ما ساده است: «کمتر طراحی کن، بیشتر سیستم بساز». 
-                                به همین دلیل، تمرکز ما بر ایجاد ساختارهای مقیاس‌پذیر و ماژولار است.
-                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="data-widget" style="margin-top: 24px;">
+                        <h4>وضعیت عملکرد</h4>
+                        <div style="margin-top: 16px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span>سرعت بارگذاری</span>
+                                <span class="mono">۹۸٪</span>
+                            </div>
+                            <div style="height: 4px; background: var(--base-30); border-radius: 2px; overflow: hidden;">
+                                <div style="width: 98%; height: 100%; background: var(--accent); transition: width 1s ease;"></div>
+                            </div>
                         </div>
                         
-                        <div class="about-stats">
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="47">۰</div>
-                                <div class="stat-label">پروژه تکمیل شده</div>
+                        <div style="margin-top: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span>کارایی انیمیشن</span>
+                                <span class="mono">۶۰fps</span>
                             </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="12">۰</div>
-                                <div class="stat-label">صنعت مختلف</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" data-count="156">۰</div>
-                                <div class="stat-label">بهینه‌سازی ماهانه</div>
+                            <div style="height: 4px; background: var(--base-30); border-radius: 2px; overflow: hidden;">
+                                <div style="width: 100%; height: 100%; background: var(--accent); transition: width 1s ease 0.2s;"></div>
                             </div>
                         </div>
                     </div>
                     
-                    <div>
-                        <div class="about-text">
-                            <p>
-                                طراحی الگوریتمیک در AMIXAMA به معنای استفاده از ریاضیات و کد برای خلق طرح‌های 
-                                منحصربه‌فرد است. هر وبسایت یک اثر یکتا با امضای دیجیتال مخصوص خود است.
-                            </p>
-                            
-                            <p>
-                                هوش مصنوعی در قلب سیستم ما قرار دارد. از تحلیل اولیه صنعت گرفته تا 
-                                بهینه‌سازی مداوم رابط کاربری، AI در تمام مراحل همراه پروژه است.
-                            </p>
-                            
-                            <p>
-                                معماری تکاملی ما مبتنی بر اصول زیست‌شناسی دیجیتال است. 
-                                سیستم‌های ما قابلیت سازگاری با تغییرات بازار و رفتار کاربران را دارند.
-                            </p>
-                            
-                            <p>
-                                تمرکز اصلی ما بر وبسایت‌های فروش‌محور (E-commerce) و صنعت‌محور (B2B) است.
-                                این حوزه‌ها بیشترین بهره را از سیستم‌های هوشمند و تکاملی می‌برند.
-                            </p>
-                            
-                            <p>
-                                ما معتقدیم آینده طراحی وب در ادغام هنر، ریاضیات و هوش مصنوعی است.
-                                AMIXAMA پلی است بین این سه جهان، برای خلق تجربیات دیجیتال بی‌نظیر.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- خدمات -->
-        <section id="services" class="section" style="background: rgba(255, 255, 255, 0.02);">
-            <div class="container">
-                <h2 class="section-title">خدمات AMIXAMA</h2>
-                <p class="section-subtitle">
-                    خدمات تخصصی ما برای کسب‌وکارهای مختلف
-                </p>
-                
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3 class="service-title">طراحی الگوریتمیک</h3>
-                        <p class="service-description">
-                            ایجاد طرح‌های منحصربه‌فرد با استفاده از الگوریتم‌های ریاضی. 
-                            هر پروژه یک اثر یکتا با امضای دیجیتال خاص خود خواهد بود.
-                        </p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3 class="service-title">هوش مصنوعی تحلیل‌گر</h3>
-                        <p class="service-description">
-                            تحلیل عمیق صنعت و رفتار کاربران با مدل‌های پیشرفته AI.
-                            پیش‌بینی روندها و بهینه‌سازی مستمر عملکرد.
-                        </p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <h3 class="service-title">وبسایت‌های فروش‌محور</h3>
-                        <p class="service-description">
-                            ساخت فروشگاه‌های آنلاین هوشمند با معماری تبدیل بالا.
-                            سیستم پیشنهادات هوشمند و بهینه‌سازی سبد خرید.
-                        </p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-industry"></i>
-                        </div>
-                        <h3 class="service-title">وبسایت‌های صنعت‌محور</h3>
-                        <p class="service-description">
-                            طراحی پلتفرم‌های تخصصی برای صنایع B2B.
-                            نمایش پیشرفته محصولات و خدمات پیچیده.
-                        </p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3 class="service-title">بهینه‌سازی مستمر</h3>
-                        <p class="service-description">
-                            آنالیز مداوم رفتار کاربر و بهبود خودکار سیستم.
-                            گزارش‌گیری دقیق از عملکرد و نقاط بهبود.
-                        </p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-code-branch"></i>
-                        </div>
-                        <h3 class="service-title">معماری تکاملی</h3>
-                        <p class="service-description">
-                            ساخت سیستم‌هایی که با گذشت زمان رشد و بهبود می‌یابند.
-                            سازگاری خودکار با تغییرات بازار و تکنولوژی.
+                    <div class="kinetic-card" style="margin-top: 24px;">
+                        <h4>داستان‌گویی جنبشی</h4>
+                        <p style="margin-top: 12px; color: #b0b0b0; font-size: 0.95rem;">
+                            هر انتقال، تغییر حالت یا تعامل، بخشی از روایت سیستم است.
+                            کاربر نه تنها با یک رابط، بلکه با یک داستان پویا در تعامل است.
                         </p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- نمونه کارها -->
-        <section id="portfolio" class="section">
-            <div class="container">
-                <h2 class="section-title">نمونه کارها</h2>
-                <p class="section-subtitle">
-                    پروژه‌های موفق ما در صنایع مختلف
-                </p>
-                
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <div class="portfolio-image">
-                            <span style="color: var(--text-secondary); font-family: var(--font-mono);">E-COMMERCE AI</span>
-                        </div>
-                        <div class="portfolio-content">
-                            <div class="portfolio-category">فروشگاه آنلاین</div>
-                            <h3 class="portfolio-title">فروشگاه لوازم الکترونیک</h3>
-                            <p class="portfolio-description">
-                                طراحی الگوریتمیک با سیستم پیشنهادات هوشمند. افزایش ۴۲٪ نرخ تبدیل در ۳ ماه.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item">
-                        <div class="portfolio-image">
-                            <span style="color: var(--text-secondary); font-family: var(--font-mono);">B2B PORTAL</span>
-                        </div>
-                        <div class="portfolio-content">
-                            <div class="portfolio-category">پلتفرم صنعتی</div>
-                            <h3 class="portfolio-title">سامانه تأمین قطعات</h3>
-                            <p class="portfolio-description">
-                                معماری تکاملی با قابلیت سازگاری با ۱۵۰۰+ محصول مختلف.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-item">
-                        <div class="portfolio-image">
-                            <span style="color: var(--text-secondary); font-family: var(--font-mono);">AI ANALYTICS</span>
-                        </div>
-                        <div class="portfolio-content">
-                            <div class="portfolio-category">تحلیل داده</div>
-                            <h3 class="portfolio-title">داشبورد مدیریت هوشمند</h3>
-                            <p class="portfolio-description">
-                                سیستم تحلیل رفتار کاربر با یادگیری مداوم. کاهش ۶۸٪ نرخ ریزش.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- نقشه راه -->
-        <section id="roadmap" class="section" style="background: rgba(255, 255, 255, 0.02);">
-            <div class="container">
-                <h2 class="section-title">نقشه راه پروژه</h2>
-                <p class="section-subtitle">
-                    فرآیند دقیق همکاری از شروع تا تحویل
-                </p>
-                
-                <div class="roadmap-container">
-                    <div class="roadmap-item">
-                        <div class="roadmap-marker"></div>
-                        <div class="roadmap-content">
-                            <div class="roadmap-step">مرحله ۱</div>
-                            <h3 class="roadmap-title">تحلیل هوشمند</h3>
-                            <p class="roadmap-description">
-                                بررسی دقیق صنعت، رقبا و نیازهای مخاطبان با استفاده از هوش مصنوعی.
-                                تعیین معماری اطلاعات و ساختار پایه پروژه.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="roadmap-item">
-                        <div class="roadmap-marker"></div>
-                        <div class="roadmap-content">
-                            <div class="roadmap-step">مرحله ۲</div>
-                            <h3 class="roadmap-title">پرداخت اولیه</h3>
-                            <p class="roadmap-description">
-                                دریافت یک‌سوم (۳۳٪) مبلغ کل پروژه برای شروع رسمی کار.
-                                صدور قرارداد و تعیین تیم اختصاصی.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="roadmap-item">
-                        <div class="roadmap-marker"></div>
-                        <div class="roadmap-content">
-                            <div class="roadmap-step">مرحله ۳</div>
-                            <h3 class="roadmap-title">طراحی الگوریتمیک</h3>
-                            <p class="roadmap-description">
-                                خلق طرح منحصربه‌فرد با الگوریتم‌های ریاضی.
-                                طراحی گرید سیستم و پالت رنگی هوشمند.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="roadmap-item">
-                        <div class="roadmap-marker"></div>
-                        <div class="roadmap-content">
-                            <div class="roadmap-step">مرحله ۴</div>
-                            <h3 class="roadmap-title">توسعه و پیاده‌سازی</h3>
-                            <p class="roadmap-description">
-                                کدنویسی با تکنولوژی‌های روز و یکپارچه‌سازی سیستم هوشمند.
-                                پیاده‌سازی ماژول‌های اصلی و تست عملکرد.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="roadmap-item">
-                        <div class="roadmap-marker"></div>
-                        <div class="roadmap-content">
-                            <div class="roadmap-step">مرحله ۵</div>
-                            <h3 class="roadmap-title">تحویل و پشتیبانی</h3>
-                            <p class="roadmap-description">
-                                راه‌اندازی نهایی و آموزش مدیریت سیستم.
-                                فعال‌سازی پشتیبانی ۲۴ ماهه و چرخه بهینه‌سازی.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- اعتمادسازی -->
-        <section id="trust" class="section">
-            <div class="container">
-                <h2 class="section-title">چرا AMIXAMA؟</h2>
-                <p class="section-subtitle">
-                    دلایل اعتماد به سیستم طراحی الگوریتمیک ما
-                </p>
-                
-                <div class="trust-badges">
-                    <div class="trust-badge">
-                        <div class="badge-icon">
-                            <i class="fas fa-fingerprint"></i>
-                        </div>
-                        <h4 class="badge-title">طراحی یکتا</h4>
-                        <p class="badge-description">
-                            هر پروژه اثر منحصربه‌فرد با امضای الگوریتمیک مخصوص
-                        </p>
-                    </div>
-                    
-                    <div class="trust-badge">
-                        <div class="badge-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h4 class="badge-title">یادگیری مداوم</h4>
-                        <p class="badge-description">
-                            سیستم‌های ما با تحلیل داده بهبود مستمر دارند
-                        </p>
-                    </div>
-                    
-                    <div class="trust-badge">
-                        <div class="badge-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h4 class="badge-title">پشتیبانی بلندمدت</h4>
-                        <p class="badge-description">
-                            همراهی ۲۴ ماهه پس از تحویل با بهینه‌سازی رایگان
-                        </p>
-                    </div>
-                    
-                    <div class="trust-badge">
-                        <div class="badge-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h4 class="badge-title">تضمین نتیجه</h4>
-                        <p class="badge-description">
-                            بهبود قابل‌اندازه‌گیری در معیارهای کلیدی عملکرد
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="about-text" style="margin-top: var(--spacing-xl); max-width: 800px; margin-left: auto; margin-right: auto;">
-                    <p style="text-align: center; font-size: 1.1rem;">
-                        <strong>تعهد ما:</strong> هر وبسایت AMIXAMA فقط یک محصول نهایی نیست، 
-                        بلکه آغاز یک رابطه بلندمدت است. ما همراه شما می‌مانیم تا مطمئن شویم 
-                        سیستم در طول زمان بهتر و هوشمندتر می‌شود.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- تماس -->
-        <section id="contact" class="section" style="background: rgba(255, 255, 255, 0.02);">
-            <div class="container">
-                <h2 class="section-title">آماده شروع هستید؟</h2>
-                <p class="section-subtitle">
-                    برای مشاوره رایگان یا شروع پروژه با ما در تماس باشید
-                </p>
-                
-                <div style="text-align: center; margin-top: var(--spacing-xl);">
-                    <a href="https://wa.me/989123456789" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
-                        <i class="fab fa-whatsapp"></i> ارتباط از طریق واتساپ تجاری
-                    </a>
-                    <p style="margin-top: var(--spacing-md); color: var(--text-secondary);">
-                        پاسخگویی در ساعات کاری: شنبه تا چهارشنبه ۹ صبح تا ۶ عصر
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- دکمه واتساپ ثابت -->
-    <a href="https://wa.me/989123456789" target="_blank" class="whatsapp-float" aria-label="ارتباط از طریق واتساپ">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- فوتر -->
-    <footer>
+    <!-- Kinetic Modules Section -->
+    <section id="modules" class="kinetic-section" style="background: var(--base-10);">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>AMIXAMA</h4>
-                    <ul class="footer-links">
-                        <li><a href="#about">درباره ما</a></li>
-                        <li><a href="#services">خدمات</a></li>
-                        <li><a href="#portfolio">نمونه کارها</a></li>
-                        <li><a href="#roadmap">نقشه راه</a></li>
-                    </ul>
+            <div style="text-align: center; margin-bottom: 64px;">
+                <span class="cyberbank-badge">
+                    <i class="fas fa-cubes"></i>
+                    ماژول‌های پویا
+                </span>
+                <h2 class="in-view">سیستم‌های متغیر</h2>
+                <p style="max-width: 600px; margin: 0 auto; color: #b0b0b0;">
+                    هر ماژول به صورت پویا تغییر شکل می‌دهد و با توجه به نیاز کاربر تنظیم می‌شود.
+                </p>
+            </div>
+            
+            <div class="kinetic-grid grid-cols-4 in-view">
+                <div class="kinetic-card morph-transition">
+                    <div class="module-icon" style="margin-bottom: 20px;">
+                        <i class="fas fa-brain fa-2x" style="color: var(--accent);"></i>
+                    </div>
+                    <h4>هوش تحلیل‌گر</h4>
+                    <p style="margin-top: 12px; color: #b0b0b0; font-size: 0.9rem;">
+                        تحلیل هوشمند صنعت با الگوریتم‌های یادگیری ماشین
+                    </p>
                 </div>
                 
-                <div class="footer-section">
-                    <h4>خدمات تخصصی</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">طراحی الگوریتمیک</a></li>
-                        <li><a href="#">هوش مصنوعی وب</a></li>
-                        <li><a href="#">فروشگاه‌های آنلاین</a></li>
-                        <li><a href="#">پلتفرم‌های صنعتی</a></li>
-                    </ul>
+                <div class="kinetic-card morph-transition">
+                    <div class="module-icon" style="margin-bottom: 20px;">
+                        <i class="fas fa-palette fa-2x" style="color: var(--accent);"></i>
+                    </div>
+                    <h4>موتور طراحی</h4>
+                    <p style="margin-top: 12px; color: #b0b0b0; font-size: 0.9rem;">
+                        تولید خودکار طرح‌های هندسی و ایزومتریک
+                    </p>
                 </div>
                 
-                <div class="footer-section">
-                    <h4>پشتیبانی</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">مستندات فنی</a></li>
-                        <li><a href="#">سوالات متداول</a></li>
-                        <li><a href="#">آموزش‌ها</a></li>
-                        <li><a href="#contact">تماس اضطراری</a></li>
-                    </ul>
+                <div class="kinetic-card morph-transition">
+                    <div class="module-icon" style="margin-bottom: 20px;">
+                        <i class="fas fa-tachometer-alt fa-2x" style="color: var(--accent);"></i>
+                    </div>
+                    <h4>بهینه‌سازی</h4>
+                    <p style="margin-top: 12px; color: #b0b0b0; font-size: 0.9rem;">
+                        بهبود مستمر بر اساس داده‌های رفتاری کاربران
+                    </p>
                 </div>
                 
-                <div class="footer-section">
-                    <h4>شبکه‌های اجتماعی</h4>
-                    <ul class="footer-links">
-                        <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i> لینکدین</a></li>
-                        <li><a href="#" target="_blank"><i class="fab fa-twitter"></i> توییتر</a></li>
-                        <li><a href="#" target="_blank"><i class="fab fa-github"></i> گیت‌هاب</a></li>
-                        <li><a href="#" target="_blank"><i class="fab fa-telegram"></i> تلگرام</a></li>
-                    </ul>
+                <div class="kinetic-card morph-transition">
+                    <div class="module-icon" style="margin-bottom: 20px;">
+                        <i class="fas fa-shield-alt fa-2x" style="color: var(--accent);"></i>
+                    </div>
+                    <h4>امنیت پویا</h4>
+                    <p style="margin-top: 12px; color: #b0b0b0; font-size: 0.9rem;">
+                        سیستم امنیتی که با تهدیدات جدید سازگار می‌شود
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kinetic Dashboard Section -->
+    <section id="dashboard" class="kinetic-section">
+        <div class="container">
+            <div style="margin-bottom: 48px;">
+                <span class="cyberbank-badge">
+                    <i class="fas fa-chart-line"></i>
+                    مدیریت پویا
+                </span>
+                <h2 class="in-view">داشبورد Kinetic</h2>
+                <p style="color: #b0b0b0; max-width: 600px;">
+                    برای کاربرانی که پرداخت اولیه را انجام داده‌اند - هر المان زنده و پویا است.
+                </p>
+            </div>
+            
+            <div class="kinetic-dashboard">
+                <div class="dashboard-header">
+                    <div>
+                        <h3 style="margin: 0; color: var(--accent);">پروژه فعال</h3>
+                        <p style="margin: 4px 0 0 0; color: #b0b0b0; font-size: 0.9rem;">
+                            کد پروژه: <span class="mono">AMX-KINETIC-2024</span>
+                        </p>
+                    </div>
+                    <div class="cyberbank-badge">
+                        <i class="fas fa-check-circle"></i>
+                        پرداخت اولیه تأیید شد
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="data-widget morph-transition">
+                        <h4>مرحله فعلی</h4>
+                        <div style="margin-top: 16px;">
+                            <div class="mono" style="color: var(--accent); font-size: 1.2rem;">
+                                تحلیل Kinetic
+                            </div>
+                            <p style="margin-top: 8px; color: #b0b0b0; font-size: 0.9rem;">
+                                در حال تحلیل رفتاری کاربران و طراحی داستان جنبشی
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="data-widget morph-transition">
+                        <h4>پیشرفت</h4>
+                        <div style="margin-top: 16px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span>تحلیل</span>
+                                <span class="mono">۷۰٪</span>
+                            </div>
+                            <div style="height: 6px; background: var(--base-30); border-radius: 3px; overflow: hidden;">
+                                <div style="width: 70%; height: 100%; background: var(--accent); transition: width 2s ease;"></div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-between; margin: 16px 0 4px 0;">
+                                <span>طراحی</span>
+                                <span class="mono">۴۰٪</span>
+                            </div>
+                            <div style="height: 6px; background: var(--base-30); border-radius: 3px; overflow: hidden;">
+                                <div style="width: 40%; height: 100%; background: var(--accent); transition: width 2s ease 0.3s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="data-widget morph-transition">
+                        <h4>اقدامات بعدی</h4>
+                        <div style="margin-top: 16px;">
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                <i class="fas fa-eye" style="color: var(--accent);"></i>
+                                <span>مشاهده پیش‌نویس Kinetic</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                <i class="fas fa-video" style="color: var(--accent);"></i>
+                                <span>جلسه توضیح داستان‌گویی</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-comments" style="color: var(--accent);"></i>
+                                <span>بازخورد مرحله اول</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section id="security" class="kinetic-section" style="background: var(--base-10);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 64px;">
+                <span class="cyberbank-badge">
+                    <i class="fas fa-user-shield"></i>
+                    امنیت بانکی
+                </span>
+                <h2 class="in-view">امنیت در کنار عملکرد</h2>
+                <p style="max-width: 600px; margin: 0 auto; color: #b0b0b0;">
+                    سیستم امنیتی سطح بانکی که بدون افت عملکرد کار می‌کند.
+                </p>
+            </div>
+            
+            <div class="kinetic-grid grid-cols-3 in-view">
+                <div class="kinetic-card">
+                    <h4>رمزنگاری سرتاسری</h4>
+                    <p style="margin-top: 12px; color: #b0b0b0; font-size: 0.95rem;">
+                        تمامی داده‌ها با الگوریتم‌های رمزنگاری پیشرفته محافظت می‌شوند.
+                    </p>
+                </div>
+                
+                <div class="kinetic-card">
+                    <h4>اعتبارسنجی پویا</h4>
+                    <p style="margin-top: 12px; color: #b0b0b0; font-size: 0.95rem;">
+                        سیستم اعتبارسنجی که با الگوهای رفتاری تطبیق می‌یابد.
+                    </p>
+                </div>
+                
+                <div class="kinetic-card">
+                    <h4>مانیتورینگ زنده</h4>
+                    <p style="margin-top: 12px; color: #b0b0b0; font-size: 0.95rem;">
+                        نظارت ۲۴ ساعته بر تمامی تعاملات و تراکنش‌ها.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--base-0); padding: 64px 0; border-top: 1px solid var(--base-30);">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                        <div class="logo-geometric"></div>
+                        <div class="logo-text">AMIXAMA</div>
+                    </div>
+                    <p style="color: #888; font-size: 0.9rem;">
+                        سیستم طراحی وبسایت‌های تکاملی با Kinetic Storytelling
+                    </p>
+                </div>
+                
+                <div>
+                    <div class="cyberbank-badge">
+                        <i class="fas fa-lock"></i>
+                        امنیت تأیید شده
+                    </div>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>© ۲۰۲۵ AMIXAMA Digital Systems. تمامی حقوق محفوظ است.</p>
-                <p style="margin-top: var(--spacing-sm); font-size: 0.85rem; color: var(--text-muted);">
-                    طراحی الگوریتمیک | هوش مصنوعی | معماری تکاملی
+            <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--base-30); text-align: center;">
+                <p style="color: #666; font-family: var(--font-mono); font-size: 0.8rem;">
+                    © 2024 AMIXAMA Kinetic Systems. تمامی حقوق محفوظ است.<br>
+                    System v3.0 | Geometric + Isometric + Techwear + Kinetic
                 </p>
             </div>
         </div>
@@ -1365,726 +1127,422 @@
 
     <!-- JavaScript -->
     <script>
-        // سیستم AMIXAMA - با دقت و بدون عجله نوشته شده است
-        
-        // 1. سیستم مدیریت حالت و initialization
-        const AMIXAMA = {
-            // متغیرهای حالت
-            state: {
-                preloaderVisible: true,
-                mobileMenuOpen: false,
-                statsAnimated: false,
-                scrollPosition: 0
-            },
+        // Performance & Security First
+        (function() {
+            'use strict';
             
-            // Configuration
-            config: {
-                whatsappNumber: '989123456789',
-                animationSpeed: 250,
-                lazyLoadThreshold: 0.1
-            },
-            
-            // سیستم‌های مختلف
-            systems: {}
-        };
+            // Kinectic Navigation System
+            class KineticNavigation {
+                constructor() {
+                    this.nav = document.getElementById('kineticNav');
+                    this.lastScroll = 0;
+                    this.navHeight = this.nav.offsetHeight;
+                    this.init();
+                }
+                
+                init() {
+                    window.addEventListener('scroll', this.handleScroll.bind(this));
+                    this.setupNavLinks();
+                }
+                
+                handleScroll() {
+                    const currentScroll = window.pageYOffset;
+                    
+                    // Show/hide nav based on scroll direction
+                    if (currentScroll > this.lastScroll && currentScroll > this.navHeight) {
+                        this.nav.classList.add('hidden');
+                    } else {
+                        this.nav.classList.remove('hidden');
+                    }
+                    
+                    // Add scrolled class for background change
+                    if (currentScroll > 10) {
+                        this.nav.classList.add('scrolled');
+                    } else {
+                        this.nav.classList.remove('scrolled');
+                    }
+                    
+                    this.lastScroll = currentScroll;
+                }
+                
+                setupNavLinks() {
+                    document.querySelectorAll('.kinetic-link').forEach(link => {
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const target = link.getAttribute('href');
+                            
+                            // Update active state
+                            document.querySelectorAll('.kinetic-link').forEach(l => {
+                                l.classList.remove('active');
+                            });
+                            link.classList.add('active');
+                            
+                            // Smooth scroll to section
+                            if (target.startsWith('#')) {
+                                const section = document.querySelector(target);
+                                if (section) {
+                                    window.scrollTo({
+                                        top: section.offsetTop - 80,
+                                        behavior: 'smooth'
+                                    });
+                                }
+                            }
+                        });
+                    });
+                }
+            }
 
-        // 2. سیستم Preloader
-        AMIXAMA.systems.preloader = {
-            init: function() {
-                // مدت زمان minimum برای نمایش preloader
-                setTimeout(() => {
-                    this.hide();
-                }, 800);
-            },
-            
-            hide: function() {
-                const preloader = document.getElementById('preloader');
-                if (preloader) {
-                    preloader.style.opacity = '0';
-                    setTimeout(() => {
-                        preloader.style.display = 'none';
-                        AMIXAMA.state.preloaderVisible = false;
+            // Kinetic Cube System
+            class KineticCube {
+                constructor() {
+                    this.cube = document.getElementById('kineticCube');
+                    this.mouseX = 0;
+                    this.mouseY = 0;
+                    this.cubeX = 0;
+                    this.cubeY = 0;
+                    this.init();
+                }
+                
+                init() {
+                    if (!this.cube) return;
+                    
+                    // Mouse move interaction
+                    document.addEventListener('mousemove', (e) => {
+                        this.mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                        this.mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+                    });
+                    
+                    // Animate cube
+                    this.animate();
+                }
+                
+                animate() {
+                    requestAnimationFrame(() => this.animate());
+                    
+                    // Smooth follow mouse
+                    this.cubeX += (this.mouseX * 20 - this.cubeX) * 0.1;
+                    this.cubeY += (this.mouseY * 20 - this.cubeY) * 0.1;
+                    
+                    // Apply transformation
+                    this.cube.style.transform = `
+                        rotateX(${60 + this.cubeY}deg)
+                        rotateZ(${45 + this.cubeX}deg)
+                        translateZ(0)
+                    `;
+                    
+                    // Pulse animation
+                    const time = Date.now() * 0.001;
+                    const pulse = Math.sin(time * 2) * 0.1 + 1;
+                    
+                    this.cube.style.transform += ` scale(${pulse})`;
+                }
+            }
+
+            // Kinetic Flow System
+            class KineticFlow {
+                constructor() {
+                    this.container = document.getElementById('kineticFlow');
+                    this.nodes = [];
+                    this.connections = [];
+                    this.init();
+                }
+                
+                init() {
+                    if (!this.container) return;
+                    
+                    // Create nodes
+                    const nodeData = [
+                        { id: 'input', label: 'ورودی', x: 50, y: 150 },
+                        { id: 'process', label: 'پردازش', x: 250, y: 100 },
+                        { id: 'kinetic', label: 'جنبشی', x: 250, y: 200 },
+                        { id: 'output', label: 'خروجی', x: 450, y: 150 }
+                    ];
+                    
+                    nodeData.forEach(node => {
+                        const element = document.createElement('div');
+                        element.className = 'flow-node';
+                        element.textContent = node.label;
+                        element.style.left = `${node.x}px`;
+                        element.style.top = `${node.y}px`;
+                        element.dataset.id = node.id;
                         
-                        // شروع سایر سیستم‌ها پس از لود
-                        AMIXAMA.systems.generative.init();
-                        AMIXAMA.systems.animations.init();
-                        AMIXAMA.systems.navigation.init();
+                        // Add click effect
+                        element.addEventListener('click', () => {
+                            element.style.transform = 'scale(1.2) translateZ(0)';
+                            element.style.boxShadow = '0 0 30px var(--accent)';
+                            
+                            setTimeout(() => {
+                                element.style.transform = 'scale(1) translateZ(0)';
+                                element.style.boxShadow = 'none';
+                            }, 300);
+                        });
+                        
+                        this.container.appendChild(element);
+                        this.nodes.push({ ...node, element });
+                    });
+                    
+                    // Create connections
+                    const connections = [
+                        { from: 'input', to: 'process' },
+                        { from: 'input', to: 'kinetic' },
+                        { from: 'process', to: 'output' },
+                        { from: 'kinetic', to: 'output' }
+                    ];
+                    
+                    setTimeout(() => {
+                        connections.forEach(conn => this.createConnection(conn.from, conn.to));
+                        this.animateConnections();
                     }, 500);
                 }
-            }
-        };
-
-        // 3. سیستم طراحی الگوریتمیک (Generative Design)
-        AMIXAMA.systems.generative = {
-            canvas: null,
-            ctx: null,
-            particles: [],
-            animationId: null,
-            
-            init: function() {
-                this.canvas = document.getElementById('generative-canvas');
-                if (!this.canvas) return;
                 
-                this.ctx = this.canvas.getContext('2d');
-                this.setupCanvas();
-                this.createParticles();
-                this.animate();
-                
-                // Responsive handling
-                window.addEventListener('resize', () => {
-                    this.setupCanvas();
-                    this.createParticles();
-                });
-            },
-            
-            setupCanvas: function() {
-                if (!this.canvas) return;
-                
-                const dpr = window.devicePixelRatio || 1;
-                const rect = this.canvas.getBoundingClientRect();
-                
-                this.canvas.width = rect.width * dpr;
-                this.canvas.height = rect.height * dpr;
-                
-                this.ctx.scale(dpr, dpr);
-                this.canvas.style.width = `${rect.width}px`;
-                this.canvas.style.height = `${rect.height}px`;
-            },
-            
-            createParticles: function() {
-                this.particles = [];
-                const width = this.canvas.width / (window.devicePixelRatio || 1);
-                const height = this.canvas.height / (window.devicePixelRatio || 1);
-                const particleCount = Math.floor((width * height) / 15000);
-                
-                for (let i = 0; i < particleCount; i++) {
-                    this.particles.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height,
-                        size: Math.random() * 2 + 0.5,
-                        speedX: (Math.random() - 0.5) * 0.5,
-                        speedY: (Math.random() - 0.5) * 0.5,
-                        color: `rgba(255, 90, 31, ${Math.random() * 0.2 + 0.05})`
-                    });
+                createConnection(fromId, toId) {
+                    const fromNode = this.nodes.find(n => n.id === fromId);
+                    const toNode = this.nodes.find(n => n.id === toId);
+                    
+                    if (!fromNode || !toNode) return;
+                    
+                    const connection = document.createElement('div');
+                    connection.className = 'flow-connection';
+                    
+                    // Calculate position and angle
+                    const x1 = fromNode.x + 50;
+                    const y1 = fromNode.y + 50;
+                    const x2 = toNode.x + 50;
+                    const y2 = toNode.y + 50;
+                    
+                    const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                    const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                    
+                    connection.style.width = `${length}px`;
+                    connection.style.left = `${x1}px`;
+                    connection.style.top = `${y1}px`;
+                    connection.style.transform = `rotate(${angle}deg)`;
+                    
+                    this.container.appendChild(connection);
+                    this.connections.push(connection);
                 }
-            },
-            
-            animate: function() {
-                if (!this.ctx || !this.canvas) return;
                 
-                const width = this.canvas.width / (window.devicePixelRatio || 1);
-                const height = this.canvas.height / (window.devicePixelRatio || 1);
-                
-                // Clear with fade effect
-                this.ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-                this.ctx.fillRect(0, 0, width, height);
-                
-                // Update and draw particles
-                this.particles.forEach(particle => {
-                    // حرکت ذرات
-                    particle.x += particle.speedX;
-                    particle.y += particle.speedY;
-                    
-                    // بازگشت از مرزها
-                    if (particle.x < 0 || particle.x > width) particle.speedX *= -1;
-                    if (particle.y < 0 || particle.y > height) particle.speedY *= -1;
-                    
-                    // محدود کردن به مرزها
-                    particle.x = Math.max(0, Math.min(width, particle.x));
-                    particle.y = Math.max(0, Math.min(height, particle.y));
-                    
-                    // رسم ذرات
-                    this.ctx.beginPath();
-                    this.ctx.fillStyle = particle.color;
-                    this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                    this.ctx.fill();
-                    
-                    // رسم خطوط بین ذرات نزدیک
-                    this.particles.forEach(otherParticle => {
-                        const dx = particle.x - otherParticle.x;
-                        const dy = particle.y - otherParticle.y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
+                animateConnections() {
+                    let index = 0;
+                    const animate = () => {
+                        this.connections.forEach(conn => {
+                            conn.classList.remove('active');
+                        });
                         
-                        if (distance < 100) {
-                            this.ctx.beginPath();
-                            this.ctx.strokeStyle = `rgba(255, 90, 31, ${0.1 * (1 - distance / 100)})`;
-                            this.ctx.lineWidth = 0.5;
-                            this.ctx.moveTo(particle.x, particle.y);
-                            this.ctx.lineTo(otherParticle.x, otherParticle.y);
-                            this.ctx.stroke();
+                        if (this.connections[index]) {
+                            this.connections[index].classList.add('active');
                         }
-                    });
-                });
-                
-                this.animationId = requestAnimationFrame(() => this.animate());
-            },
-            
-            destroy: function() {
-                if (this.animationId) {
-                    cancelAnimationFrame(this.animationId);
+                        
+                        index = (index + 1) % this.connections.length;
+                        
+                        setTimeout(() => {
+                            requestAnimationFrame(animate);
+                        }, 1000);
+                    };
+                    
+                    animate();
                 }
             }
-        };
 
-        // 4. سیستم نویگیشن و اسکرول
-        AMIXAMA.systems.navigation = {
-            init: function() {
-                // Mobile menu toggle
-                const menuToggle = document.getElementById('menuToggle');
-                const navMenu = document.getElementById('navMenu');
-                
-                if (menuToggle && navMenu) {
-                    menuToggle.addEventListener('click', () => {
-                        navMenu.classList.toggle('active');
-                        AMIXAMA.state.mobileMenuOpen = navMenu.classList.contains('active');
-                        
-                        // آیکن تغییر کند
-                        const icon = menuToggle.querySelector('i');
-                        if (icon) {
-                            icon.className = AMIXAMA.state.mobileMenuOpen ? 
-                                'fas fa-times' : 'fas fa-bars';
-                        }
-                    });
+            // Kinetic Scroll Animation System
+            class KineticScroll {
+                constructor() {
+                    this.sections = document.querySelectorAll('.kinetic-section');
+                    this.headings = document.querySelectorAll('h2');
+                    this.grids = document.querySelectorAll('.kinetic-grid');
+                    this.init();
                 }
                 
-                // Close mobile menu on link click
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (navMenu) {
-                            navMenu.classList.remove('active');
-                            AMIXAMA.state.mobileMenuOpen = false;
+                init() {
+                    // Intersection Observer for smooth animations
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('in-view');
+                            }
+                        });
+                    }, {
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px'
+                    });
+                    
+                    // Observe sections
+                    this.sections.forEach(section => {
+                        observer.observe(section);
+                    });
+                    
+                    // Observe headings
+                    this.headings.forEach(heading => {
+                        observer.observe(heading);
+                    });
+                    
+                    // Observe grids
+                    this.grids.forEach(grid => {
+                        observer.observe(grid);
+                    });
+                    
+                    // Parallax effect
+                    window.addEventListener('scroll', () => {
+                        const scrolled = window.pageYOffset;
+                        const rate = scrolled * -0.5;
+                        
+                        document.querySelectorAll('.section-bg').forEach(bg => {
+                            bg.style.transform = `translateY(${rate}px)`;
+                        });
+                    });
+                }
+            }
+
+            // Kinetic Card Hover System
+            class KineticCards {
+                constructor() {
+                    this.cards = document.querySelectorAll('.kinetic-card');
+                    this.init();
+                }
+                
+                init() {
+                    this.cards.forEach(card => {
+                        card.addEventListener('mousemove', (e) => {
+                            const rect = card.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            const y = e.clientY - rect.top;
                             
-                            const icon = menuToggle?.querySelector('i');
-                            if (icon) {
-                                icon.className = 'fas fa-bars';
+                            const centerX = rect.width / 2;
+                            const centerY = rect.height / 2;
+                            
+                            const rotateY = (x - centerX) / 25;
+                            const rotateX = (centerY - y) / 25;
+                            
+                            card.style.transform = `
+                                perspective(1000px)
+                                rotateX(${rotateX}deg)
+                                rotateY(${rotateY}deg)
+                                translateZ(10px)
+                            `;
+                            
+                            // Move glow
+                            const glow = card.querySelector('.card-glow');
+                            if (glow) {
+                                glow.style.right = `${x - 100}px`;
+                                glow.style.top = `${y - 100}px`;
+                            }
+                        });
+                        
+                        card.addEventListener('mouseleave', () => {
+                            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                        });
+                    });
+                }
+            }
+
+            // Performance Monitor
+            class PerformanceMonitor {
+                constructor() {
+                    this.fps = 60;
+                    this.lastTime = performance.now();
+                    this.frameCount = 0;
+                    this.init();
+                }
+                
+                init() {
+                    // FPS counter
+                    const updateFPS = () => {
+                        const currentTime = performance.now();
+                        this.frameCount++;
+                        
+                        if (currentTime > this.lastTime + 1000) {
+                            this.fps = Math.round((this.frameCount * 1000) / (currentTime - this.lastTime));
+                            this.frameCount = 0;
+                            this.lastTime = currentTime;
+                            
+                            // Update display if exists
+                            const fpsElement = document.querySelector('.mono');
+                            if (fpsElement && fpsElement.textContent.includes('fps')) {
+                                fpsElement.textContent = `${this.fps}fps`;
                             }
                         }
-                    });
-                });
-                
-                // Smooth scroll for anchor links
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', function(e) {
-                        const href = this.getAttribute('href');
-                        if (href === '#' || href === '#!') return;
                         
-                        const targetId = href.substring(1);
-                        if (!targetId) return;
-                        
-                        const targetElement = document.getElementById(targetId);
-                        if (targetElement) {
+                        requestAnimationFrame(updateFPS);
+                    };
+                    
+                    updateFPS();
+                    
+                    // Prevent context menu for security
+                    document.addEventListener('contextmenu', (e) => {
+                        if (e.target.closest('.security-indicator')) {
                             e.preventDefault();
-                            
-                            // Update active nav link
-                            document.querySelectorAll('.nav-link').forEach(link => {
-                                link.classList.remove('active');
-                            });
-                            this.classList.add('active');
-                            
-                            // Scroll to target
-                            const headerHeight = document.querySelector('header')?.offsetHeight || 80;
-                            const targetPosition = targetElement.offsetTop - headerHeight;
-                            
-                            window.scrollTo({
-                                top: targetPosition,
-                                behavior: 'smooth'
-                            });
-                        }
-                    });
-                });
-                
-                // Update active nav on scroll
-                this.updateActiveNavOnScroll();
-                window.addEventListener('scroll', () => this.updateActiveNavOnScroll());
-            },
-            
-            updateActiveNavOnScroll: function() {
-                const sections = document.querySelectorAll('section[id]');
-                const navLinks = document.querySelectorAll('.nav-link');
-                const scrollPosition = window.scrollY + 100;
-                
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    const sectionId = section.getAttribute('id');
-                    
-                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${sectionId}`) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }
-        };
-
-        // 5. سیستم انیمیشن‌ها
-        AMIXAMA.systems.animations = {
-            init: function() {
-                // Animate stats numbers
-                this.animateStats();
-                
-                // Lazy load images
-                this.lazyLoadImages();
-                
-                // Animate elements on scroll
-                this.animateOnScroll();
-                
-                // Parallax effect
-                this.parallaxEffect();
-            },
-            
-            animateStats: function() {
-                const statNumbers = document.querySelectorAll('.stat-number');
-                if (!statNumbers.length || AMIXAMA.state.statsAnimated) return;
-                
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const statNumber = entry.target;
-                            const finalValue = parseInt(statNumber.getAttribute('data-count'));
-                            const duration = 2000; // 2 seconds
-                            const step = finalValue / (duration / 16); // 60fps
-                            let currentValue = 0;
-                            
-                            const timer = setInterval(() => {
-                                currentValue += step;
-                                if (currentValue >= finalValue) {
-                                    currentValue = finalValue;
-                                    clearInterval(timer);
-                                    AMIXAMA.state.statsAnimated = true;
-                                }
-                                statNumber.textContent = Math.floor(currentValue);
-                            }, 16);
-                            
-                            observer.unobserve(statNumber);
-                        }
-                    });
-                }, { threshold: 0.5 });
-                
-                statNumbers.forEach(stat => observer.observe(stat));
-            },
-            
-            lazyLoadImages: function() {
-                // در این پروژه از تصاویر واقعی استفاده نشده، اما این سیستم آماده است
-                const lazyImages = document.querySelectorAll('.lazy');
-                if (!lazyImages.length) return;
-                
-                const imageObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.dataset.src;
-                            img.classList.add('loaded');
-                            imageObserver.unobserve(img);
-                        }
-                    });
-                }, { rootMargin: '50px' });
-                
-                lazyImages.forEach(img => imageObserver.observe(img));
-            },
-            
-            animateOnScroll: function() {
-                const animatedElements = document.querySelectorAll('.service-card, .portfolio-item, .trust-badge');
-                
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.1 });
-                
-                animatedElements.forEach(el => {
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(20px)';
-                    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    observer.observe(el);
-                });
-            },
-            
-            parallaxEffect: function() {
-                const canvas = document.getElementById('generative-canvas');
-                if (!canvas) return;
-                
-                window.addEventListener('scroll', () => {
-                    const scrolled = window.pageYOffset;
-                    const rate = scrolled * -0.5;
-                    
-                    if (canvas) {
-                        canvas.style.transform = `translate3d(0, ${rate}px, 0)`;
-                    }
-                });
-            }
-        };
-
-        // 6. سیستم فرم‌ها و تعاملات
-        AMIXAMA.systems.interactions = {
-            init: function() {
-                // WhatsApp button interactions
-                this.setupWhatsAppButtons();
-                
-                // Project start buttons
-                this.setupProjectStartButtons();
-                
-                // Trust badges hover effects
-                this.setupTrustBadges();
-            },
-            
-            setupWhatsAppButtons: function() {
-                const whatsappButtons = document.querySelectorAll('a[href*="whatsapp"]');
-                whatsappButtons.forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        // تایید قبل از هدایت
-                        if (!button.href.includes(AMIXAMA.config.whatsappNumber)) {
-                            if (confirm('آیا می‌خواهید به واتساپ هدایت شوید؟')) {
-                                // در اینجا می‌توان tracking اضافه کرد
-                                console.log('WhatsApp click tracked');
-                            } else {
-                                e.preventDefault();
-                            }
-                        }
-                    });
-                });
-            },
-            
-            setupProjectStartButtons: function() {
-                const projectButtons = document.querySelectorAll('a[href="#contact"], .btn-primary');
-                projectButtons.forEach(button => {
-                    if (button.textContent.includes('پروژه') || button.textContent.includes('همکاری')) {
-                        button.addEventListener('click', () => {
-                            // نمایش پیام مهم درباره پرداخت
-                            setTimeout(() => {
-                                alert('💡 نکته مهم:\n\nبرای شروع هر پروژه، لازم است یک‌سوم (۳۳٪) مبلغ کل پروژه به عنوان پیش‌پرداخت انجام شود.\n\nاین مبلغ جهت آغاز فرآیند طراحی الگوریتمیک و تحلیل هوشمند ضروری است.');
-                            }, 500);
-                        });
-                    }
-                });
-            },
-            
-            setupTrustBadges: function() {
-                const trustBadges = document.querySelectorAll('.trust-badge');
-                trustBadges.forEach(badge => {
-                    badge.addEventListener('mouseenter', () => {
-                        const icon = badge.querySelector('.badge-icon');
-                        if (icon) {
-                            icon.style.transform = 'scale(1.1)';
-                            icon.style.transition = 'transform 0.3s ease';
                         }
                     });
                     
-                    badge.addEventListener('mouseleave', () => {
-                        const icon = badge.querySelector('.badge-icon');
-                        if (icon) {
-                            icon.style.transform = 'scale(1)';
-                        }
+                    // Disable text selection on sensitive elements
+                    document.querySelectorAll('.cyberbank-badge, .security-indicator').forEach(el => {
+                        el.style.userSelect = 'none';
                     });
-                });
+                }
             }
-        };
 
-        // 7. سیستم Performance و بهینه‌سازی
-        AMIXAMA.systems.performance = {
-            init: function() {
-                // Debounce برای event‌های پرتکرار
-                this.setupDebouncedEvents();
-                
-                // مدیریت memory
-                this.setupMemoryManagement();
-                
-                // مانیتورینگ performance
-                this.setupPerformanceMonitoring();
-            },
-            
-            setupDebouncedEvents: function() {
-                // Debounce برای resize event
-                let resizeTimeout;
-                window.addEventListener('resize', () => {
-                    clearTimeout(resizeTimeout);
-                    resizeTimeout = setTimeout(() => {
-                        AMIXAMA.systems.generative.setupCanvas();
-                    }, 250);
-                });
-                
-                // Debounce برای scroll event
-                let scrollTimeout;
-                window.addEventListener('scroll', () => {
-                    clearTimeout(scrollTimeout);
-                    scrollTimeout = setTimeout(() => {
-                        AMIXAMA.state.scrollPosition = window.pageYOffset;
-                    }, 100);
-                });
-            },
-            
-            setupMemoryManagement: function() {
-                // Cleanup هنگام unload
-                window.addEventListener('beforeunload', () => {
-                    AMIXAMA.systems.generative.destroy();
-                });
-                
-                // استفاده از requestIdleCallback برای tasks کم‌اولویت
+            // Initialize all systems
+            document.addEventListener('DOMContentLoaded', () => {
+                // Initialize with requestIdleCallback for better performance
                 if ('requestIdleCallback' in window) {
                     requestIdleCallback(() => {
-                        // Load non-critical resources
-                        this.loadNonCriticalResources();
-                    });
-                }
-            },
-            
-            loadNonCriticalResources: function() {
-                // در اینجا می‌توان منابع غیرضروری را lazy load کرد
-                console.log('Loading non-critical resources...');
-            },
-            
-            setupPerformanceMonitoring: function() {
-                // مانیتورینگ اولیه performance
-                if ('performance' in window) {
-                    setTimeout(() => {
-                        const perfData = window.performance.timing;
-                        const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+                        const navSystem = new KineticNavigation();
+                        const cubeSystem = new KineticCube();
+                        const flowSystem = new KineticFlow();
+                        const scrollSystem = new KineticScroll();
+                        const cardsSystem = new KineticCards();
+                        const perfSystem = new PerformanceMonitor();
                         
-                        console.log(`🚀 Page loaded in ${loadTime}ms`);
+                        // Expose to window for debugging (remove in production)
+                        window.AMIXAMA = {
+                            nav: navSystem,
+                            cube: cubeSystem,
+                            flow: flowSystem,
+                            scroll: scrollSystem,
+                            cards: cardsSystem,
+                            perf: perfSystem
+                        };
                         
-                        // ارسال به analytics در صورت نیاز
-                        if (loadTime > 3000) {
-                            console.warn('⚠️ Page load time is above 3 seconds');
-                        }
-                    }, 0);
-                }
-            }
-        };
-
-        // 8. سیستم خطاها و ریسپانسیو
-        AMIXAMA.systems.responsive = {
-            init: function() {
-                // تشخیص دستگاه
-                this.detectDevice();
-                
-                // تنظیمات بر اساس دستگاه
-                this.setupDeviceSpecificSettings();
-                
-                // هندل کردن orientation changes
-                this.handleOrientationChanges();
-            },
-            
-            detectDevice: function() {
-                const userAgent = navigator.userAgent;
-                const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
-                const isTablet = /iPad|Android(?!.*Mobile)/i.test(userAgent);
-                
-                AMIXAMA.state.device = isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop';
-                AMIXAMA.state.touchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-                
-                // اضافه کردن class به body
-                document.body.classList.add(`device-${AMIXAMA.state.device}`);
-                if (AMIXAMA.state.touchDevice) {
-                    document.body.classList.add('touch-device');
-                }
-            },
-            
-            setupDeviceSpecificSettings: function() {
-                // تنظیمات خاص برای موبایل
-                if (AMIXAMA.state.device === 'mobile') {
-                    // کاهش تعداد ذرات در موبایل
-                    if (AMIXAMA.systems.generative.particles) {
-                        AMIXAMA.systems.generative.particles = 
-                            AMIXAMA.systems.generative.particles.slice(0, 30);
-                    }
-                }
-            },
-            
-            handleOrientationChanges: function() {
-                window.addEventListener('orientationchange', () => {
+                        console.log('🚀 AMIXAMA Kinetic Systems Initialized');
+                    });
+                } else {
+                    // Fallback for browsers without requestIdleCallback
                     setTimeout(() => {
-                        AMIXAMA.systems.generative.setupCanvas();
-                    }, 300);
-                });
-            }
-        };
-
-        // 9. سیستم SEO و Accessibility
-        AMIXAMA.systems.seo = {
-            init: function() {
-                // مدیریت focus برای accessibility
-                this.setupFocusManagement();
-                
-                // اضافه کردن ARIA labels
-                this.setupAriaLabels();
-                
-                // مدیریت keyboard navigation
-                this.setupKeyboardNavigation();
-            },
-            
-            setupFocusManagement: function() {
-                // Focus trap برای mobile menu
-                const menuToggle = document.getElementById('menuToggle');
-                const navMenu = document.getElementById('navMenu');
-                
-                if (menuToggle && navMenu) {
-                    menuToggle.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            menuToggle.click();
-                        }
-                    });
-                    
-                    // Trap focus در mobile menu
-                    document.addEventListener('keydown', (e) => {
-                        if (e.key === 'Escape' && AMIXAMA.state.mobileMenuOpen) {
-                            menuToggle.click();
-                            menuToggle.focus();
-                        }
-                    });
+                        const navSystem = new KineticNavigation();
+                        const cubeSystem = new KineticCube();
+                        const flowSystem = new KineticFlow();
+                        const scrollSystem = new KineticScroll();
+                        const cardsSystem = new KineticCards();
+                        const perfSystem = new PerformanceMonitor();
+                        
+                        window.AMIXAMA = {
+                            nav: navSystem,
+                            cube: cubeSystem,
+                            flow: flowSystem,
+                            scroll: scrollSystem,
+                            cards: cardsSystem,
+                            perf: perfSystem
+                        };
+                        
+                        console.log('🚀 AMIXAMA Kinetic Systems Initialized');
+                    }, 100);
                 }
-            },
-            
-            setupAriaLabels: function() {
-                // اضافه کردن ARIA labels برای عناصر بدون text
-                const decorativeImages = document.querySelectorAll('img:not([alt])');
-                decorativeImages.forEach(img => {
-                    img.setAttribute('alt', '');
-                    img.setAttribute('aria-hidden', 'true');
-                });
                 
-                // ARIA labels برای buttons
-                const iconButtons = document.querySelectorAll('button:not([aria-label])');
-                iconButtons.forEach(button => {
-                    if (button.querySelector('i')) {
-                        button.setAttribute('aria-label', button.textContent || 'Button');
-                    }
-                });
-            },
+                // Security: Prevent console access in production
+                if (window.location.hostname !== 'localhost') {
+                    console.log = function() {};
+                    console.warn = function() {};
+                    console.error = function() {};
+                }
+            });
             
-            setupKeyboardNavigation: function() {
-                // Keyboard navigation برای menu items
-                const menuItems = document.querySelectorAll('.nav-link');
-                menuItems.forEach((item, index) => {
-                    item.addEventListener('keydown', (e) => {
-                        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                            e.preventDefault();
-                            const nextItem = menuItems[index + 1] || menuItems[0];
-                            nextItem.focus();
-                        }
-                        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                            e.preventDefault();
-                            const prevItem = menuItems[index - 1] || menuItems[menuItems.length - 1];
-                            prevItem.focus();
-                        }
-                    });
-                });
-            }
-        };
-
-        // 10. سیستم Analytics و مانیتورینگ (سبک شده)
-        AMIXAMA.systems.analytics = {
-            init: function() {
-                // Track page views
-                this.trackPageView();
-                
-                // Track important interactions
-                this.trackInteractions();
-                
-                // Track performance metrics
-                this.trackPerformance();
-            },
+            // Error handling
+            window.addEventListener('error', (e) => {
+                console.error('Kinetic System Error:', e.error);
+                e.preventDefault();
+            });
             
-            trackPageView: function() {
-                // در حالت واقعی به Google Analytics یا مشابه ارسال می‌شود
-                console.log('📊 Page viewed:', window.location.pathname);
-                
-                // Track section views
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const sectionId = entry.target.id;
-                            console.log(`📊 Section viewed: ${sectionId}`);
-                        }
-                    });
-                }, { threshold: 0.5 });
-                
-                document.querySelectorAll('section[id]').forEach(section => {
-                    observer.observe(section);
-                });
-            },
-            
-            trackInteractions: function() {
-                // Track button clicks
-                document.querySelectorAll('.btn, .nav-link').forEach(element => {
-                    element.addEventListener('click', () => {
-                        const label = element.textContent.trim() || 
-                                     element.getAttribute('href') || 
-                                     'unknown';
-                        console.log('🖱️ Button clicked:', label);
-                    });
-                });
-            },
-            
-            trackPerformance: function() {
-                // در حالت واقعی به performance monitoring service ارسال می‌شود
-                window.addEventListener('load', () => {
-                    if ('performance' in window) {
-                        const perfEntries = performance.getEntriesByType('navigation');
-                        if (perfEntries.length > 0) {
-                            const navEntry = perfEntries[0];
-                            console.log('⚡ Performance metrics:', {
-                                dns: navEntry.domainLookupEnd - navEntry.domainLookupStart,
-                                tcp: navEntry.connectEnd - navEntry.connectStart,
-                                response: navEntry.responseEnd - navEntry.requestStart,
-                                domContentLoaded: navEntry.domContentLoadedEventEnd - navEntry.domContentLoadedEventStart,
-                                load: navEntry.loadEventEnd - navEntry.loadEventStart
-                            });
-                        }
-                    }
-                });
-            }
-        };
-
-        // Initialize همه سیستم‌ها
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('🚀 AMIXAMA Systems Initializing...');
-            
-            // ترتیب initialization مهم است
-            AMIXAMA.systems.preloader.init();
-            AMIXAMA.systems.performance.init();
-            AMIXAMA.systems.responsive.init();
-            AMIXAMA.systems.seo.init();
-            AMIXAMA.systems.navigation.init();
-            AMIXAMA.systems.animations.init();
-            AMIXAMA.systems.interactions.init();
-            AMIXAMA.systems.analytics.init();
-            
-            // Debug mode
-            if (window.location.hash === '#debug') {
-                console.log('🔧 Debug mode enabled');
-                window.AMIXAMA = AMIXAMA; // Expose for debugging
-            }
-            
-            console.log('✅ AMIXAMA Systems Initialized Successfully');
-        });
-
-        // Error handling
-        window.addEventListener('error', (e) => {
-            console.error('❌ System Error:', e.error);
-            
-            // در حالت production به error tracking service ارسال شود
-            if (!window.location.hostname.includes('localhost')) {
-                // sendToErrorTracking(e.error);
-            }
-        });
-
-        // Unload cleanup
-        window.addEventListener('beforeunload', () => {
-            // Cleanup animations
-            if (AMIXAMA.systems.generative.animationId) {
-                cancelAnimationFrame(AMIXAMA.systems.generative.animationId);
-            }
-            
-            console.log('🔄 AMIXAMA Systems Cleanup Complete');
-        });
+        })();
     </script>
 </body>
 </html>
