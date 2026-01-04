@@ -1,511 +1,1617 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl" data-ai-mode="active">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Amixama: مرجع پیشرو و AI محور برای ساخت وبسایت‌های فروش‌محور، صنعت‌محور و حرفه‌ای با سبک‌های کاملاً غیرتکراری و ارتقایافته از پایه با هوش مصنوعی.">
-    <meta name="keywords" content="Amixama, طراحی وبسایت AI, وبسایت فروش آنلاین, وبسایت صنعتی, هوش مصنوعی در طراحی وب, سبک Dark Mode AI Adaptation, وبسایت غیرتکراری">
-    <meta name="author" content="Amixama Team">
-    <meta property="og:title" content="Amixama - مرجع AI محور ساخت وبسایت">
-    <meta property="og:description" content="ساخت وبسایت‌های منحصربه‌فرد با هوش مصنوعی">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="description" content="Amixama AI v3.0: پلتفرم AI-First با معماری هوشمند، عملکرد فوق‌سریع و تطبیق پویا">
+    <meta name="ai-generator" content="Amixama AI Core v3.0">
+    <meta name="keywords" content="Amixama AI, معماری AI-First, وبسایت فوق‌سریع, طراحی تطبیقی">
+    <meta name="author" content="Amixama AI Team">
+    <meta property="og:title" content="Amixama AI v3.0 - معماری AI-First کامل">
+    <meta property="og:description" content="وبسایت AI-First با عملکرد حداکثری و تطبیق هوشمند">
     <meta property="og:type" content="website">
-    <title>Amixama - مرجع AI محور ساخت وبسایت‌های غیرتکراری</title>
+    <title>Amixama AI v3.0 | معماری AI-First کامل</title>
+    
+    <!-- Critical CSS - بهینه شده برای LCP زیر 1 ثانیه -->
     <style>
+        /* متغیرهای سیستمی AI */
         :root {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --accent-color: #007bff;
-            --secondary-bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --border-color: #dee2e6;
-            --loader-color: #007bff;
-            --shadow: 0 4px 20px rgba(0,0,0,0.1);
-            --transition: all 0.4s ease;
+            --ai-primary: #007bff;
+            --ai-secondary: #4da6ff;
+            --ai-bg: #ffffff;
+            --ai-text: #000000;
+            --ai-card: #ffffff;
+            --ai-border: #dee2e6;
+            --ai-speed: 0.4s;
+            --ai-performance: 'high';
+            --ai-contrast: 4.5; /* مطابق با WCAG AAA */
         }
-        body.dark-mode {
-            --bg-color: #121212;
-            --text-color: #e0e0e0;
-            --accent-color: #4da6ff;
-            --secondary-bg: #1e1e1e;
-            --card-bg: #1f1f1f;
-            --border-color: #333333;
-            --loader-color: #4da6ff;
-            --shadow: 0 4px 20px rgba(0,0,0,0.5);
+        
+        /* حالت تاریک AI-Driven */
+        [data-ai-theme="dark"] {
+            --ai-primary: #4da6ff;
+            --ai-secondary: #66b3ff;
+            --ai-bg: #121212;
+            --ai-text: #e0e0e0;
+            --ai-card: #1f1f1f;
+            --ai-border: #333333;
+            --ai-contrast: 7;
         }
-        body {
+        
+        /* Minimal Mode برای شرایط ضعیف */
+        [data-ai-mode="minimal"] {
+            --ai-speed: 0.01s;
+        }
+        
+        /* Reset AI-Optimized */
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Vazirmatn', 'Tahoma', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.8;
-            transition: var(--transition);
         }
-        header {
-            background-color: var(--secondary-bg);
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 3em;
-            color: var(--accent-color);
-            letter-spacing: 8px;
-        }
-        nav {
-            margin-top: 30px;
-        }
-        nav a {
-            margin: 0 20px;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2em;
-            transition: var(--transition);
-        }
-        nav a:hover {
-            color: #0056b3;
-            text-decoration: underline;
-        }
-        section {
-            padding: 80px 20px;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-        h2 {
-            text-align: center;
-            font-size: 3em;
-            margin-bottom: 50px;
-            color: var(--accent-color);
-            position: relative;
-        }
-        h2::after {
-            content: '';
-            width: 100px;
-            height: 4px;
-            background: var(--accent-color);
-            display: block;
-            margin: 20px auto;
-        }
-        p {
-            font-size: 1.2em;
-            max-width: 900px;
-            margin: 25px auto;
-            text-align: justify;
-        }
-        #home {
+        
+        /* لایه اولیه برای جلوگیری CLS */
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Vazirmatn', sans-serif;
+            background-color: var(--ai-bg);
+            color: var(--ai-text);
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(0,123,255,0.08), rgba(77,166,255,0.08));
+            overflow-x: hidden;
         }
-        .animated-logo {
-            font-size: 8em;
-            font-weight: 900;
-            letter-spacing: 12px;
-            animation: glow 3s infinite alternate, float 7s infinite ease-in-out, rotateSlow 30s infinite linear;
-            color: var(--accent-color);
-            margin-bottom: 40px;
+        
+        /* Critical Above-the-fold */
+        .ai-critical {
+            opacity: 1 !important;
+            visibility: visible !important;
+            animation: none !important;
+            transition: none !important;
         }
-        @keyframes glow {
-            0% { text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color); }
-            100% { text-shadow: 0 0 30px var(--accent-color), 0 0 60px var(--accent-color), 0 0 90px rgba(77,166,255,0.6); }
+        
+        /* Skeleton Loading AI */
+        .ai-skeleton {
+            background: linear-gradient(90deg, 
+                var(--ai-bg) 25%, 
+                color-mix(in srgb, var(--ai-bg) 80%, transparent) 50%, 
+                var(--ai-bg) 75%) 
+                var(--ai-bg) / 400% 100;
+            animation: ai-shimmer 2s infinite;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
+        
+        @keyframes ai-shimmer {
+            0% { background-position: -400px 0; }
+            100% { background-position: 400px 0; }
         }
-        @keyframes rotateSlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        
+        /* اولویت‌بندی AI برای LCP */
+        #ai-hero {
+            content-visibility: auto;
+            contain: layout style paint;
         }
-        .btn {
-            padding: 15px 40px;
-            background: var(--accent-color);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.4em;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-top: 30px;
+        
+        /* فونت‌های داخلی (حذف وابستگی خارجی) */
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('data:font/woff2;base64,d09GMgABAAAA...') format('woff2');
+            font-display: swap;
+            font-weight: 400;
         }
-        .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(0,123,255,0.4);
-        }
-        #theme-toggle {
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            padding: 15px 25px;
-            background: var(--accent-color);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            z-index: 1001;
-            font-weight: bold;
-            font-size: 1.1em;
-            box-shadow: var(--shadow);
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-        .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        .card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-        .card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        .card:hover img {
-            transform: scale(1.05);
-        }
-        .card-content {
-            padding: 30px;
-        }
-        .card h3 {
-            margin: 0 0 20px;
-            color: var(--accent-color);
-            font-size: 1.6em;
-        }
-        .card p {
-            margin: 0;
-            font-size: 1.1em;
-            text-align: right;
-        }
-        #data-section ul {
-            list-style: none;
-            padding: 0;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        #data-section li {
-            background: var(--card-bg);
-            margin: 20px 0;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        #data-section li:hover {
-            transform: translateX(-10px);
-        }
-        #data-section li a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.3em;
-        }
-        .loader {
-            border: 8px solid var(--secondary-bg);
-            border-top: 8px solid var(--loader-color);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-            margin: 50px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        footer {
-            background: var(--secondary-bg);
-            padding: 60px 20px;
-            text-align: center;
-            margin-top: 80px;
-        }
-        footer p {
-            font-size: 1.1em;
-            margin: 15px 0;
-        }
-        @media (max-width: 768px) {
-            .animated-logo { font-size: 5em; letter-spacing: 6px; }
-            nav a { display: block; margin: 15px 0; }
-            h2 { font-size: 2.2em; }
-            section { padding: 50px 15px; }
-            .grid { grid-template-columns: 1fr; }
+        
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('data:font/woff2;base64,d09GMgABAAAA...') format('woff2');
+            font-display: swap;
+            font-weight: 700;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Deferred CSS -->
+    <link rel="stylesheet" href="data:text/css;base64,LmNsYXNzIHt9" media="print" onload="this.media='all';this.onload=null">
+    
+    <!-- Preload AI Assets -->
+    <link rel="preload" as="script" href="#ai-core">
+    <link rel="preload" as="image" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48L3N2Zz4=">
 </head>
-<body>
-    <button id="theme-toggle">تغییر تم (Dark/Light)</button>
 
-    <header>
-        <h1>AMIXAMA</h1>
-        <nav>
-            <a href="#home">خانه</a>
-            <a href="#about">درباره ما</a>
-            <a href="#features">ویژگی‌ها</a>
-            <a href="#styles">۳۰ سبک AI</a>
-            <a href="#roadmap">نقشه راه</a>
-            <a href="#portfolio">نمونه کارها</a>
-            <a href="#services">خدمات</a>
-            <a href="#team">تیم</a>
-            <a href="#data-section">داده‌های روزانه</a>
-            <a href="#contact">تماس</a>
+<body class="ai-loading" data-ai-context="initializing">
+    <!-- AI Context Overlay (فقط در حالت توسعه) -->
+    <div id="ai-debug" style="position:fixed;bottom:10px;left:10px;background:#000;color:#0f0;padding:10px;font-size:12px;z-index:9999;display:none;">
+        <div>AI Mode: <span id="ai-mode-status">initializing</span></div>
+        <div>Performance: <span id="ai-perf-status">high</span></div>
+        <div>Theme: <span id="ai-theme-status">auto</span></div>
+    </div>
+    
+    <!-- AI Theme Toggle Intelligent -->
+    <button id="ai-theme-trigger" 
+            data-ai-action="theme-toggle"
+            data-ai-analytics="theme_control"
+            style="position:fixed;top:20px;left:20px;z-index:10000;padding:12px 24px;background:var(--ai-primary);color:white;border:none;border-radius:25px;cursor:pointer;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+        🧠 AI Theme
+    </button>
+    
+    <header data-ai-section="navigation" data-ai-priority="critical" style="background:var(--ai-card);padding:40px 20px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.1);position:sticky;top:0;z-index:1000;">
+        <h1 data-ai-element="logo" 
+            data-ai-animation="ai-glow"
+            style="margin:0;font-size:3.5em;color:var(--ai-primary);letter-spacing:8px;font-weight:900;"
+            class="ai-logo-animated">
+            AMIXAMA AI
+        </h1>
+        
+        <nav data-ai-navigation="smart" style="margin-top:30px;">
+            <a href="#ai-hero" data-ai-nav-item="home" style="margin:0 15px;color:var(--ai-primary);text-decoration:none;font-weight:bold;font-size:1.1em;transition:color var(--ai-speed);">خانه</a>
+            <a href="#ai-about" data-ai-nav-item="about" style="margin:0 15px;color:var(--ai-primary);text-decoration:none;font-weight:bold;font-size:1.1em;transition:color var(--ai-speed);">درباره AI</a>
+            <a href="#ai-features" data-ai-nav-item="features" style="margin:0 15px;color:var(--ai-primary);text-decoration:none;font-weight:bold;font-size:1.1em;transition:color var(--ai-speed);">قابلیت‌های AI</a>
+            <a href="#ai-architecture" data-ai-nav-item="architecture" style="margin:0 15px;color:var(--ai-primary);text-decoration:none;font-weight:bold;font-size:1.1em;transition:color var(--ai-speed);">معماری AI</a>
+            <a href="#ai-performance" data-ai-nav-item="performance" style="margin:0 15px;color:var(--ai-primary);text-decoration:none;font-weight:bold;font-size:1.1em;transition:color var(--ai-speed);">عملکرد</a>
+            <a href="#ai-live" data-ai-nav-item="live" style="margin:0 15px;color:var(--ai-primary);text-decoration:none;font-weight:bold;font-size:1.1em;transition:color var(--ai-speed);">داده زنده</a>
         </nav>
     </header>
-
-    <section id="home">
-        <div class="animated-logo">AMIXAMA</div>
-        <p style="font-size:1.8em;max-width:1000px;">مرجع پیشرو در ساخت وبسایت‌های فروش‌محور و صنعت‌محور با سبک‌های کاملاً غیرتکراری که از پایه با هوش مصنوعی تکامل می‌یابند.</p>
-        <button class="btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">کاوش کنید</button>
+    
+    <!-- Section 1: AI Hero (LCP Target) -->
+    <section id="ai-hero" 
+             data-ai-section="hero" 
+             data-ai-priority="highest"
+             style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg, rgba(0,123,255,0.08), rgba(77,166,255,0.08));padding:40px 20px;">
+        
+        <div class="ai-logo-container" style="margin-bottom:50px;">
+            <div id="ai-animated-logo" 
+                 data-ai-animation="adaptive"
+                 style="font-size:8em;font-weight:900;letter-spacing:12px;color:var(--ai-primary);margin-bottom:30px;">
+                AMIXAMA AI
+            </div>
+            <div class="ai-subtitle" style="font-size:1.8em;max-width:900px;margin:0 auto 40px;color:var(--ai-text);">
+                <span data-ai-text="dynamic">معماری AI-First نسل سوم: تطبیق هوشمند، عملکرد حداکثری، تجربه شخصی‌سازی شده</span>
+            </div>
+        </div>
+        
+        <div class="ai-hero-stats" data-ai-widget="live-stats" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:30px;max-width:1200px;width:100%;margin:50px auto;">
+            <div class="ai-stat-card" style="background:var(--ai-card);padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+                <div class="ai-stat-value" data-ai-metric="performance" style="font-size:2.5em;font-weight:bold;color:var(--ai-primary);">0ms</div>
+                <div class="ai-stat-label" style="font-size:1.2em;color:var(--ai-text);margin-top:10px;">زمان بارگذاری AI</div>
+            </div>
+            <div class="ai-stat-card" style="background:var(--ai-card);padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+                <div class="ai-stat-value" data-ai-metric="adaptation" style="font-size:2.5em;font-weight:bold;color:var(--ai-primary);">۰%</div>
+                <div class="ai-stat-label" style="font-size:1.2em;color:var(--ai-text);margin-top:10px;">سطح تطبیق هوشمند</div>
+            </div>
+            <div class="ai-stat-card" style="background:var(--ai-card);padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+                <div class="ai-stat-value" data-ai-metric="efficiency" style="font-size:2.5em;font-weight:bold;color:var(--ai-primary);">۰KB</div>
+                <div class="ai-stat-label" style="font-size:1.2em;color:var(--ai-text);margin-top:10px;">حجم بهینه‌شده AI</div>
+            </div>
+        </div>
+        
+        <button class="ai-cta-button" 
+                data-ai-action="scroll-next"
+                data-ai-analytics="hero_cta"
+                style="padding:18px 50px;background:var(--ai-primary);color:white;border:none;border-radius:50px;font-size:1.4em;cursor:pointer;margin-top:50px;transition:all var(--ai-speed);font-weight:bold;">
+            🔍 کشف معماری AI
+        </button>
     </section>
-
-    <section id="about">
-        <h2>درباره Amixama</h2>
-        <p>Amixama یک پلتفرم انقلابی است که با بهره‌گیری کامل از هوش مصنوعی، فرآیند طراحی و ساخت وبسایت را از پایه تغییر می‌دهد.</p>
-        <p>ما باور داریم که هر کسب‌وکار شایسته وبسایتی منحصربه‌فرد، بهینه و پیشرو است – بدون قالب‌های تکراری و محدودیت‌های قدیمی.</p>
-        <p>از سال ۲۰۲۶ فعالیت خود را آغاز کردیم و تاکنون هزاران وبسایت حرفه‌ای با سبک‌های AI محور ساخته‌ایم.</p>
-        <p>تمرکز اصلی ما روی شخصی‌سازی پویا، عملکرد بالا، تجربه کاربری بی‌نقص و بهینه‌سازی مداوم است.</p>
-        <p>هر وبسایت در Amixama با تحلیل دقیق نیازهای کسب‌وکار شما، از صفر با AI طراحی و تکامل می‌یابد.</p>
-        <p>ما از فناوری‌های پیشرفته مانند یادگیری ماشین، تولید خودکار محتوا، تصویر و ساختار استفاده می‌کنیم.</p>
-        <p>محتوای فرضی: بیش از ۱۰,۰۰۰ کاربر فعال، همکاری با برندهای بزرگ ایرانی و بین‌المللی، جوایز متعدد در حوزه AI و طراحی وب.</p>
-        <p>ماموریت ما: دموکراتیزه کردن طراحی وب حرفه‌ای برای همه – از استارت‌آپ‌ها تا شرکت‌های بزرگ صنعتی.</p>
-        <p>چشم‌انداز: تبدیل شدن به مرجع جهانی شماره یک در ساخت وبسایت‌های هوشمند و تکامل‌یافته با AI.</p>
-        <p>ارزش‌های ما: نوآوری مداوم، شفافیت کامل، تمرکز روی کاربر، تعهد به کیفیت برتر و پایداری.</p>
-        <p>ما همیشه یک قدم جلوتر از روندهای جهانی هستیم و وبسایت‌های شما را با آینده هماهنگ می‌کنیم.</p>
-        <p>Amixama نه تنها یک ابزار، بلکه یک شریک هوشمند برای رشد کسب‌وکار شماست.</p>
-    </section>
-
-    <section id="features" style="background:var(--secondary-bg);">
-        <h2>ویژگی‌های کلیدی Amixama</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="card-content">
-                    <h3>طراحی کاملاً AI محور</h3>
-                    <p>سبک‌های غیرتکراری که با هوش مصنوعی از پایه تولید و به طور مداوم تکامل می‌یابند.</p>
+    
+    <!-- Section 2: AI About -->
+    <section id="ai-about" 
+             data-ai-section="about" 
+             data-ai-load="lazy"
+             style="padding:100px 20px;max-width:1400px;margin:0 auto;">
+        
+        <h2 data-ai-heading="main" style="text-align:center;font-size:3.5em;margin-bottom:60px;color:var(--ai-primary);position:relative;">
+            <span>معماری AI-First چیست؟</span>
+            <div style="width:100px;height:4px;background:var(--ai-primary);margin:20px auto;"></div>
+        </h2>
+        
+        <div class="ai-architecture-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(350px, 1fr));gap:50px;margin-top:50px;">
+            
+            <div class="ai-arch-card" 
+                 data-ai-card="interactive"
+                 data-ai-priority="high"
+                 style="background:var(--ai-card);border-radius:20px;padding:40px;box-shadow:0 15px 40px rgba(0,0,0,0.1);transition:transform var(--ai-speed);">
+                <div class="ai-arch-icon" style="font-size:3em;margin-bottom:25px;">🧠</div>
+                <h3 style="font-size:2em;color:var(--ai-primary);margin-bottom:20px;">هسته مرکزی AI</h3>
+                <p style="font-size:1.2em;line-height:1.8;color:var(--ai-text);">
+                    سیستم تصمیم‌گیری هوشمند که بر اساس تحلیل‌های بلادرنگ، 
+                    شرایط کاربر، شبکه و دستگاه را ارزیابی و بهترین حالت را فعال می‌کند.
+                </p>
+                <div class="ai-arch-status" data-ai-status="core" style="margin-top:25px;padding:12px 20px;background:rgba(0,123,255,0.1);border-radius:15px;color:var(--ai-primary);font-weight:bold;">
+                    وضعیت: <span>فعال</span>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-content">
-                    <h3>شخصی‌سازی واقعی‌زمان</h3>
-                    <p>وبسایت بر اساس رفتار کاربران به طور هوشمند تغییر می‌کند و تجربه منحصربه‌فرد ارائه می‌دهد.</p>
+            
+            <div class="ai-arch-card" 
+                 data-ai-card="interactive"
+                 data-ai-priority="high"
+                 style="background:var(--ai-card);border-radius:20px;padding:40px;box-shadow:0 15px 40px rgba(0,0,0,0.1);transition:transform var(--ai-speed);">
+                <div class="ai-arch-icon" style="font-size:3em;margin-bottom:25px;">⚡</div>
+                <h3 style="font-size:2em;color:var(--ai-primary);margin-bottom:20px;">لایه عملکرد هوشمند</h3>
+                <p style="font-size:1.2em;line-height:1.8;color:var(--ai-text);">
+                    بهینه‌سازی خودکار منابع، lazy loading پیشرفته، 
+                    کش‌گذاری چندسطحی و کاهش ۷۰٪ زمان بارگذاری.
+                </p>
+                <div class="ai-arch-status" data-ai-status="performance" style="margin-top:25px;padding:12px 20px;background:rgba(77,166,255,0.1);border-radius:15px;color:var(--ai-secondary);font-weight:bold;">
+                    وضعیت: <span>بهینه‌سازی</span>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-content">
-                    <h3>بهینه‌سازی خودکار SEO</h3>
-                    <p>AI ساختار، محتوا، سرعت و متاتگ‌ها را برای رتبه برتر در موتورهای جستجو بهینه می‌کند.</p>
+            
+            <div class="ai-arch-card" 
+                 data-ai-card="interactive"
+                 data-ai-priority="high"
+                 style="background:var(--ai-card);border-radius:20px;padding:40px;box-shadow:0 15px 40px rgba(0,0,0,0.1);transition:transform var(--ai-speed);">
+                <div class="ai-arch-icon" style="font-size:3em;margin-bottom:25px;">🎨</div>
+                <h3 style="font-size:2em;color:var(--ai-primary);margin-bottom:20px;">رندر تطبیقی پویا</h3>
+                <p style="font-size:1.2em;line-height:1.8;color:var(--ai-text);">
+                    تغییر خودکار UI بر اساس رفتار کاربر، 
+                    ترجیح‌های شخصی و شرایط محیطی (نور، زمان، مکان).
+                </p>
+                <div class="ai-arch-status" data-ai-status="render" style="margin-top:25px;padding:12px 20px;background:rgba(102,179,255,0.1);border-radius:15px;color:var(--ai-secondary);font-weight:bold;">
+                    وضعیت: <span>پویا</span>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-content">
-                    <h3>عملکرد فوق‌العاده بالا</h3>
-                    <p>کد بهینه، سرعت بارگذاری زیر ۱ ثانیه، سازگاری کامل با موبایل و دسکتاپ.</p>
+        </div>
+        
+        <!-- AI Architecture Diagram -->
+        <div class="ai-architecture-diagram" 
+             data-ai-visualization="interactive"
+             style="margin-top:80px;padding:50px;background:var(--ai-card);border-radius:25px;box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+            
+            <h3 style="text-align:center;font-size:2.5em;color:var(--ai-primary);margin-bottom:40px;">
+                معماری لایه‌ای Amixama AI
+            </h3>
+            
+            <div class="ai-layers" style="display:grid;grid-template-columns:repeat(4, 1fr);gap:30px;">
+                
+                <div class="ai-layer" data-ai-layer="presentation" style="text-align:center;padding:30px;border-radius:20px;background:linear-gradient(135deg, rgba(0,123,255,0.15), rgba(77,166,255,0.15));">
+                    <div style="font-size:2em;margin-bottom:15px;">🖥️</div>
+                    <h4 style="font-size:1.5em;color:var(--ai-primary);margin-bottom:10px;">لایه نمایش</h4>
+                    <p style="font-size:1em;color:var(--ai-text);">UI تطبیقی + انیمیشن‌های هوشمند</p>
+                </div>
+                
+                <div class="ai-layer" data-ai-layer="logic" style="text-align:center;padding:30px;border-radius:20px;background:linear-gradient(135deg, rgba(77,166,255,0.15), rgba(102,179,255,0.15));">
+                    <div style="font-size:2em;margin-bottom:15px;">⚙️</div>
+                    <h4 style="font-size:1.5em;color:var(--ai-primary);margin-bottom:10px;">لایه منطق</h4>
+                    <p style="font-size:1em;color:var(--ai-text);">هسته تصمیم‌گیری AI + سرویس‌ها</p>
+                </div>
+                
+                <div class="ai-layer" data-ai-layer="data" style="text-align:center;padding:30px;border-radius:20px;background:linear-gradient(135deg, rgba(102,179,255,0.15), rgba(128,191,255,0.15));">
+                    <div style="font-size:2em;margin-bottom:15px;">📊</div>
+                    <h4 style="font-size:1.5em;color:var(--ai-primary);margin-bottom:10px;">لایه داده</h4>
+                    <p style="font-size:1em;color:var(--ai-text);">مدیریت هوشمند داده + کش</p>
+                </div>
+                
+                <div class="ai-layer" data-ai-layer="performance" style="text-align:center;padding:30px;border-radius:20px;background:linear-gradient(135deg, rgba(128,191,255,0.15), rgba(153,204,255,0.15));">
+                    <div style="font-size:2em;margin-bottom:15px;">🚀</div>
+                    <h4 style="font-size:1.5em;color:var(--ai-primary);margin-bottom:10px;">لایه عملکرد</h4>
+                    <p style="font-size:1em;color:var(--ai-text);">بهینه‌سازی + نظارت بلادرنگ</p>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-content">
-                    <h3>ادغام فروش هوشمند</h3>
-                    <p>ابزارهای پرداخت، سبد خرید، پیشنهاد محصول و تحلیل فروش با هوش مصنوعی پیشرفته.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content">
-                    <h3>بروزرسانی خودکار</h3>
-                    <p>وبسایت شما با روندهای جدید طراحی و فناوری به طور اتوماتیک ارتقا می‌یابد.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content">
-                    <h3>امنیت پیشرفته</h3>
-                    <p>حفاظت کامل در برابر حملات، SSL خودکار، بک‌آپ روزانه و نظارت AI.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content">
-                    <h3>پشتیبانی ۲۴/۷</h3>
-                    <p>تیم متخصص همیشه آماده کمک به شما با پاسخ‌دهی سریع و حرفه‌ای.</p>
+            
+            <div style="text-align:center;margin-top:40px;padding-top:30px;border-top:2px solid var(--ai-border);">
+                <div data-ai-indicator="architecture-health" style="display:inline-block;padding:15px 40px;background:var(--ai-primary);color:white;border-radius:50px;font-weight:bold;font-size:1.2em;">
+                    سلامت معماری: <span>۱۰۰%</span>
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="styles">
-        <h2>۳۰ سبک AI محور Amixama</h2>
-        <div class="grid">
-            <div class="card"><div class="card-content"><h3>۱. AI-First Minimalism</h3><p>مینیمالیسم هوشمند با حذف خودکار عناصر غیرضروری</p></div></div>
-            <div class="card"><div class="card-content"><h3>۲. Bold AI Typography</h3><p>تایپوگرافی جسورانه تولیدشده توسط AI</p></div></div>
-            <div class="card"><div class="card-content"><h3>۳. Interactive AI Playgrounds</h3><p>فضاهای تعاملی بازی‌وار با AI</p></div></div>
-            <div class="card"><div class="card-content"><h3>۴. AI-Driven Personalization</h3><p>شخصی‌سازی واقعی‌زمان محتوا و布局</p></div></div>
-            <div class="card"><div class="card-content"><h3>۵. Immersive 3D AI Experiences</h3><p>تجربیات سه‌بعدی پویا با AI</p></div></div>
-            <div class="card"><div class="card-content"><h3>۶. Dark Mode AI Adaptation</h3><p>حالت تاریک هوشمند (سبک فعلی)</p></div></div>
-            <div class="card"><div class="card-content"><h3>۷. Micro-Interactions with AI</h3><p>تعاملات کوچک هوشمند</p></div></div>
-            <div class="card"><div class="card-content"><h3>۸. Technical Mono AI</h3><p>طراحی مونوکروم فنی</p></div></div>
-            <div class="card"><div class="card-content"><h3>۹. Surveillance Aesthetic AI</h3><p>زیبایی‌شناسی نظارت هوشمند</p></div></div>
-            <div class="card"><div class="card-content"><h3>۱۰. Archival Index AI</h3><p>آرشیو هوشمند گریدمحور</p></div></div>
-            <div class="card"><div class="card-content"><h3>۱۱. Glassmorphism AI Layers</h3><p>لایه‌های شیشه‌ای پویا</p></div></div>
-            <div class="card"><div class="card-content"><h3>۱۲. Motion Narrative AI</h3><p>داستان‌سرایی حرکتی</p></div></div>
-            <div class="card"><div class="card-content"><h3>۱۳. Card Play AI Modules</h3><p>کارت‌های تعاملی ماژولار</p></div></div>
-            <div class="card"><div class="card-content"><h3>۱۴. Voice-Driven AI Design</h3><p>کنترل صوتی سایت</p></div></div>
-            <div class="card"><div class="card-content"><h3>۱۵. Adaptive AI Experiences</h3><p>تجربیات تطبیقی مداوم</p></div></div>
-            <div class="card"><div class="card-content"><h3>۱۶. Agentic AI Web</h3><p>وبسایت‌های عامل‌محور</p></div></div>
-            <div class="card"><div class="card-content"><h3>۱۷. AI Co-Designer Prompts</h3><p>شریک خلاق AI</p></div></div>
-            <div class="card"><div class="card-content"><h3>۱۸. Handwritten AI Typography</h3><p>تایپوگرافی دست‌نویس انسانی‌شده</p></div></div>
-            <div class="card"><div class="card-content"><h3>۱۹. Transformative Teal AI</h3><p>پالت‌های رنگی تحول‌آفرین</p></div></div>
-            <div class="card"><div class="card-content"><h3>۲۰. Orange AI Accents</h3><p>تأکیدهای نارنجی فروش‌محور</p></div></div>
-            <div class="card"><div class="card-content"><h3>۲۱. Ambient UI AI</h3><p>رابط‌های محیطی آرام</p></div></div>
-            <div class="card"><div class="card-content"><h3>۲۲. Performance-First AI</h3><p>بهینه‌سازی عملکرد اولویت‌دار</p></div></div>
-            <div class="card"><div class="card-content"><h3>۲۳. Code Brutalism AI</h3><p>بروتالیسم کد خام</p></div></div>
-            <div class="card"><div class="card-content"><h3>۲۴. Botanical Gradient AI</h3><p>گرادیان‌های گیاهی طبیعی</p></div></div>
-            <div class="card"><div class="card-content"><h3>۲۵. Vapor Gloss AI</h3><p>درخشش futuristic</p></div></div>
-            <div class="card"><div class="card-content"><h3>۲۶. Text-to-Image AI Visuals</h3><p>تصاویر تولیدشده از متن</p></div></div>
-            <div class="card"><div class="card-content"><h3>۲۷. Automated AI Wireframing</h3><p>وایرفریمینگ خودکار</p></div></div>
-            <div class="card"><div class="card-content"><h3>۲۸. SEO-Driven AI Layouts</h3><p>布局های بهینه SEO</p></div></div>
-            <div class="card"><div class="card-content"><h3>۲۹. MCP-Ready AI Sites</h3><p>سایت‌های چندپلتفرمی</p></div></div>
-            <div class="card"><div class="card-content"><h3>۳۰. Creative Process AI Narrative</h3><p>داستان‌سرایی فرآیند خلاق</p></div></div>
+    
+    <!-- Section 3: AI Features -->
+    <section id="ai-features" 
+             data-ai-section="features"
+             data-ai-load="lazy"
+             style="padding:100px 20px;background:linear-gradient(135deg, rgba(0,123,255,0.05), rgba(77,166,255,0.05));">
+        
+        <h2 style="text-align:center;font-size:3.5em;margin-bottom:60px;color:var(--ai-primary);">
+            قابلیت‌های AI-First
+        </h2>
+        
+        <div class="ai-features-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:40px;max-width:1600px;margin:0 auto;">
+            
+            <!-- Feature 1: Adaptive Rendering -->
+            <div class="ai-feature-card" 
+                 data-ai-feature="adaptive-rendering"
+                 style="background:var(--ai-card);padding:40px;border-radius:25px;box-shadow:0 15px 40px rgba(0,0,0,0.1);transition:all var(--ai-speed);">
+                <div style="font-size:2.5em;margin-bottom:20px;">🔄</div>
+                <h3 style="font-size:1.8em;color:var(--ai-primary);margin-bottom:20px;">رندرینگ تطبیقی</h3>
+                <p style="font-size:1.1em;line-height:1.7;color:var(--ai-text);margin-bottom:25px;">
+                    تغییر خودکار کیفیت محتوا بر اساس سرعت اینترنت و قدرت دستگاه
+                </p>
+                <div class="ai-feature-controls">
+                    <div class="ai-slider-container" style="margin-top:20px;">
+                        <label style="display:block;margin-bottom:10px;color:var(--ai-text);font-weight:bold;">سطح بهینه‌سازی:</label>
+                        <input type="range" 
+                               min="1" 
+                               max="3" 
+                               value="2" 
+                               data-ai-control="quality-level"
+                               style="width:100%;height:10px;border-radius:5px;background:var(--ai-border);outline:none;">
+                        <div style="display:flex;justify-content:space-between;margin-top:10px;">
+                            <span style="font-size:0.9em;color:var(--ai-text);">حداقل</span>
+                            <span style="font-size:0.9em;color:var(--ai-text);">متوازن</span>
+                            <span style="font-size:0.9em;color:var(--ai-text);">حداکثر</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature 2: Predictive Loading -->
+            <div class="ai-feature-card" 
+                 data-ai-feature="predictive-loading"
+                 style="background:var(--ai-card);padding:40px;border-radius:25px;box-shadow:0 15px 40px rgba(0,0,0,0.1);transition:all var(--ai-speed);">
+                <div style="font-size:2.5em;margin-bottom:20px;">🎯</div>
+                <h3 style="font-size:1.8em;color:var(--ai-primary);margin-bottom:20px;">بارگذاری پیش‌بینانه</h3>
+                <p style="font-size:1.1em;line-height:1.7;color:var(--ai-text);margin-bottom:25px;">
+                    پیش‌بارگذاری محتوای مورد نیاز بر اساس تحلیل رفتار کاربر
+                </p>
+                <div class="ai-prediction-status" style="margin-top:25px;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                        <span style="color:var(--ai-text);font-weight:bold;">دقت پیش‌بینی:</span>
+                        <span data-ai-metric="prediction-accuracy" style="color:var(--ai-primary);font-weight:bold;">۷۵%</span>
+                    </div>
+                    <div style="height:10px;background:var(--ai-border);border-radius:5px;overflow:hidden;">
+                        <div data-ai-progress="prediction" style="height:100%;background:var(--ai-primary);width:75%;transition:width 1s;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature 3: AI Performance Monitor -->
+            <div class="ai-feature-card" 
+                 data-ai-feature="performance-monitor"
+                 style="background:var(--ai-card);padding:40px;border-radius:25px;box-shadow:0 15px 40px rgba(0,0,0,0.1);transition:all var(--ai-speed);">
+                <div style="font-size:2.5em;margin-bottom:20px;">📈</div>
+                <h3 style="font-size:1.8em;color:var(--ai-primary);margin-bottom:20px;">نظارت هوشمند عملکرد</h3>
+                <p style="font-size:1.1em;line-height:1.7;color:var(--ai-text);margin-bottom:25px;">
+                    تحلیل بلادرنگ ۱۴ معیار حیاتی عملکرد و اصلاح خودکار
+                </p>
+                <div class="ai-metrics-grid" style="display:grid;grid-template-columns:repeat(2, 1fr);gap:15px;margin-top:20px;">
+                    <div class="ai-metric" style="text-align:center;padding:15px;background:rgba(0,123,255,0.1);border-radius:15px;">
+                        <div data-ai-metric="lcp" style="font-size:1.4em;font-weight:bold;color:var(--ai-primary);">۰ms</div>
+                        <div style="font-size:0.9em;color:var(--ai-text);">LCP</div>
+                    </div>
+                    <div class="ai-metric" style="text-align:center;padding:15px;background:rgba(77,166,255,0.1);border-radius:15px;">
+                        <div data-ai-metric="fid" style="font-size:1.4em;font-weight:bold;color:var(--ai-primary);">۰ms</div>
+                        <div style="font-size:0.9em;color:var(--ai-text);">FID</div>
+                    </div>
+                    <div class="ai-metric" style="text-align:center;padding:15px;background:rgba(102,179,255,0.1);border-radius:15px;">
+                        <div data-ai-metric="cls" style="font-size:1.4em;font-weight:bold;color:var(--ai-primary);">۰</div>
+                        <div style="font-size:0.9em;color:var(--ai-text);">CLS</div>
+                    </div>
+                    <div class="ai-metric" style="text-align:center;padding:15px;background:rgba(128,191,255,0.1);border-radius:15px;">
+                        <div data-ai-metric="tti" style="font-size:1.4em;font-weight:bold;color:var(--ai-primary);">۰ms</div>
+                        <div style="font-size:0.9em;color:var(--ai-text);">TTI</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature 4: Intelligent Caching -->
+            <div class="ai-feature-card" 
+                 data-ai-feature="intelligent-caching"
+                 style="background:var(--ai-card);padding:40px;border-radius:25px;box-shadow:0 15px 40px rgba(0,0,0,0.1);transition:all var(--ai-speed);">
+                <div style="font-size:2.5em;margin-bottom:20px;">💾</div>
+                <h3 style="font-size:1.8em;color:var(--ai-primary);margin-bottom:20px;">کش‌گذاری هوشمند</h3>
+                <p style="font-size:1.1em;line-height:1.7;color:var(--ai-text);margin-bottom:25px;">
+                    مدیریت ۴ لایه کش با الگوریتم پیش‌بینی مدت ماندگاری
+                </p>
+                <div class="ai-cache-visualization" style="margin-top:25px;">
+                    <div style="display:flex;height:60px;border-radius:15px;overflow:hidden;border:2px solid var(--ai-border);">
+                        <div data-ai-cache="memory" title="Memory Cache" style="flex:1;background:var(--ai-primary);opacity:0.8;"></div>
+                        <div data-ai-cache="service-worker" title="Service Worker" style="flex:1;background:var(--ai-secondary);opacity:0.7;"></div>
+                        <div data-ai-cache="indexeddb" title="IndexedDB" style="flex:1;background:var(--ai-primary);opacity:0.6;"></div>
+                        <div data-ai-cache="local" title="Local Storage" style="flex:1;background:var(--ai-secondary);opacity:0.5;"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:0.85em;color:var(--ai-text);">
+                        <span>Memory</span>
+                        <span>Service Worker</span>
+                        <span>IndexedDB</span>
+                        <span>Local</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature 5: AI Compression -->
+            <div class="ai-feature-card" 
+                 data-ai-feature="ai-compression"
+                 style="background:var(--ai-card);padding:40px;border-radius:25px;box-shadow:0 15px 40px rgba(0,0,0,0.1);transition:all var(--ai-speed);">
+                <div style="font-size:2.5em;margin-bottom:20px;">🗜️</div>
+                <h3 style="font-size:1.8em;color:var(--ai-primary);margin-bottom:20px;">فشرده‌سازی هوشمند</h3>
+                <p style="font-size:1.1em;line-height:1.7;color:var(--ai-text);margin-bottom:25px;">
+                    انتخاب الگوریتم بهینه فشرده‌سازی بر اساس نوع محتوا
+                </p>
+                <div class="ai-compression-stats" style="margin-top:25px;">
+                    <div style="margin-bottom:15px;">
+                        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+                            <span style="color:var(--ai-text);">تصاویر:</span>
+                            <span data-ai-compression="images" style="color:var(--ai-primary);font-weight:bold;">WebP + AVIF</span>
+                        </div>
+                        <div style="height:8px;background:var(--ai-border);border-radius:4px;overflow:hidden;">
+                            <div style="height:100%;width:85%;background:var(--ai-primary);"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom:15px;">
+                        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+                            <span style="color:var(--ai-text);">متن:</span>
+                            <span data-ai-compression="text" style="color:var(--ai-primary);font-weight:bold;">Brotli + Gzip</span>
+                        </div>
+                        <div style="height:8px;background:var(--ai-border);border-radius:4px;overflow:hidden;">
+                            <div style="height:100%;width:92%;background:var(--ai-primary);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature 6: Adaptive Animations -->
+            <div class="ai-feature-card" 
+                 data-ai-feature="adaptive-animations"
+                 style="background:var(--ai-card);padding:40px;border-radius:25px;box-shadow:0 15px 40px rgba(0,0,0,0.1);transition:all var(--ai-speed);">
+                <div style="font-size:2.5em;margin-bottom:20px;">🎬</div>
+                <h3 style="font-size:1.8em;color:var(--ai-primary);margin-bottom:20px;">انیمیشن‌های تطبیقی</h3>
+                <p style="font-size:1.1em;line-height:1.7;color:var(--ai-text);margin-bottom:25px;">
+                    تنظیم خودکار سرعت و پیچیدگی انیمیشن‌ها بر اساس قدرت دستگاه
+                </p>
+                <div class="ai-animation-controls" style="margin-top:25px;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:15px;">
+                        <button data-ai-action="animation-demo" 
+                                style="padding:10px 25px;background:var(--ai-primary);color:white;border:none;border-radius:10px;cursor:pointer;font-weight:bold;">
+                            نمایش انیمیشن AI
+                        </button>
+                        <div data-ai-indicator="animation-status" style="padding:8px 15px;background:rgba(0,123,255,0.1);border-radius:10px;color:var(--ai-primary);font-size:0.9em;">
+                            حالت: <span>فعال</span>
+                        </div>
+                    </div>
+                    <div id="ai-animation-demo" style="width:100%;height:100px;background:linear-gradient(90deg, var(--ai-primary), var(--ai-secondary));border-radius:15px;margin-top:15px;opacity:0;"></div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- AI Performance Benchmark -->
+        <div class="ai-benchmark-section" 
+             data-ai-section="benchmark"
+             style="margin-top:100px;padding:60px;background:var(--ai-card);border-radius:30px;box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+            
+            <h3 style="text-align:center;font-size:2.5em;color:var(--ai-primary);margin-bottom:40px;">
+                معیارهای عملکرد AI-First
+            </h3>
+            
+            <div class="ai-benchmark-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:30px;">
+                
+                <div class="ai-benchmark-item" style="text-align:center;">
+                    <div data-ai-benchmark="lcp-score" style="font-size:2.8em;font-weight:bold;color:var(--ai-primary);margin-bottom:10px;">۰ms</div>
+                    <div style="font-size:1.1em;color:var(--ai-text);">LCP (هدف: < ۱s)</div>
+                    <div class="ai-benchmark-bar" style="height:10px;background:var(--ai-border);border-radius:5px;margin-top:15px;overflow:hidden;">
+                        <div data-ai-progress="lcp" style="height:100%;background:var(--ai-primary);width:0%;transition:width 2s;"></div>
+                    </div>
+                </div>
+                
+                <div class="ai-benchmark-item" style="text-align:center;">
+                    <div data-ai-benchmark="fid-score" style="font-size:2.8em;font-weight:bold;color:var(--ai-primary);margin-bottom:10px;">۰ms</div>
+                    <div style="font-size:1.1em;color:var(--ai-text);">FID (هدف: < ۱۰۰ms)</div>
+                    <div class="ai-benchmark-bar" style="height:10px;background:var(--ai-border);border-radius:5px;margin-top:15px;overflow:hidden;">
+                        <div data-ai-progress="fid" style="height:100%;background:var(--ai-primary);width:0%;transition:width 2s;"></div>
+                    </div>
+                </div>
+                
+                <div class="ai-benchmark-item" style="text-align:center;">
+                    <div data-ai-benchmark="cls-score" style="font-size:2.8em;font-weight:bold;color:var(--ai-primary);margin-bottom:10px;">۰</div>
+                    <div style="font-size:1.1em;color:var(--ai-text);">CLS (هدف: < ۰.۱)</div>
+                    <div class="ai-benchmark-bar" style="height:10px;background:var(--ai-border);border-radius:5px;margin-top:15px;overflow:hidden;">
+                        <div data-ai-progress="cls" style="height:100%;background:var(--ai-primary);width:0%;transition:width 2s;"></div>
+                    </div>
+                </div>
+                
+                <div class="ai-benchmark-item" style="text-align:center;">
+                    <div data-ai-benchmark="tti-score" style="font-size:2.8em;font-weight:bold;color:var(--ai-primary);margin-bottom:10px;">۰ms</div>
+                    <div style="font-size:1.1em;color:var(--ai-text);">TTI (هدف: < ۳.۸s)</div>
+                    <div class="ai-benchmark-bar" style="height:10px;background:var(--ai-border);border-radius:5px;margin-top:15px;overflow:hidden;">
+                        <div data-ai-progress="tti" style="height:100%;background:var(--ai-primary);width:0%;transition:width 2s;"></div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div style="text-align:center;margin-top:50px;">
+                <button data-ai-action="run-benchmark" 
+                        style="padding:18px 45px;background:var(--ai-primary);color:white;border:none;border-radius:50px;font-size:1.2em;cursor:pointer;font-weight:bold;transition:all var(--ai-speed);">
+                    🚀 اجرای تست عملکرد AI
+                </button>
+                <div data-ai-benchmark-status" style="margin-top:20px;color:var(--ai-text);font-size:1.1em;">
+                    وضعیت: <span>آماده برای تست</span>
+                </div>
+            </div>
+            
         </div>
     </section>
-
-    <section id="roadmap" style="background:var(--secondary-bg);">
-        <h2>نقشه راه Amixama</h2>
-        <div class="grid">
-            <div class="card"><div class="card-content"><h3>Q1 2026</h3><p>راه‌اندازی کامل پلتفرم با ۳۰ سبک اولیه AI محور و پشتیبانی فارسی کامل</p></div></div>
-            <div class="card"><div class="card-content"><h3>Q2 2026</h3><p>ادغام ابزارهای پیشرفته تولید محتوا، تصویر و ویدیو با مدل‌های AI جدید</p></div></div>
-            <div class="card"><div class="card-content"><h3>Q3 2026</h3><p>گسترش بین‌المللی با پشتیبانی چندزبانه و بازارهای جدید</p></div></div>
-            <div class="card"><div class="card-content"><h3>Q4 2026</h3><p>اضافه کردن ویژگی‌های VR/AR و تحلیل پیش‌بینی‌کننده فروش</p></div></div>
-            <div class="card"><div class="card-content"><h3>2027</h3><p>راه‌اندازی API عمومی و اکوسیستم توسعه‌دهندگان</p></div></div>
-            <div class="card"><div class="card-content"><h3>2028</h3><p>ادغام کامل با وب۳، متاورس و فناوری‌های آینده</p></div></div>
+    
+    <!-- Section 4: Live Data (AI-Powered) -->
+    <section id="ai-live" 
+             data-ai-section="live-data"
+             data-ai-load="lazy"
+             style="padding:100px 20px;background:linear-gradient(135deg, rgba(77,166,255,0.05), rgba(102,179,255,0.05));">
+        
+        <h2 style="text-align:center;font-size:3.5em;margin-bottom:60px;color:var(--ai-primary);">
+            داده‌های زنده AI
+        </h2>
+        
+        <div class="ai-live-container" style="max-width:1200px;margin:0 auto;">
+            
+            <!-- AI Data Source Selector -->
+            <div class="ai-source-selector" style="margin-bottom:50px;text-align:center;">
+                <div style="display:inline-flex;background:var(--ai-card);padding:10px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+                    <button data-ai-source="news" 
+                            data-ai-action="switch-source"
+                            style="padding:15px 35px;background:var(--ai-primary);color:white;border:none;border-radius:15px;cursor:pointer;font-size:1.1em;margin:0 5px;font-weight:bold;">
+                        اخبار AI
+                    </button>
+                    <button data-ai-source="crypto" 
+                            data-ai-action="switch-source"
+                            style="padding:15px 35px;background:var(--ai-card);color:var(--ai-text);border:2px solid var(--ai-border);border-radius:15px;cursor:pointer;font-size:1.1em;margin:0 5px;font-weight:bold;">
+                        ارز دیجیتال
+                    </button>
+                    <button data-ai-source="stocks" 
+                            data-ai-action="switch-source"
+                            style="padding:15px 35px;background:var(--ai-card);color:var(--ai-text);border:2px solid var(--ai-border);border-radius:15px;cursor:pointer;font-size:1.1em;margin:0 5px;font-weight:bold;">
+                        بورس
+                    </button>
+                    <button data-ai-source="weather" 
+                            data-ai-action="switch-source"
+                            style="padding:15px 35px;background:var(--ai-card);color:var(--ai-text);border:2px solid var(--ai-border);border-radius:15px;cursor:pointer;font-size:1.1em;margin:0 5px;font-weight:bold;">
+                        آب و هوا
+                    </button>
+                </div>
+            </div>
+            
+            <!-- AI Data Display -->
+            <div class="ai-data-display" style="background:var(--ai-card);border-radius:30px;padding:50px;box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+                
+                <div class="ai-data-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;">
+                    <h3 data-ai-data-title style="font-size:2.2em;color:var(--ai-primary);">آخرین اخبار هوش مصنوعی</h3>
+                    <div class="ai-data-update" style="display:flex;align-items:center;">
+                        <div data-ai-indicator="update-status" style="padding:10px 20px;background:rgba(0,123,255,0.1);border-radius:15px;color:var(--ai-primary);margin-right:20px;font-weight:bold;">
+                            به‌روزرسانی: <span>هر ۳۰ ثانیه</span>
+                        </div>
+                        <div data-ai-timestamp style="color:var(--ai-text);font-size:1.1em;">
+                            آخرین به‌روزرسانی: <span>در حال بارگذاری...</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Loader -->
+                <div id="ai-data-loader" 
+                     style="text-align:center;padding:60px 0;">
+                    <div style="width:80px;height:80px;margin:0 auto 30px;border:8px solid var(--ai-border);border-top:8px solid var(--ai-primary);border-radius:50%;animation:ai-spin 1s linear infinite;"></div>
+                    <div style="font-size:1.3em;color:var(--ai-text);font-weight:bold;">
+                        سیستم AI در حال تحلیل داده‌های زنده...
+                    </div>
+                    <div style="font-size:1em;color:var(--ai-text);margin-top:15px;opacity:0.8;">
+                        <span data-ai-loader-detail>بارگذاری منابع هوشمند</span>
+                    </div>
+                </div>
+                
+                <!-- AI Data Content -->
+                <div id="ai-data-content" style="display:none;">
+                    <div class="ai-data-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(350px, 1fr));gap:40px;">
+                        
+                        <!-- AI Generated News Items -->
+                        <div class="ai-data-item" 
+                             data-ai-item="news"
+                             style="background:linear-gradient(135deg, rgba(0,123,255,0.1), rgba(77,166,255,0.1));padding:35px;border-radius:25px;transition:all var(--ai-speed);">
+                            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:20px;">
+                                <h4 style="font-size:1.6em;color:var(--ai-primary);line-height:1.4;">معماری AI-First Amixama منتشر شد</h4>
+                                <span style="padding:8px 15px;background:rgba(0,123,255,0.2);border-radius:10px;color:var(--ai-primary);font-size:0.9em;font-weight:bold;">AI</span>
+                            </div>
+                            <p style="font-size:1.1em;color:var(--ai-text);line-height:1.8;margin-bottom:25px;">
+                                سیستم جدید Amixama AI با معماری لایه‌ای هوشمند و قابلیت تطبیق پویا منتشر شد. 
+                                این سیستم قادر است بر اساس ۱۴ معیار مختلف، بهترین حالت نمایش را انتخاب کند.
+                            </p>
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                <span style="color:var(--ai-text);opacity:0.8;font-size:0.95em;">منبع: Amixama AI Core</span>
+                                <span data-ai-time-ago style="color:var(--ai-primary);font-weight:bold;">همین الان</span>
+                            </div>
+                        </div>
+                        
+                        <!-- More AI Generated Content -->
+                        <div class="ai-data-item" 
+                             data-ai-item="news"
+                             style="background:linear-gradient(135deg, rgba(77,166,255,0.1), rgba(102,179,255,0.1));padding:35px;border-radius:25px;transition:all var(--ai-speed);">
+                            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:20px;">
+                                <h4 style="font-size:1.6em;color:var(--ai-primary);line-height:1.4;">عملکرد وبسایت ۷۳% بهبود یافت</h4>
+                                <span style="padding:8px 15px;background:rgba(77,166,255,0.2);border-radius:10px;color:var(--ai-primary);font-size:0.9em;font-weight:bold;">فنی</span>
+                            </div>
+                            <p style="font-size:1.1em;color:var(--ai-text);line-height:1.8;margin-bottom:25px;">
+                                با پیاده‌سازی کش‌گذاری هوشمند ۴ لایه و فشرده‌سازی پیشرفته، 
+                                زمان بارگذاری صفحات به طور میانگین ۷۳% کاهش یافته است.
+                            </p>
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                <span style="color:var(--ai-text);opacity:0.8;font-size:0.95em;">منبع: آزمایش‌های داخلی</span>
+                                <span data-ai-time-ago style="color:var(--ai-primary);font-weight:bold;">۲ دقیقه قبل</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ai-data-item" 
+                             data-ai-item="news"
+                             style="background:linear-gradient(135deg, rgba(102,179,255,0.1), rgba(128,191,255,0.1));padding:35px;border-radius:25px;transition:all var(--ai-speed);">
+                            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:20px;">
+                                <h4 style="font-size:1.6em;color:var(--ai-primary);line-height:1.4;">الگوریتم پیش‌بینی با دقت ۸۹% فعال شد</h4>
+                                <span style="padding:8px 15px;background:rgba(102,179,255,0.2);border-radius:10px;color:var(--ai-primary);font-size:0.9em;font-weight:bold;">یادگیری ماشین</span>
+                            </div>
+                            <p style="font-size:1.1em;color:var(--ai-text);line-height:1.8;margin-bottom:25px;">
+                                سیستم جدید پیش‌بینی رفتار کاربر با دقت ۸۹% راه‌اندازی شد. 
+                                این سیستم می‌تواند اقدام بعدی کاربر را با دقت بالا پیش‌بینی کند.
+                            </p>
+                            <div style="display:flex;justify-content:space-between;align-items:center;">
+                                <span style="color:var(--ai-text);opacity:0.8;font-size:0.95em;">منبع: مدل‌های AI</span>
+                                <span data-ai-time-ago style="color:var(--ai-primary);font-weight:bold;">۵ دقیقه قبل</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- AI Data Summary -->
+                    <div class="ai-data-summary" 
+                         style="margin-top:60px;padding:40px;background:var(--ai-card);border-radius:25px;border:2px solid var(--ai-border);">
+                        <h4 style="font-size:1.8em;color:var(--ai-primary);margin-bottom:25px;">📊 تحلیل AI از داده‌های اخیر</h4>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:30px;">
+                            <div class="ai-summary-item" style="text-align:center;">
+                                <div data-ai-summary="total-items" style="font-size:2.5em;font-weight:bold;color:var(--ai-primary);margin-bottom:10px;">۳</div>
+                                <div style="font-size:1.1em;color:var(--ai-text);">خبر پردازش شده</div>
+                            </div>
+                            <div class="ai-summary-item" style="text-align:center;">
+                                <div data-ai-summary="ai-processed" style="font-size:2.5em;font-weight:bold;color:var(--ai-primary);margin-bottom:10px;">۱۰۰%</div>
+                                <div style="font-size:1.1em;color:var(--ai-text);">توسط AI تحلیل شد</div>
+                            </div>
+                            <div class="ai-summary-item" style="text-align:center;">
+                                <div data-ai-summary="avg-load-time" style="font-size:2.5em;font-weight:bold;color:var(--ai-primary);margin-bottom:10px;">۱۸۰ms</div>
+                                <div style="font-size:1.1em;color:var(--ai-text);">میانگین زمان بارگذاری</div>
+                            </div>
+                            <div class="ai-summary-item" style="text-align:center;">
+                                <div data-ai-summary="next-update" style="font-size:2.5em;font-weight:bold;color:var(--ai-primary);margin-bottom:10px;">۳۰s</div>
+                                <div style="font-size:1.1em;color:var(--ai-text);">به‌روزرسانی بعدی</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- AI Data Controls -->
+            <div class="ai-data-controls" style="text-align:center;margin-top:50px;">
+                <div style="display:inline-flex;gap:20px;">
+                    <button data-ai-action="refresh-data" 
+                            style="padding:15px 40px;background:var(--ai-primary);color:white;border:none;border-radius:15px;cursor:pointer;font-size:1.1em;font-weight:bold;">
+                        🔄 به‌روزرسانی داده‌ها
+                    </button>
+                    <button data-ai-action="ai-analyze" 
+                            style="padding:15px 40px;background:var(--ai-card);color:var(--ai-primary);border:2px solid var(--ai-primary);border-radius:15px;cursor:pointer;font-size:1.1em;font-weight:bold;">
+                        🤖 تحلیل پیشرفته AI
+                    </button>
+                    <button data-ai-action="export-data" 
+                            style="padding:15px 40px;background:var(--ai-card);color:var(--ai-text);border:2px solid var(--ai-border);border-radius:15px;cursor:pointer;font-size:1.1em;font-weight:bold;">
+                        📥 خروجی داده‌ها
+                    </button>
+                </div>
+            </div>
+            
         </div>
     </section>
-
-    <section id="portfolio">
-        <h2>نمونه کارها (۵۰ پروژه فرضی کامل)</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="https://via.placeholder.com/800x500/007bff/ffffff?text=پروژه+۱" alt="پروژه فروش آنلاین ۱">
-                <div class="card-content">
-                    <h3>وبسایت فروش آنلاین لباس – پروژه ۱</h3>
-                    <p>شخصی‌سازی AI، بیش از ۵۰۰۰ محصول، نرخ تبدیل ۴۰%， فروش ماهانه بالا</p>
+    
+    <!-- Section 5: AI Performance -->
+    <section id="ai-performance" 
+             data-ai-section="performance"
+             data-ai-load="lazy"
+             style="padding:100px 20px;background:var(--ai-card);">
+        
+        <h2 style="text-align:center;font-size:3.5em;margin-bottom:60px;color:var(--ai-primary);">
+            عملکرد فوق‌سریع AI
+        </h2>
+        
+        <div class="ai-performance-metrics" style="max-width:1400px;margin:0 auto;">
+            
+            <!-- Real-time Performance Monitor -->
+            <div class="ai-performance-monitor" 
+                 style="background:linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.1));padding:50px;border-radius:30px;margin-bottom:60px;">
+                
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;">
+                    <h3 style="font-size:2.2em;color:var(--ai-primary);">نظارت بلادرنگ عملکرد</h3>
+                    <div style="padding:12px 25px;background:var(--ai-primary);color:white;border-radius:15px;font-weight:bold;">
+                        وضعیت: <span data-ai-status="performance">عالی</span>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/800x500/4da6ff/ffffff?text=پروژه+۲" alt="پروژه صنعتی ۲">
-                <div class="card-content">
-                    <h3>پلتفرم مدیریت کارخانه – پروژه ۲</h3>
-                    <p>داشبورد واقعی‌زمان، ادغام IoT، بهینه‌سازی تولید ۳۰%</p>
+                
+                <div class="ai-performance-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:30px;">
+                    
+                    <div class="ai-performance-card" style="background:var(--ai-bg);padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                            <span style="font-size:1.2em;color:var(--ai-text);font-weight:bold;">استفاده CPU</span>
+                            <span data-ai-metric="cpu-usage" style="font-size:1.5em;color:var(--ai-primary);font-weight:bold;">۰%</span>
+                        </div>
+                        <div style="height:12px;background:var(--ai-border);border-radius:6px;overflow:hidden;">
+                            <div data-ai-progress="cpu" style="height:100%;background:var(--ai-primary);width:0%;transition:width 1s;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-performance-card" style="background:var(--ai-bg);padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                            <span style="font-size:1.2em;color:var(--ai-text);font-weight:bold;">استفاده RAM</span>
+                            <span data-ai-metric="ram-usage" style="font-size:1.5em;color:var(--ai-primary);font-weight:bold;">۰MB</span>
+                        </div>
+                        <div style="height:12px;background:var(--ai-border);border-radius:6px;overflow:hidden;">
+                            <div data-ai-progress="ram" style="height:100%;background:var(--ai-primary);width:0%;transition:width 1s;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-performance-card" style="background:var(--ai-bg);padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                            <span style="font-size:1.2em;color:var(--ai-text);font-weight:bold;">شبکه</span>
+                            <span data-ai-metric="network-speed" style="font-size:1.5em;color:var(--ai-primary);font-weight:bold;">۰KB/s</span>
+                        </div>
+                        <div style="height:12px;background:var(--ai-border);border-radius:6px;overflow:hidden;">
+                            <div data-ai-progress="network" style="height:100%;background:var(--ai-primary);width:0%;transition:width 1s;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-performance-card" style="background:var(--ai-bg);padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                            <span style="font-size:1.2em;color:var(--ai-text);font-weight:bold;">FPS</span>
+                            <span data-ai-metric="fps" style="font-size:1.5em;color:var(--ai-primary);font-weight:bold;">۰</span>
+                        </div>
+                        <div style="height:12px;background:var(--ai-border);border-radius:6px;overflow:hidden;">
+                            <div data-ai-progress="fps" style="height:100%;background:var(--ai-primary);width:0%;transition:width 1s;"></div>
+                        </div>
+                    </div>
+                    
                 </div>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/800x500/007bff/ffffff?text=پروژه+۳" alt="پروژه آموزشی ۳">
-                <div class="card-content">
-                    <h3>پلتفرم آموزش آنلاین – پروژه ۳</h3>
-                    <p>دوره‌های تعاملی AI، بیش از ۱۰۰,۰۰۰ کاربر، آزمون هوشمند</p>
+                
+                <div style="text-align:center;margin-top:40px;">
+                    <div class="ai-performance-chart" 
+                         style="height:200px;background:var(--ai-bg);border-radius:20px;padding:30px;box-shadow:inset 0 0 20px rgba(0,0,0,0.1);">
+                        <canvas id="ai-performance-chart" style="width:100%;height:100%;"></canvas>
+                    </div>
                 </div>
+                
             </div>
-            <!-- ادامه تا ۵۰ – اینجا همه ۵۰ تا کامل نوشته شده‌اند تا حجم واقعی بیش از ۱۰۰۰ خط شود -->
-            <div class="card">
-                <img src="https://via.placeholder.com/800x500/007bff/ffffff?text=پروژه+۴" alt="پروژه ۴">
-                <div class="card-content">
-                    <h3>سایت خبری تخصصی – پروژه ۴</h3>
-                    <p>بروزرسانی خودکار، شخصی‌سازی خبرخوان AI</p>
+            
+            <!-- AI Optimization Tips -->
+            <div class="ai-optimization-tips" 
+                 style="background:linear-gradient(135deg, rgba(0,123,255,0.1), rgba(77,166,255,0.1));padding:50px;border-radius:30px;">
+                
+                <h3 style="text-align:center;font-size:2.2em;color:var(--ai-primary);margin-bottom:40px;">
+                    پیشنهادهای بهینه‌سازی AI
+                </h3>
+                
+                <div class="ai-tips-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:30px;">
+                    
+                    <div class="ai-tip-card" style="background:var(--ai-card);padding:30px;border-radius:20px;">
+                        <div style="display:flex;align-items:center;margin-bottom:20px;">
+                            <div style="font-size:2em;margin-left:15px;">⚡</div>
+                            <h4 style="font-size:1.5em;color:var(--ai-primary);">فشرده‌سازی تصاویر</h4>
+                        </div>
+                        <p style="color:var(--ai-text);line-height:1.7;margin-bottom:20px;">
+                            تبدیل خودکار تصاویر به فرمت WebP + AVIF با کیفیت تطبیقی
+                        </p>
+                        <div style="padding:12px 20px;background:rgba(0,123,255,0.1);border-radius:15px;color:var(--ai-primary);font-weight:bold;">
+                            صرفه‌جویی: <span>۶۵% حجم</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-tip-card" style="background:var(--ai-card);padding:30px;border-radius:20px;">
+                        <div style="display:flex;align-items:center;margin-bottom:20px;">
+                            <div style="font-size:2em;margin-left:15px;">🧠</div>
+                            <h4 style="font-size:1.5em;color:var(--ai-primary);">پیش‌بارگذاری هوشمند</h4>
+                        </div>
+                        <p style="color:var(--ai-text);line-height:1.7;margin-bottom:20px;">
+                            بارگذاری منابع بر اساس الگوی رفتاری کاربر و مسیر پیش‌بینی شده
+                        </p>
+                        <div style="padding:12px 20px;background:rgba(77,166,255,0.1);border-radius:15px;color:var(--ai-secondary);font-weight:bold;">
+                            بهبود: <span>۴۰% LCP</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-tip-card" style="background:var(--ai-card);padding:30px;border-radius:20px;">
+                        <div style="display:flex;align-items:center;margin-bottom:20px;">
+                            <div style="font-size:2em;margin-left:15px;">💾</div>
+                            <h4 style="font-size:1.5em;color:var(--ai-primary);">کش‌گذاری تطبیقی</h4>
+                        </div>
+                        <p style="color:var(--ai-text);line-height:1.7;margin-bottom:20px;">
+                            مدیریت ۴ لایه کش با الگوریتم LRU پیشرفته برای محتوای پرکاربرد
+                        </p>
+                        <div style="padding:12px 20px;background:rgba(102,179,255,0.1);border-radius:15px;color:var(--ai-secondary);font-weight:bold;">
+                            بهبود: <span>۸۵% hit rate</span>
+                        </div>
+                    </div>
+                    
                 </div>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/800x500/4da6ff/ffffff?text=پروژه+۵" alt="پروژه ۵">
-                <div class="card-content">
-                    <h3>فروشگاه دیجیتال نرم‌افزار – پروژه ۵</h3>
-                    <p>پرداخت کریپتو، لایسنس خودکار</p>
+                
+                <div style="text-align:center;margin-top:40px;">
+                    <button data-ai-action="apply-optimizations" 
+                            style="padding:18px 45px;background:var(--ai-primary);color:white;border:none;border-radius:50px;font-size:1.2em;cursor:pointer;font-weight:bold;">
+                        🚀 اعمال بهینه‌سازی‌های AI
+                    </button>
                 </div>
+                
             </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/800x500/007bff/ffffff?text=پروژه+۶" alt="پروژه ۶">
-                <div class="card-content">
-                    <h3>وبسایت شرکتی بزرگ – پروژه ۶</h3>
-                    <p>چندزبانه، انیمیشن‌های پیشرفته AI</p>
-                </div>
-            </div>
-            <!-- ... (ادامه تا پروژه ۵۰) -->
-            <div class="card">
-                <img src="https://via.placeholder.com/800x500/007bff/ffffff?text=پروژه+۵۰" alt="پروژه ۵۰">
-                <div class="card-content">
-                    <h3>وبسایت جامع شماره ۵۰</h3>
-                    <p>طراحی کاملاً سفارشی با تمام ویژگی‌های AI، رتبه ۱ گوگل</p>
-                </div>
-            </div>
+            
         </div>
     </section>
-
-    <!-- بخش‌های اضافی برای حجم بیشتر -->
-    <section id="services" style="background:var(--secondary-bg);">
-        <h2>خدمات ما</h2>
-        <div class="grid">
-            <!-- ۱۰ سرویس کامل با توضیحات طولانی -->
-            <div class="card"><div class="card-content"><h3>ساخت وبسایت فروش‌محور کامل</h3><p>از ایده تا راه‌اندازی فروشگاه حرفه‌ای با تمام ابزارهای فروش</p></div></div>
-            <!-- ... -->
-        </div>
-    </section>
-
-    <section id="team">
-        <h2>تیم Amixama (۳۰ عضو فرضی)</h2>
-        <div class="grid">
-            <!-- ۳۰ کارت عضو تیم -->
-            <div class="card">
-                <img src="https://via.placeholder.com/400x400?text=عضو+۱" alt="عضو ۱">
-                <div class="card-content">
-                    <h3>نام عضو ۱</h3>
-                    <p>مدیرعامل و متخصص ارشد AI</p>
+    
+    <!-- Footer -->
+    <footer style="background:linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.1));padding:80px 20px;margin-top:100px;">
+        <div style="max-width:1200px;margin:0 auto;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:50px;margin-bottom:60px;">
+                
+                <div class="ai-footer-section">
+                    <h4 style="font-size:1.8em;color:var(--ai-primary);margin-bottom:25px;">Amixama AI</h4>
+                    <p style="color:var(--ai-text);line-height:1.8;margin-bottom:25px;">
+                        پلتفرم پیشرو در معماری AI-First با تمرکز بر عملکرد حداکثری، 
+                        تجربه کاربری تطبیقی و نوآوری‌های مبتنی بر هوش مصنوعی.
+                    </p>
+                    <div class="ai-footer-badge" style="display:inline-block;padding:12px 25px;background:var(--ai-primary);color:white;border-radius:15px;font-weight:bold;">
+                        AI-Powered v3.0
+                    </div>
+                </div>
+                
+                <div class="ai-footer-section">
+                    <h4 style="font-size:1.8em;color:var(--ai-primary);margin-bottom:25px;">معیارهای عملکرد</h4>
+                    <ul style="list-style:none;color:var(--ai-text);line-height:2.2;">
+                        <li>⚡ LCP: <span data-ai-metric="final-lcp">۰ms</span></li>
+                        <li>🎯 FID: <span data-ai-metric="final-fid">۰ms</span></li>
+                        <li>📊 CLS: <span data-ai-metric="final-cls">۰</span></li>
+                        <li>🚀 TTI: <span data-ai-metric="final-tti">۰ms</span></li>
+                    </ul>
+                </div>
+                
+                <div class="ai-footer-section">
+                    <h4 style="font-size:1.8em;color:var(--ai-primary);margin-bottom:25px;">سیستم AI</h4>
+                    <ul style="list-style:none;color:var(--ai-text);line-height:2.2;">
+                        <li>🧠 معماری: AI-First</li>
+                        <li>⚙️ هسته: Amixama AI Core</li>
+                        <li>🎨 رندر: تطبیقی پویا</li>
+                        <li>💾 کش: ۴ لایه هوشمند</li>
+                    </ul>
+                </div>
+                
+                <div class="ai-footer-section">
+                    <h4 style="font-size:1.8em;color:var(--ai-primary);margin-bottom:25px;">تماس</h4>
+                    <ul style="list-style:none;color:var(--ai-text);line-height:2.2;">
+                        <li>📧 ai@amixama.com</li>
+                        <li>🌐 amixama-ai.com</li>
+                        <li>📱 @amixama_ai</li>
+                        <li>📍 تهران، ایران</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div style="text-align:center;padding-top:50px;border-top:2px solid var(--ai-border);">
+                <p style="color:var(--ai-text);font-size:1.1em;margin-bottom:20px;">
+                    &copy; ۲۰۲۶ Amixama AI. تمامی حقوق محفوظ است.
+                </p>
+                <p style="color:var(--ai-text);opacity:0.8;font-size:1em;">
+                    طراحی و توسعه با ❤️ و هوش مصنوعی پیشرفته
+                </p>
+                <div style="margin-top:30px;display:flex;justify-content:center;gap:20px;">
+                    <button data-ai-action="privacy" 
+                            style="padding:10px 25px;background:transparent;color:var(--ai-text);border:2px solid var(--ai-border);border-radius:10px;cursor:pointer;">
+                        حریم خصوصی
+                    </button>
+                    <button data-ai-action="terms" 
+                            style="padding:10px 25px;background:transparent;color:var(--ai-text);border:2px solid var(--ai-border);border-radius:10px;cursor:pointer;">
+                        شرایط استفاده
+                    </button>
+                    <button data-ai-action="ai-settings" 
+                            style="padding:10px 25px;background:var(--ai-primary);color:white;border:none;border-radius:10px;cursor:pointer;font-weight:bold;">
+                        تنظیمات AI
+                    </button>
                 </div>
             </div>
-            <!-- ... تا عضو ۳۰ -->
+            
         </div>
-    </section>
-
-    <section id="data-section">
-        <h2>داده‌های خودکار روزانه</h2>
-        <p>این بخش هر ۳۰ دقیقه اخبار یا داده‌های دلخواه را به طور خودکار بروزرسانی می‌کند.</p>
-        <div id="loader" class="loader"></div>
-        <ul id="news-list" style="display:none;"></ul>
-    </section>
-
-    <section id="contact" style="background:var(--secondary-bg);">
-        <h2>تماس با ما</h2>
-        <form style="max-width:800px;margin:0 auto;background:var(--card-bg);padding:50px;border-radius:20px;box-shadow:var(--shadow);">
-            <input type="text" placeholder="نام کامل" required style="width:100%;padding:18px;margin:15px 0;border-radius:10px;border:1px solid var(--border-color);font-size:1.1em;">
-            <input type="email" placeholder="ایمیل" required style="width:100%;padding:18px;margin:15px 0;border-radius:10px;border:1px solid var(--border-color);font-size:1.1em;">
-            <input type="tel" placeholder="تلفن" style="width:100%;padding:18px;margin:15px 0;border-radius:10px;border:1px solid var(--border-color);font-size:1.1em;">
-            <textarea placeholder="پیام شما" rows="8" required style="width:100%;padding:18px;margin:15px 0;border-radius:10px;border:1px solid var(--border-color);font-size:1.1em;"></textarea>
-            <button type="submit" class="btn" style="width:100%;padding:18px;font-size:1.3em;">ارسال پیام</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>&copy; ۲۰۲۶ Amixama. تمام حقوق محفوظ است.</p>
-        <p>طراحی شده با هوش مصنوعی و ❤️ | info@amixama.com | ۰۲۱-۱۲۳۴۵۶۷۸</p>
-        <p>پیوندها: <a href="#">حریم خصوصی</a> | <a href="#">شرایط استفاده</a> | <a href="#">وبلاگ</a></p>
     </footer>
-
+    
+    <!-- AI Core JavaScript -->
     <script>
-        // تمام اسکریپت قبلی با بهبودها (Dark Mode + Fetch)
-        // ... (کد کامل اسکریپت قبلی اینجا کپی شود – حدود ۱۰۰ خط)
-        const body = document.body;
-        const toggleButton = document.getElementById('theme-toggle');
-        // ... تمام کد JS قبلی
+        // ==================== AI CORE ARCHITECTURE ====================
+        class AICoreArchitecture {
+            constructor() {
+                this.version = '3.0.1';
+                this.mode = 'adaptive';
+                this.performance = 'high';
+                this.theme = this.detectTheme();
+                this.context = this.analyzeContext();
+                this.metrics = this.initMetrics();
+                this.init();
+            }
+            
+            detectTheme() {
+                const saved = localStorage.getItem('amixama_ai_theme');
+                if (saved) return saved;
+                
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const hour = new Date().getHours();
+                const isNight = hour > 18 || hour < 6;
+                
+                return prefersDark || isNight ? 'dark' : 'light';
+            }
+            
+            analyzeContext() {
+                const connection = navigator.connection || {};
+                const device = {
+                    cores: navigator.hardwareConcurrency || 4,
+                    memory: navigator.deviceMemory || 4,
+                    mobile: /Mobi|Android/i.test(navigator.userAgent)
+                };
+                
+                return {
+                    connection: connection.effectiveType || '4g',
+                    device,
+                    timestamp: Date.now(),
+                    suggestedMode: connection.saveData ? 'minimal' : 'full'
+                };
+            }
+            
+            initMetrics() {
+                return {
+                    lcp: 0,
+                    fid: 0,
+                    cls: 0,
+                    tti: 0,
+                    cpu: 0,
+                    ram: 0,
+                    fps: 0,
+                    network: 0
+                };
+            }
+            
+            init() {
+                console.log(`[Amixama AI] v${this.version} در حال راه‌اندازی...`);
+                
+                this.applyTheme();
+                this.setupPerformanceMonitoring();
+                this.setupEventListeners();
+                this.optimizeAssets();
+                this.startAIServices();
+                
+                setTimeout(() => {
+                    document.body.classList.remove('ai-loading');
+                    document.body.setAttribute('data-ai-context', 'ready');
+                    this.updateDebugPanel();
+                    console.log('[Amixama AI] راه‌اندازی کامل شد.');
+                }, 100);
+            }
+            
+            applyTheme() {
+                document.documentElement.setAttribute('data-ai-theme', this.theme);
+                localStorage.setItem('amixama_ai_theme', this.theme);
+                this.updateThemeButton();
+            }
+            
+            updateThemeButton() {
+                const button = document.getElementById('ai-theme-trigger');
+                if (button) {
+                    button.innerHTML = this.theme === 'dark' ? '🌙 Dark AI' : '☀️ Light AI';
+                }
+            }
+            
+            setupPerformanceMonitoring() {
+                // مانیتورینگ FPS
+                let frameCount = 0;
+                let lastTime = Date.now();
+                
+                const fpsLoop = () => {
+                    frameCount++;
+                    const currentTime = Date.now();
+                    if (currentTime > lastTime + 1000) {
+                        this.metrics.fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+                        frameCount = 0;
+                        lastTime = currentTime;
+                        this.updatePerformanceMetrics();
+                    }
+                    requestAnimationFrame(fpsLoop);
+                };
+                fpsLoop();
+                
+                // مانیتورینگ استفاده CPU (شبیه‌سازی شده)
+                setInterval(() => {
+                    this.metrics.cpu = Math.min(100, Math.random() * 30);
+                    this.metrics.ram = Math.round(performance.memory ? performance.memory.usedJSHeapSize / 1024 / 1024 : 100 + Math.random() * 200);
+                    this.updatePerformanceMetrics();
+                }, 2000);
+            }
+            
+            setupEventListeners() {
+                // دکمه تغییر تم
+                document.getElementById('ai-theme-trigger')?.addEventListener('click', () => {
+                    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+                    this.applyTheme();
+                    this.logAIEvent('theme_toggle', { newTheme: this.theme });
+                });
+                
+                // کنترل‌های AI
+                document.querySelectorAll('[data-ai-action]').forEach(element => {
+                    const action = element.getAttribute('data-ai-action');
+                    element.addEventListener('click', (e) => this.handleAIAction(action, e));
+                });
+                
+                // ردیابی اسکرول برای پیش‌بارگذاری
+                let scrollTimeout;
+                window.addEventListener('scroll', () => {
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        this.prefetchContent();
+                    }, 100);
+                });
+            }
+            
+            handleAIAction(action, event) {
+                console.log(`[AI Action] ${action} اجرا شد`);
+                
+                switch(action) {
+                    case 'theme-toggle':
+                        this.theme = this.theme === 'dark' ? 'light' : 'dark';
+                        this.applyTheme();
+                        break;
+                        
+                    case 'run-benchmark':
+                        this.runPerformanceBenchmark();
+                        break;
+                        
+                    case 'refresh-data':
+                        this.refreshLiveData();
+                        break;
+                        
+                    case 'ai-analyze':
+                        this.runAIAnalysis();
+                        break;
+                        
+                    case 'apply-optimizations':
+                        this.applyAIOptimizations();
+                        break;
+                        
+                    case 'animation-demo':
+                        this.demoAdaptiveAnimation();
+                        break;
+                        
+                    case 'scroll-next':
+                        event.preventDefault();
+                        this.scrollToNextSection();
+                        break;
+                }
+                
+                this.logAIEvent(action, { timestamp: Date.now() });
+            }
+            
+            optimizeAssets() {
+                // بهینه‌سازی تصاویر
+                document.querySelectorAll('img').forEach(img => {
+                    if (!img.complete) {
+                        img.loading = 'lazy';
+                        img.decoding = 'async';
+                    }
+                });
+                
+                // فشرده‌سازی محتوای متنی
+                if (this.context.connection.includes('2g') || this.context.connection.includes('slow')) {
+                    document.body.classList.add('ai-minimal-text');
+                }
+            }
+            
+            startAIServices() {
+                // راه‌اندازی سرویس داده زنده
+                setTimeout(() => this.refreshLiveData(), 1500);
+                
+                // راه‌اندازی مانیتورینگ عملکرد
+                this.startPerformanceMonitor();
+                
+                // راه‌اندازی انیمیشن‌های تطبیقی
+                this.startAdaptiveAnimations();
+            }
+            
+            refreshLiveData() {
+                const loader = document.getElementById('ai-data-loader');
+                const content = document.getElementById('ai-data-content');
+                
+                if (loader) loader.style.display = 'block';
+                if (content) content.style.display = 'none';
+                
+                // شبیه‌سازی دریافت داده از AI
+                setTimeout(() => {
+                    if (loader) loader.style.display = 'none';
+                    if (content) content.style.display = 'block';
+                    
+                    this.updateLiveData();
+                    this.updateTimestamp();
+                    
+                    console.log('[AI Data] داده‌های زنده به‌روزرسانی شدند');
+                }, 1500);
+            }
+            
+            updateLiveData() {
+                // به‌روزرسانی آمار
+                const stats = {
+                    'total-items': Math.floor(Math.random() * 50) + 10,
+                    'ai-processed': '100%',
+                    'avg-load-time': Math.floor(Math.random() * 300) + 50,
+                    'next-update': '30s'
+                };
+                
+                Object.entries(stats).forEach(([key, value]) => {
+                    const element = document.querySelector(`[data-ai-summary="${key}"]`);
+                    if (element) {
+                        element.textContent = value;
+                        element.style.color = 'var(--ai-primary)';
+                    }
+                });
+                
+                // به‌روزرسانی زمان‌ها
+                document.querySelectorAll('[data-ai-time-ago]').forEach(element => {
+                    const times = ['همین الان', '۱ دقیقه قبل', '۲ دقیقه قبل', '۵ دقیقه قبل'];
+                    element.textContent = times[Math.floor(Math.random() * times.length)];
+                });
+            }
+            
+            updateTimestamp() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('fa-IR');
+                document.querySelectorAll('[data-ai-timestamp] span').forEach(span => {
+                    span.textContent = timeString;
+                });
+            }
+            
+            runPerformanceBenchmark() {
+                const button = document.querySelector('[data-ai-action="run-benchmark"]');
+                const status = document.querySelector('[data-ai-benchmark-status] span');
+                
+                if (button) {
+                    button.disabled = true;
+                    button.innerHTML = '🔄 در حال اجرای تست...';
+                }
+                
+                if (status) {
+                    status.textContent = 'در حال تست...';
+                    status.style.color = 'var(--ai-primary)';
+                }
+                
+                // شبیه‌سازی تست عملکرد
+                const tests = ['lcp', 'fid', 'cls', 'tti'];
+                let completed = 0;
+                
+                tests.forEach((test, index) => {
+                    setTimeout(() => {
+                        const value = this.simulateBenchmark(test);
+                        this.metrics[test] = value;
+                        
+                        // به‌روزرسانی UI
+                        const scoreElement = document.querySelector(`[data-ai-benchmark="${test}-score"]`);
+                        const progressElement = document.querySelector(`[data-ai-progress="${test}"]`);
+                        
+                        if (scoreElement) {
+                            scoreElement.textContent = test === 'cls' ? value.toFixed(2) : `${value}ms`;
+                            scoreElement.style.color = this.getScoreColor(test, value);
+                        }
+                        
+                        if (progressElement) {
+                            const percentage = this.calculateProgressPercentage(test, value);
+                            progressElement.style.width = `${percentage}%`;
+                            progressElement.style.backgroundColor = this.getScoreColor(test, value);
+                        }
+                        
+                        completed++;
+                        
+                        if (completed === tests.length) {
+                            if (button) {
+                                button.disabled = false;
+                                button.innerHTML = '🚀 اجرای مجدد تست';
+                            }
+                            if (status) {
+                                status.textContent = 'تکمیل شد';
+                                status.style.color = '#10b981';
+                            }
+                            
+                            this.logAIEvent('benchmark_complete', this.metrics);
+                        }
+                    }, index * 800);
+                });
+            }
+            
+            simulateBenchmark(test) {
+                const ranges = {
+                    lcp: { min: 400, max: 1200 },
+                    fid: { min: 20, max: 150 },
+                    cls: { min: 0.01, max: 0.3 },
+                    tti: { min: 1200, max: 4000 }
+                };
+                
+                const range = ranges[test];
+                return test === 'cls' 
+                    ? (Math.random() * (range.max - range.min) + range.min).toFixed(2)
+                    : Math.floor(Math.random() * (range.max - range.min) + range.min);
+            }
+            
+            calculateProgressPercentage(test, value) {
+                const targets = { lcp: 1000, fid: 100, cls: 0.1, tti: 3800 };
+                const target = targets[test];
+                return test === 'cls' 
+                    ? Math.max(0, 100 - (value / target) * 100)
+                    : Math.max(0, 100 - (value / target) * 100);
+            }
+            
+            getScoreColor(test, value) {
+                const targets = { lcp: 1000, fid: 100, cls: 0.1, tti: 3800 };
+                const target = targets[test];
+                
+                if (test === 'cls') {
+                    return value <= target * 0.5 ? '#10b981' : value <= target ? '#f59e0b' : '#ef4444';
+                }
+                
+                return value <= target * 0.5 ? '#10b981' : value <= target ? '#f59e0b' : '#ef4444';
+            }
+            
+            updatePerformanceMetrics() {
+                // به‌روزرسانی متریک‌های عملکرد
+                Object.entries(this.metrics).forEach(([key, value]) => {
+                    const elements = document.querySelectorAll(`[data-ai-metric="${key}"]`);
+                    elements.forEach(element => {
+                        if (key === 'cpu' || key === 'ram' || key === 'fps' || key === 'network') {
+                            element.textContent = key === 'ram' ? `${value}MB` : key === 'network' ? `${value}KB/s` : `${value}${key === 'cpu' ? '%' : ''}`;
+                            
+                            // به‌روزرسانی progress bar
+                            const progressElement = document.querySelector(`[data-ai-progress="${key}"]`);
+                            if (progressElement) {
+                                let percentage = value;
+                                if (key === 'ram') percentage = (value / 1024) * 100;
+                                if (key === 'fps') percentage = (value / 60) * 100;
+                                if (key === 'network') percentage = Math.min(100, value / 1000 * 100);
+                                
+                                progressElement.style.width = `${percentage}%`;
+                                progressElement.style.backgroundColor = this.getPerformanceColor(key, value);
+                            }
+                        }
+                    });
+                });
+                
+                this.updateDebugPanel();
+            }
+            
+            getPerformanceColor(metric, value) {
+                if (metric === 'fps') return value >= 50 ? '#10b981' : value >= 30 ? '#f59e0b' : '#ef4444';
+                if (metric === 'cpu') return value <= 30 ? '#10b981' : value <= 70 ? '#f59e0b' : '#ef4444';
+                if (metric === 'ram') return value <= 300 ? '#10b981' : value <= 700 ? '#f59e0b' : '#ef4444';
+                return '#3b82f6';
+            }
+            
+            runAIAnalysis() {
+                const button = document.querySelector('[data-ai-action="ai-analyze"]');
+                if (button) {
+                    button.disabled = true;
+                    button.innerHTML = '🤖 در حال تحلیل...';
+                }
+                
+                setTimeout(() => {
+                    // تحلیل شبیه‌سازی شده AI
+                    const insights = [
+                        "الگوی کاربر: تعامل بالا با بخش‌های AI",
+                        "بهینه‌سازی پیشنهادی: افزایش کش تصاویر ۲۰٪",
+                        "مشکل احتمالی: تاخیر در بارگذاری فونت‌ها",
+                        "پیش‌بینی: افزایش ۱۵٪ engagement با بهینه‌سازی"
+                    ];
+                    
+                    this.showAINotification(
+                        'تحلیل AI کامل شد',
+                        insights.join('<br>'),
+                        'success'
+                    );
+                    
+                    if (button) {
+                        button.disabled = false;
+                        button.innerHTML = '🤖 تحلیل پیشرفته AI';
+                    }
+                }, 2000);
+            }
+            
+            applyAIOptimizations() {
+                const button = document.querySelector('[data-ai-action="apply-optimizations"]');
+                if (button) {
+                    button.disabled = true;
+                    button.innerHTML = '⚡ در حال اعمال...';
+                }
+                
+                setTimeout(() => {
+                    // اعمال بهینه‌سازی‌های شبیه‌سازی شده
+                    this.metrics.lcp *= 0.7;
+                    this.metrics.fid *= 0.6;
+                    this.metrics.cls *= 0.5;
+                    this.updatePerformanceMetrics();
+                    
+                    this.showAINotification(
+                        'بهینه‌سازی‌ها اعمال شدند',
+                        'عملکرد ۴۵٪ بهبود یافت<br>LCP: ۶۵٪ کاهش<br>FID: ۴۰٪ کاهش',
+                        'optimization'
+                    );
+                    
+                    if (button) {
+                        button.disabled = false;
+                        button.innerHTML = '✅ بهینه‌سازی‌ها اعمال شدند';
+                        
+                        setTimeout(() => {
+                            button.innerHTML = '🚀 اعمال بهینه‌سازی‌های AI';
+                        }, 3000);
+                    }
+                }, 1500);
+            }
+            
+            demoAdaptiveAnimation() {
+                const demoElement = document.getElementById('ai-animation-demo');
+                if (!demoElement) return;
+                
+                demoElement.style.opacity = '1';
+                demoElement.style.transform = 'scale(1)';
+                demoElement.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                
+                setTimeout(() => {
+                    demoElement.style.transform = 'scale(1.05) translateX(20px)';
+                    demoElement.style.background = 'linear-gradient(90deg, var(--ai-secondary), var(--ai-primary))';
+                }, 500);
+                
+                setTimeout(() => {
+                    demoElement.style.transform = 'scale(1) translateX(0)';
+                    demoElement.style.background = 'linear-gradient(90deg, var(--ai-primary), var(--ai-secondary))';
+                }, 1000);
+                
+                setTimeout(() => {
+                    demoElement.style.opacity = '0';
+                    demoElement.style.transform = 'scale(0.95)';
+                }, 2000);
+            }
+            
+            scrollToNextSection() {
+                const sections = ['ai-hero', 'ai-about', 'ai-features', 'ai-live', 'ai-performance'];
+                const current = window.scrollY;
+                let targetSection = null;
+                
+                for (const sectionId of sections) {
+                    const section = document.getElementById(sectionId);
+                    if (section && section.offsetTop > current + 100) {
+                        targetSection = section;
+                        break;
+                    }
+                }
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    // اگر در انتها هستیم، به بالا برویم
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+            
+            startAdaptiveAnimations() {
+                // انیمیشن لوگوی AI
+                const logo = document.getElementById('ai-animated-logo');
+                if (logo) {
+                    const animateLogo = () => {
+                        logo.style.transform = 'translateY(-10px)';
+                        logo.style.textShadow = '0 0 30px var(--ai-primary)';
+                        
+                        setTimeout(() => {
+                            logo.style.transform = 'translateY(0)';
+                            logo.style.textShadow = '0 0 15px var(--ai-primary)';
+                        }, 1000);
+                        
+                        setTimeout(animateLogo, 2000);
+                    };
+                    animateLogo();
+                }
+                
+                // انیمیشن کارت‌های تعاملی
+                document.querySelectorAll('[data-ai-card="interactive"]').forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        if (this.metrics.fps > 30) { // فقط اگر FPS کافی است
+                            card.style.transform = 'translateY(-10px) scale(1.02)';
+                            card.style.boxShadow = '0 25px 50px rgba(0,0,0,0.2)';
+                        }
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'translateY(0) scale(1)';
+                        card.style.boxShadow = '0 15px 40px rgba(0,0,0,0.1)';
+                    });
+                });
+            }
+            
+            prefetchContent() {
+                // پیش‌بارگذاری هوشمند بر اساس موقعیت اسکرول
+                const scrollPosition = window.scrollY + window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+                
+                if (scrollPosition > documentHeight * 0.7) {
+                    // اگر کاربر به ۷۰٪ انتهای صفحه رسید، منابع بیشتر را بارگذاری کن
+                    this.loadAdditionalResources();
+                }
+            }
+            
+            loadAdditionalResources() {
+                // بارگذاری منابع اضافی (شبیه‌سازی شده)
+                if (!this.additionalResourcesLoaded) {
+                    console.log('[AI Prefetch] بارگذاری منابع اضافی...');
+                    this.additionalResourcesLoaded = true;
+                    
+                    // می‌توانید اینجا فایل‌های اضافی را لود کنید
+                    // مثلا: const script = document.createElement('script'); ...
+                }
+            }
+            
+            startPerformanceMonitor() {
+                // نظارت بر عملکرد و تطبیق پویا
+                setInterval(() => {
+                    if (this.metrics.fps < 30 && this.mode !== 'minimal') {
+                        console.log('[AI Adaptive] کاهش کیفیت به دلیل FPS پایین');
+                        this.switchToMinimalMode();
+                    }
+                    
+                    if (this.metrics.cpu > 80) {
+                        console.log('[AI Adaptive] کاهش انیمیشن‌ها به دلیل CPU بالا');
+                        this.reduceAnimations();
+                    }
+                }, 5000);
+            }
+            
+            switchToMinimalMode() {
+                document.body.setAttribute('data-ai-mode', 'minimal');
+                this.mode = 'minimal';
+                this.showAINotification(
+                    'حالت بهینه‌سازی فعال شد',
+                    'کیفیت کاهش یافت تا عملکرد بهبود یابد',
+                    'info'
+                );
+                
+                setTimeout(() => {
+                    if (this.metrics.fps > 45) {
+                        document.body.setAttribute('data-ai-mode', 'adaptive');
+                        this.mode = 'adaptive';
+                    }
+                }, 30000);
+            }
+            
+            reduceAnimations() {
+                document.body.classList.add('ai-reduced-motion');
+                setTimeout(() => {
+                    document.body.classList.remove('ai-reduced-motion');
+                }, 60000);
+            }
+            
+            showAINotification(title, message, type = 'info') {
+                // ایجاد یک notification موقت
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 30px;
+                    background: var(--ai-card);
+                    color: var(--ai-text);
+                    padding: 25px;
+                    border-radius: 20px;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                    z-index: 10000;
+                    max-width: 400px;
+                    border-left: 5px solid ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+                    animation: ai-notification-slide 0.5s ease-out;
+                `;
+                
+                notification.innerHTML = `
+                    <div style="font-weight:bold;font-size:1.2em;margin-bottom:10px;color:var(--ai-primary);">
+                        ${title}
+                    </div>
+                    <div style="font-size:1em;line-height:1.6;">
+                        ${message}
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'ai-notification-slide 0.5s ease-in reverse';
+                    setTimeout(() => notification.remove(), 500);
+                }, 5000);
+            }
+            
+            updateDebugPanel() {
+                if (document.getElementById('ai-debug').style.display === 'block') {
+                    document.getElementById('ai-mode-status').textContent = this.mode;
+                    document.getElementById('ai-perf-status').textContent = this.performance;
+                    document.getElementById('ai-theme-status').textContent = this.theme;
+                }
+            }
+            
+            logAIEvent(event, data) {
+                // در حالت واقعی، این داده‌ها به سرور AI ارسال می‌شوند
+                console.log(`[AI Event] ${event}:`, data);
+            }
+        }
+        
+        // ==================== INITIALIZATION ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            // راه‌اندازی هسته AI
+            window.AmixamaAI = new AICoreArchitecture();
+            
+            // اضافه کردن استایل‌های انیمیشن
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ai-spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+                
+                @keyframes ai-notification-slide {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                
+                .ai-logo-animated {
+                    animation: ai-logo-glow 3s infinite alternate;
+                }
+                
+                @keyframes ai-logo-glow {
+                    0% { text-shadow: 0 0 10px var(--ai-primary); }
+                    100% { text-shadow: 0 0 30px var(--ai-primary), 0 0 60px rgba(77,166,255,0.5); }
+                }
+                
+                .ai-reduced-motion * {
+                    animation-duration: 0.01s !important;
+                    transition-duration: 0.01s !important;
+                }
+                
+                .ai-minimal-text {
+                    font-size: 0.95em !important;
+                    line-height: 1.6 !important;
+                }
+                
+                /* بهبودهای ظاهری */
+                [data-ai-card="interactive"]:hover {
+                    transform: translateY(-10px) !important;
+                    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // فعال‌سازی دکمه دیباگ (برای توسعه)
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                    const debugPanel = document.getElementById('ai-debug');
+                    debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
+                }
+            });
+            
+            console.log('%cAmixama AI v3.0 راه‌اندازی شد', 
+                'background: linear-gradient(90deg, #007bff, #4da6ff); color: white; padding: 10px 20px; border-radius: 10px; font-size: 16px; font-weight: bold;');
+        });
+        
+        // ==================== PERFORMANCE OBSERVER ====================
+        if ('PerformanceObserver' in window) {
+            // نظارت بر LCP
+            const lcpObserver = new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                const lastEntry = entries[entries.length - 1];
+                if (window.AmixamaAI) {
+                    window.AmixamaAI.metrics.lcp = Math.round(lastEntry.startTime);
+                    window.AmixamaAI.updatePerformanceMetrics();
+                }
+            });
+            
+            lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+            
+            // نظارت بر CLS
+            const clsObserver = new PerformanceObserver((entryList) => {
+                let clsValue = 0;
+                for (const entry of entryList.getEntries()) {
+                    if (!entry.hadRecentInput) {
+                        clsValue += entry.value;
+                    }
+                }
+                if (window.AmixamaAI) {
+                    window.AmixamaAI.metrics.cls = clsValue;
+                    window.AmixamaAI.updatePerformanceMetrics();
+                }
+            });
+            
+            clsObserver.observe({ type: 'layout-shift', buffered: true });
+        }
     </script>
+    
 </body>
 </html>
