@@ -3,942 +3,780 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMIXAMA - معماری وب با هوش مصنوعی</title>
+    <title>AMIXAMA - سیستم تولید وبسایت‌های هوشمند و تکامل‌یابنده</title>
+    
+    <!-- فونت‌های فارسی -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- آیکون‌ها -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- استایل‌های پایه -->
     <style>
+        /* متغیرهای سیستمی */
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #7c3aed;
+            --accent-color: #10b981;
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+        
+        /* ریست و پایه */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        :root {
-            --primary: #00d4ff;
-            --secondary: #7c3aed;
-            --accent: #f59e0b;
-            --dark: #0a0a0f;
-            --darker: #050508;
-            --light: #e5e7eb;
-        }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--darker);
-            color: var(--light);
-            overflow-x: hidden;
+            font-family: 'Vazirmatn', sans-serif;
             line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            transition: var(--transition);
+            overflow-x: hidden;
         }
-
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
+        
+        .dark-mode {
+            background-color: var(--dark-bg);
+            color: #e2e8f0;
+        }
+        
+        /* کانتینر */
+        .container {
             width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.15) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-
-        .glow-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.3;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .orb1 {
-            width: 300px;
-            height: 300px;
-            background: var(--primary);
-            top: 10%;
-            left: 10%;
-        }
-
-        .orb2 {
-            width: 400px;
-            height: 400px;
-            background: var(--secondary);
-            bottom: 20%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-
+        
+        /* هدر و نوبار */
         header {
-            position: fixed;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
             top: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
         }
-
-        header.scrolled {
-            padding: 1rem 5%;
-            background: rgba(10, 10, 15, 0.95);
-        }
-
-        nav {
+        
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
         }
-
+        
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-text {
             font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(90deg, #ffffff, #f0f9ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .container {
-            position: relative;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 5%;
-            z-index: 1;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8rem 0 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .amixama-logo-large {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 15rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            opacity: 0.1;
-            letter-spacing: 15px;
-            animation: logoFloat 8s ease-in-out infinite, logoPulse 4s ease-in-out infinite;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
-            25% { transform: translate(-48%, -52%) rotate(2deg); }
-            50% { transform: translate(-52%, -50%) rotate(0deg); }
-            75% { transform: translate(-50%, -48%) rotate(-2deg); }
-        }
-
-        @keyframes logoPulse {
-            0%, 100% { opacity: 0.08; }
-            50% { opacity: 0.12; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content h1 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-content .subtitle {
-            font-size: 1.6rem;
-            color: rgba(229, 231, 235, 0.85);
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease 0.2s both;
-            line-height: 1.6;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.15rem;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s both;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        section {
-            padding: 7rem 0;
-            position: relative;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-intro {
-            text-align: center;
-            max-width: 850px;
-            margin: 0 auto 4rem;
-            color: rgba(229, 231, 235, 0.8);
-            font-size: 1.15rem;
-            line-height: 1.9;
-        }
-
-        .about-content {
-            max-width: 950px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 3.5rem;
-        }
-
-        .about-content p {
-            color: rgba(229, 231, 235, 0.85);
-            margin-bottom: 1.8rem;
-            text-align: justify;
-            font-size: 1.05rem;
-        }
-
-        .intro-section {
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .intro-content {
-            max-width: 950px;
-            margin: 0 auto;
-        }
-
-        .intro-content h3 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1.8rem;
-        }
-
-        .intro-content p {
-            color: rgba(229, 231, 235, 0.85);
-            margin-bottom: 1.8rem;
-            text-align: justify;
-            font-size: 1.05rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 3rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .service-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
-        }
-
-        .service-card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 1.3rem;
-            color: var(--primary);
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-card p {
-            color: rgba(229, 231, 235, 0.8);
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-            text-align: justify;
-            font-size: 1.02rem;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .portfolio-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            border-color: var(--secondary);
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
-        }
-
-        .portfolio-image {
-            width: 100%;
-            height: 280px;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: rgba(229, 231, 235, 0.6);
-            font-weight: 500;
-        }
-
-        .portfolio-info {
-            padding: 2.5rem;
-        }
-
-        .portfolio-info h3 {
-            font-size: 1.5rem;
-            color: var(--secondary);
-            margin-bottom: 1.2rem;
-        }
-
-        .portfolio-info p {
-            color: rgba(229, 231, 235, 0.8);
-            line-height: 1.8;
-            text-align: justify;
-            font-size: 1.02rem;
-        }
-
-        .data-stream {
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .data-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .data-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        
+        .ai-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
             border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .data-item::after {
-            content: 'بروزرسانی خودکار';
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            font-size: 0.75rem;
-            color: var(--accent);
-            padding: 0.3rem 0.8rem;
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: 15px;
-        }
-
-        .data-item:hover {
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .data-label {
-            font-size: 0.95rem;
-            color: var(--accent);
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .data-title {
-            font-size: 1.3rem;
-            color: var(--light);
-            margin-bottom: 1rem;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-
-        .data-content {
-            color: rgba(229, 231, 235, 0.75);
-            font-size: 1rem;
-            line-height: 1.7;
-            text-align: justify;
-        }
-
-        .data-source {
-            margin-top: 1.5rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: rgba(229, 231, 235, 0.5);
-            font-style: italic;
-        }
-
-        .data-timestamp {
-            font-size: 0.85rem;
-            color: rgba(229, 231, 235, 0.4);
-            margin-top: 0.5rem;
-        }
-
-        .ai-portals-section {
-            background: rgba(0, 212, 255, 0.03);
-        }
-
-        .portal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .portal-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            border-radius: 25px;
-            padding: 3rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .portal-card::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.2), transparent);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.5s ease;
-        }
-
-        .portal-card:hover::after {
-            width: 400px;
-            height: 400px;
-        }
-
-        .portal-card:hover {
-            border-color: var(--primary);
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
-        }
-
-        .portal-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-        }
-
-        .portal-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1.2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .portal-description {
-            color: rgba(229, 231, 235, 0.8);
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-            text-align: justify;
-            font-size: 1.02rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .portal-button {
-            margin-top: 1.5rem;
-            padding: 1rem 2.2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .portal-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
-        }
-
-        .portal-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
+            font-size: 0.8rem;
             backdrop-filter: blur(10px);
         }
-
-        .portal-modal.active {
+        
+        nav ul {
             display: flex;
+            list-style: none;
+            gap: 2rem;
         }
-
-        .portal-modal-content {
-            background: rgba(10, 10, 15, 0.95);
-            border: 2px solid rgba(0, 212, 255, 0.5);
-            border-radius: 25px;
-            padding: 3rem;
-            max-width: 800px;
-            width: 90%;
-            max-height: 85vh;
-            overflow-y: auto;
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 0;
             position: relative;
         }
-
-        .portal-close {
+        
+        nav a:hover {
+            opacity: 0.9;
+        }
+        
+        nav a::after {
+            content: '';
             position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 2rem;
-            cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease;
         }
-
-        .portal-close:hover {
-            opacity: 1;
-        }
-
-        .portal-interface {
-            margin-top: 2rem;
-        }
-
-        .portal-interface h3 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.6rem;
-        }
-
-        .portal-input-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .portal-input-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: rgba(229, 231, 235, 0.8);
-            font-size: 1rem;
-        }
-
-        .portal-input-group input,
-        .portal-input-group textarea,
-        .portal-input-group select {
+        
+        nav a:hover::after {
             width: 100%;
-            padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: var(--light);
-            font-size: 1rem;
-            font-family: inherit;
         }
-
-        .portal-input-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .portal-input-group input:focus,
-        .portal-input-group textarea:focus,
-        .portal-input-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .portal-submit {
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.3s ease;
-        }
-
-        .portal-submit:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
-        }
-
-        .portal-submit:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .portal-result {
-            margin-top: 2rem;
-            padding: 2rem;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 15px;
-            display: none;
-        }
-
-        .portal-result.active {
-            display: block;
-        }
-
-        .portal-result-text {
-            color: rgba(229, 231, 235, 0.85);
-            line-height: 1.8;
-            white-space: pre-wrap;
-        }
-
-        .trust-section {
-            background: rgba(124, 58, 237, 0.03);
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-
-        .trust-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .trust-item:hover {
-            border-color: var(--secondary);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
-        }
-
-        .trust-icon {
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            border-radius: 18px;
+        
+        /* المان متحرک AMIXAMA */
+        .amixama-hero {
+            position: relative;
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
-            color: white;
-            font-weight: 700;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
-
-        .trust-item h3 {
-            font-size: 1.3rem;
-            color: var(--light);
+        
+        .floating-amixama {
+            font-size: 8rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: float 6s ease-in-out infinite;
+            text-shadow: 0 0 50px rgba(59, 130, 246, 0.3);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-30px) rotate(2deg); }
+        }
+        
+        /* بخش‌های اصلی */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
             margin-bottom: 1rem;
+            color: var(--primary-color);
         }
-
-        .trust-item p {
-            color: rgba(229, 231, 235, 0.75);
-            line-height: 1.7;
-            text-align: justify;
-            font-size: 1rem;
-        }
-
-        .privacy-section {
-            max-width: 1000px;
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
             margin: 0 auto;
         }
-
-        .privacy-content {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 3.5rem;
+        
+        /* کارت‌ها */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            height: 100%;
         }
-
-        .privacy-content h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
+        
+        .dark-mode .card {
+            background: #1e293b;
+            color: #cbd5e1;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            margin-top: 2rem;
+            color: var(--primary-color);
         }
-
-        .privacy-content h3:first-child {
-            margin-top: 0;
-        }
-
-        .privacy-content p {
-            color: rgba(229, 231, 235, 0.85);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            text-align: justify;
-            font-size: 1.05rem;
-        }
-
-        .privacy-content ul {
-            list-style: none;
-            padding-right: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .privacy-content li {
-            color: rgba(229, 231, 235, 0.8);
+        
+        .card h3 {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
-            position: relative;
-            padding-right: 2rem;
-            line-height: 1.7;
-            text-align: justify;
         }
-
-        .privacy-content li::before {
-            content: '◄';
-            position: absolute;
-            right: 0;
-            color: var(--primary);
-            font-size: 0.9rem;
-        }
-
-        .contact-section {
-            text-align: center;
-        }
-
-        .contact-info {
-            max-width: 700px;
-            margin: 2rem auto;
+        
+        /* سیستم data-title اتوماتیک */
+        .data-title-system {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 15px;
             padding: 3rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
+            margin: 3rem 0;
         }
-
-        .contact-info p {
-            font-size: 1.15rem;
-            color: rgba(229, 231, 235, 0.8);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+        
+        .dark-mode .data-title-system {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
         }
-
-        .ai-chat-button {
-            position: fixed;
-            bottom: 35px;
-            left: 35px;
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            border: none;
-            font-size: 1.7rem;
-            color: white;
-            font-weight: 700;
-        }
-
-        .ai-chat-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.6);
-        }
-
-        .ai-chat-window {
-            position: fixed;
-            bottom: 115px;
-            left: 35px;
-            width: 420px;
-            height: 580px;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            display: none;
-            flex-direction: column;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        .ai-chat-window.active {
-            display: flex;
-        }
-
-        .chat-header {
-            padding: 1.8rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 25px 25px 0 0;
+        
+        .data-title-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 2rem;
         }
-
-        .chat-header h3 {
-            font-size: 1.25rem;
+        
+        .auto-update-badge {
+            background: var(--accent-color);
             color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
         }
-
-        .close-chat {
-            background: none;
+        
+        .data-stream {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-right: 5px solid var(--primary-color);
+        }
+        
+        .dark-mode .data-stream {
+            background: #334155;
+        }
+        
+        .data-source {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+        
+        /* پرتال‌های هوشمند */
+        .ai-portal {
+            background: linear-gradient(135deg, #ede9fe, #f3e8ff);
+            border-radius: 15px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dark-mode .ai-portal {
+            background: linear-gradient(135deg, #312e81, #4c1d95);
+        }
+        
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .portal-node {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .dark-mode .portal-node {
+            background: rgba(30, 41, 59, 0.8);
+        }
+        
+        .portal-node:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+        
+        /* Dark Mode AI Adaptation */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1000;
+        }
+        
+        .toggle-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
             border: none;
-            color: white;
-            font-size: 1.6rem;
             cursor: pointer;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+        
+        .toggle-btn:hover {
+            transform: rotate(30deg);
+            background: var(--primary-dark);
+        }
+        
+        /* فوتر */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-right: 10px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+        
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .floating-amixama {
+                font-size: 4rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    
+    <!-- استایل‌های داینامیک برای AI -->
+    <style id="ai-dynamic-styles"></style>
+</head>
+<body>
+    <!-- هدر -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-text">AMIXAMA</div>
+                <div class="ai-badge">پلتفرم هوش مصنوعی</div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#about">درباره ما</a></li>
+                    <li><a href="#features">قابلیت‌ها</a></li>
+                    <li><a href="#data-title">داده هوشمند</a></li>
+                    <li><a href="#ai-portal">پرتال AI</a></li>
+                    <li><a href="#privacy">حریم خصوصی</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- المان متحرک AMIXAMA -->
+    <div class="amixama-hero">
+        <div class="floating-amixama">AMIXAMA</div>
+    </div>
+
+    <!-- درباره AMIXAMA -->
+    <section id="about" class="container">
+        <div class="section-title">
+            <h2>درباره AMIXAMA</h2>
+            <p>سیستم تولید وبسایت‌های هوشمند و تکامل‌یابنده مبتنی بر معماری AI</p>
+        </div>
+        
+        <div class="card">
+            <h3>پیش‌درآمد</h3>
+            <p>AMIXAMA یک پلتفرم انقلابی در حوزه طراحی و توسعه وبسایت است که با استفاده از هوش مصنوعی، وبسایت‌هایی کاملاً سفارشی، غیرتکراری و با قابلیت تکامل خودکار ایجاد می‌کند.</p>
+            <p>هر وبسایت تولید شده توسط AMIXAMA یک موجودیت پویاست که پس از تحویل به مشتری، به‌طور مستمر بهینه‌سازی و ارتقا می‌یابد.</p>
+        </div>
+    </section>
+
+    <!-- نمونه‌های فرضی -->
+    <section id="features" class="container">
+        <div class="section-title">
+            <h2>نمونه‌های فرضی</h2>
+            <p>طراحی‌های منحصربه‌فرد تولید شده توسط سیستم AI</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h3>وبسایت فروشگاهی</h3>
+                <p>سیستم هوشمند فروش با قابلیت تولید خودکار محتوا، پیشنهادات شخصی‌سازی شده و مدیریت هوشمند موجودی</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h3>وبسایت صنعتی</h3>
+                <p>نمایشگاه مجازی محصولات صنعتی با قابلیت نمایش سه‌بعدی، دیتاشیت هوشمند و سیستم سفارش‌گیری پیشرفته</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>وبسایت خدماتی</h3>
+                <p>سیستم رزرواسیون هوشمند، مدیریت قرار ملاقات و ارائه خدمات شخصی‌سازی شده مبتنی بر AI</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Automatically data-title -->
+    <section id="data-title" class="container">
+        <div class="section-title">
+            <h2>سیستم داده هوشمند</h2>
+            <p>به‌روزرسانی خودکار داده‌ها از منابع فارسی و بین‌المللی</p>
+        </div>
+        
+        <div class="data-title-system">
+            <div class="data-title-header">
+                <h3>Automatically data-title</h3>
+                <span class="auto-update-badge">اتوماتیک</span>
+            </div>
+            
+            <div id="data-stream-container">
+                <div class="data-stream">
+                    <h4>آخرین بروزرسانی داده‌های بازار</h4>
+                    <p>تحلیل روندهای طراحی وب در سه ماهه اول ۲۰۲۴</p>
+                    <div class="data-source">
+                        <span>منبع: داده‌های داخلی AMIXAMA</span>
+                        <span>زمان: ۲ ساعت پیش</span>
+                    </div>
+                </div>
+                
+                <div class="data-stream">
+                    <h4>به‌روزرسانی کتابخانه کامپوننت‌ها</h4>
+                    <p>۱۵ کامپوننت جدید اضافه شد</p>
+                    <div class="data-source">
+                        <span>منبع: مخزن GitHub</span>
+                        <span>زمان: ۵ ساعت پیش</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- پرتال‌های هوشمند AI -->
+    <section id="ai-portal" class="container">
+        <div class="ai-portal">
+            <div class="section-title">
+                <h2>پرتال‌های هوشمند AI</h2>
+                <p>دسترسی مستقیم به قابلیت‌های هوش مصنوعی سیستم</p>
+            </div>
+            
+            <div class="portal-grid">
+                <div class="portal-node">
+                    <i class="fas fa-robot" style="font-size: 2rem; margin-bottom: 1rem; color: var(--secondary-color);"></i>
+                    <h4>طراحی خودکار</h4>
+                    <p>تولید طرح‌های UI/UX منحصربه‌فرد</p>
+                </div>
+                
+                <div class="portal-node">
+                    <i class="fas fa-code" style="font-size: 2rem; margin-bottom: 1rem; color: var(--accent-color);"></i>
+                    <h4>کدنویسی هوشمند</h4>
+                    <p>تولید کد سیستماتیک و بهینه</p>
+                </div>
+                
+                <div class="portal-node">
+                    <i class="fas fa-chart-line" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
+                    <h4>آنالیز عملکرد</h4>
+                    <p>تحلیل و بهینه‌سازی خودکار سایت</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- حریم خصوصی و خط مشی -->
+    <section id="privacy" class="container">
+        <div class="section-title">
+            <h2>حریم خصوصی و خط مشی</h2>
+            <p>تعهد ما به امنیت و محرمانگی داده‌ها</p>
+        </div>
+        
+        <div class="card">
+            <h3>سیاست حفظ حریم خصوصی</h3>
+            <p>تمام داده‌های مشتریان در سرورهای امن و با رمزنگاری پیشرفته ذخیره می‌شود.</p>
+            <p>سیستم AMIXAMA به هیچ وجه به داده‌های حساس دسترسی ندارد و تمام پردازش‌ها به صورت محلی انجام می‌شود.</p>
+            
+            <h4 style="margin-top: 2rem;">جلب اعتماد کاربر</h4>
+            <p>با استفاده از شفاف‌سازی کامل فرآیندها و ارائه گزارش‌های دقیق از عملکرد AI، اعتماد کاربران را جلب می‌کنیم.</p>
+        </div>
+    </section>
+
+    <!-- Dark Mode AI Adaptation -->
+    <div class="dark-mode-toggle">
+        <button class="toggle-btn" id="darkModeToggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- فوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>AMIXAMA</h4>
+                    <p>پلتفرم تولید وبسایت‌های هوشمند و تکامل‌یابنده</p>
+                    <p>طراحی و توسعه با معماری AI پیشرفته</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>لینک‌های سریع</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">درباره ما</a></li>
+                        <li><a href="#features">قابلیت‌ها</a></li>
+                        <li><a href="#data-title">داده هوشمند</a></li>
+                        <li><a href="#ai-portal">پرتال AI</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>تماس با ما</h4>
+                    <p>برای سفارش وبسایت هوشمند:</p>
+                    <p>info@amixama.com</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>کلیه حقوق برای AMIXAMA محفوظ است. این وبسایت با معماری AI ساخته شده است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- اسکریپت‌های JavaScript -->
+    <script>
+        // Dark Mode AI Adaptation
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const aiDynamicStyles = document.getElementById('ai-dynamic-styles');
+        
+        // بررسی حالت ذخیره شده
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        // رویداد تغییر حالت
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                
+                // ایجاد استایل‌های داینامیک برای Dark Mode (شبیه‌سازی AI)
+                const dynamicStyles = `
+                    .floating-amixama {
+                        text-shadow: 0 0 70px rgba(139, 92, 246, 0.5);
+                    }
+                    
+                    .card {
+                        border: 1px solid #334155;
+                    }
+                    
+                    .ai-portal {
+                        background: linear-gradient(135deg, #1e1b4b, #3b0764);
+                    }
+                `;
+                
+                aiDynamicStyles.innerHTML = dynamicStyles;
+                
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                aiDynamicStyles.innerHTML = '';
+            }
+        });
+        
+        // شبیه‌سازی به‌روزرسانی خودکار داده‌ها
+        function simulateDataUpdate() {
+            const dataContainer = document.getElementById('data-stream-container');
+            const sources = [
+                'تحلیل‌های داخلی AMIXAMA',
+                'پایگاه داده ملی',
+                'منابع بین‌المللی',
+                'شبکه‌های اجتماعی',
+                'بازارهای جهانی'
+            ];
+            
+            const topics = [
+                'روندهای طراحی UI/UX',
+                'تکنولوژی‌های جدید Frontend',
+                'الگوریتم‌های بهینه‌سازی SEO',
+                'استانداردهای امنیتی وب',
+                'تحلیل رفتار کاربران'
+            ];
+            
+            const randomSource = sources[Math.floor(Math.random() * sources.length)];
+            const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+            
+            const newDataStream = document.createElement('div');
+            newDataStream.className = 'data-stream';
+            newDataStream.innerHTML = `
+                <h4>به‌روزرسانی جدید: ${randomTopic}</h4>
+                <p>داده‌های جدید پردازش و اضافه شد</p>
+                <div class="data-source">
+                    <span>منبع: ${randomSource}</span>
+                    <span>زمان: همین لحظه</span>
+                </div>
+            `;
+            
+            // اضافه کردن داده جدید به ابتدای لیست
+            dataContainer.insertBefore(newDataStream, dataContainer.firstChild);
+            
+            // حذف داده قدیمی اگر تعداد زیاد شد
+            if (dataContainer.children.length > 4) {
+                dataContainer.removeChild(dataContainer.lastChild);
+            }
+            
+            // افکت بصری برای داده جدید
+            newDataStream.style.opacity = '0';
+            newDataStream.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                newDataStream.style.transition = 'all 0.5s ease';
+                newDataStream.style.opacity = '1';
+                newDataStream.style.transform = 'translateY(0)';
+            }, 10);
+        }
+        
+        // به‌روزرسانی خودکار هر ۳۰ ثانیه
+        setInterval(simulateDataUpdate, 30000);
+        
+        // انیمیشن المان AMIXAMA
+        const floatingText = document.querySelector('.floating-amixama');
+        
+        function addPulseEffect() {
+            floatingText.style.textShadow = '0 0 60px rgba(59, 130, 246, 0.7)';
+            
+            setTimeout(() => {
+                floatingText.style.textShadow = '0 0 50px rgba(59, 130, 246, 0.3)';
+            }, 1000);
+        }
+        
+        // پالس هر ۵ ثانیه
+        setInterval(addPulseEffect, 5000);
+        
+        // اسکرول نرم
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // شبیه‌سازی AI در حال کار
+        console.log('AMIXAMA AI Core Initialized');
+        console.log('Self-evolving architecture: ACTIVE');
+        console.log('Auto-code generation: ENABLED');
+        console.log('Intelligent content system: RUNNING');
+        
+        // تولید اتوماتیک استایل‌های داینامیک (شبیه‌سازی AI)
+        function generateDynamicStyles() {
+            const colors = [
+                {primary: '#3b82f6', secondary: '#8b5cf6'},
+                {primary: '#10b981', secondary: '#3b82f6'},
+                {primary: '#8b5cf6', secondary: '#ec4899'},
+                {primary: '#f59e0b', secondary: '#10b981'}
+            ];
+            
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            const dynamicCSS = `
+                :root {
+                    --primary-color: ${randomColor.primary};
+                    --secondary-color: ${randomColor.secondary};
+                }
+                
+                .floating-amixama {
+                    background: linear-gradient(90deg, ${randomColor.primary}, ${randomColor.secondary}, ${randomColor.primary});
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-size: 200% auto;
+                    animation: gradient-flow 3s ease-in-out infinite;
+                }
+                
+                @keyframes gradient-flow {
+                    0%, 100% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                }
+            `;
+            
+            const styleSheet = document.createElement('style');
+            styleSheet.id = 'ai-color-styles';
+            styleSheet.innerHTML = dynamicCSS;
+            
+            // حذف استایل قبلی اگر وجود دارد
+            const existingStyle = document.getElementById('ai-color-styles');
+            if (existingStyle) {
+                existingStyle.remove();
+            }
+            
+            document.head.appendChild(styleSheet);
+        }
+        
+        // تغییر رنگ پویا هر ۶۰ ثانیه
+        setTimeout(generateDynamicStyles, 1000);
+        setInterval(generateDynamicStyles, 60000);
+    </script>
+</body>
+</html>
